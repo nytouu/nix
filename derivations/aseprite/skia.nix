@@ -20,7 +20,7 @@ stdenv.mkDerivation {
 
   buildInputs = with pkgs; [
     fontconfig expat icu58 libglvnd libjpeg libpng libwebp zlib
-    mesa libX11 harfbuzzFull
+    mesa xorg.libX11 harfbuzz
   ];
 
   preConfigure = with depSrcs; ''
@@ -33,7 +33,7 @@ stdenv.mkDerivation {
 
   configurePhase = ''
     runHook preConfigure
-    gn gen out/Release --args="is_debug=false is_official_build=true extra_cflags=[\"-I${pkgs.harfbuzzFull.dev}/include/harfbuzz\"]"
+    gn gen out/Release --args="is_debug=false is_official_build=true extra_cflags=[\"-I${pkgs.harfbuzz.dev}/include/harfbuzz\"]"
     runHook postConfigure
   '';
 

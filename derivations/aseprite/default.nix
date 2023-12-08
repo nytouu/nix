@@ -25,10 +25,10 @@ stdenv.mkDerivation rec {
 
   buildInputs = with pkgs; [
     curl freetype giflib libjpeg libpng libwebp pixman tinyxml zlib
-    libX11 libXext libXcursor libXxf86vm
+    xorg.libX11 xorg.libXext xorg.libXcursor xorg.libXxf86vm
     cmark
-    harfbuzzFull glib fontconfig pcre
-    skia libGL libXi
+    harfbuzz glib fontconfig pcre
+    skia libGL xorg.libXi
   ];
 
   patches = [
