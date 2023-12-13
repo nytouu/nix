@@ -9,7 +9,7 @@
 	timers = [
 	  {
 	    delay = 180;
-	    command = ''betterlockscreen --time-format "%H:%M" -l dimblur --wall'';
+	    command = ''lock'';
 	  }
 	  {
 	    delay = 360;

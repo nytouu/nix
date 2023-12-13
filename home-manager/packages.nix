@@ -8,12 +8,14 @@
     btrfs-progs acpi
     pinentry-curses
     libnotify
+    brightnessctl
 
     # nix
     nix-prefetch-git
 
     # tools
     imagemagick
+    tesseract
     wmctrl
     playerctl
     connman-gtk
@@ -30,6 +32,7 @@
       ]; 
     })
     xfce.tumbler
+    # inotify-tools
     qmk 
     # (callPackage ../derivations/hydrablocks/default.nix { })
     nsxiv
@@ -40,7 +43,7 @@
     xorg.xwininfo
     xorg.xset
     xclip
-    picom
+    # picom
     # (picom.overrideAttrs (oldAttrs: rec {
     # 	src = fetchFromGitHub {
     # 		owner = "fdev31";
@@ -50,6 +53,22 @@
     # 	};
     # 	buildInputs = oldAttrs.buildInputs ++ [ pcre2 ];
     # }))
+    (picom.overrideAttrs (oldAttrs: rec {
+      pname = "compfy";
+      version = "1.7.2";
+      buildInputs = [
+        pcre2
+      ]
+      ++
+        oldAttrs.buildInputs;
+      src = pkgs.fetchFromGitHub {
+        owner = "allusive-dev";
+        repo = "compfy";
+        rev = version;
+        hash = "sha256-7hvzwLEG5OpJzsrYa2AaIW8X0CPyOnTLxz+rgWteNYY=";
+      };
+      postInstall = '''';
+    }))
 
     xcolor
 
@@ -127,7 +146,7 @@
     # clang
     # clang-tools
     # dotnet-sdk
-    # mono
+    mono5
     luarocks
     # luajit
     gcc
@@ -149,6 +168,7 @@
     llvmPackages_9.libclang
 
     omnisharp-roslyn
+    csharp-ls
     # nodePackages_latest.browser-sync
   ];
 }

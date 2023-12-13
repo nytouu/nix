@@ -8,6 +8,7 @@
             ".mozilla/firefox/734y6nh3.default/chrome/userChrome.css".source = ./config/librewolf/userChrome.css;
             ".config/neofetch/config.conf".source = ./config/neofetch/config.conf;
             ".config/slippy-xd/skippy-xd.rc".source = ./config/skippy-xd/skippy-xd.rc;
+            ".config/compfy.conf".source = ./config/compfy.conf;
             ".config/picom.conf".source = ./config/picom.conf;
             ".config/rofi".source = ./config/rofi;
 
