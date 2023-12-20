@@ -4,6 +4,7 @@
 	home.packages = with pkgs; [
 		mpc-cli
 		zscroll
+		ncspot
 	];
 
     services.playerctld.enable = true;
@@ -90,7 +91,7 @@
             # visualizer
             visualizer_data_source = "/tmp/mpd.fifo";
             visualizer_output_name = "mpd_visualizer";
-            visualizer_type = "ellipse";
+            visualizer_type = "spectrum";
             visualizer_look = "●●";
             visualizer_color = "blue, green";
 

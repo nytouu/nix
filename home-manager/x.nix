@@ -9,7 +9,7 @@
 	timers = [
 	  {
 	    delay = 180;
-	    command = ''lock'';
+	    command = "lock";
 	  }
 	  {
 	    delay = 360;
@@ -19,8 +19,8 @@
   };
 
   xsession = {
-      enable = true;
-	  numlock.enable = true;
+    enable = true;
+    numlock.enable = true;
   };
 
   services.fusuma = {
@@ -55,7 +55,7 @@
     "XTerm*faceSize" = 13;
     #"Xcursor.theme" = "Bibata-Original-Ice";
     #"Xcursor.size" = 24;
-    
+
     "*background" =  "#292522";
     "*foreground" =  "#ECE1D7";
     "*color0"  = "#34302C";
@@ -75,7 +75,7 @@
     "*color14" = "#89B3B6";
     "*color15" = "#ECE1D7";
 
-    "st.font" = "IBM Plex Mono:style=Medium:size=11";
+    "st.font" = "BlexMono Nerd Font:style=Medium:size=11";
     "st.alpha" = "1.00";
     "st.background" =  "#292522";
     "st.foreground" =  "#ECE1D7";

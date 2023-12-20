@@ -26,7 +26,7 @@
         shellAliases = {
           nv = "nvim";
           cdnv = "cd $HOME/.config/nvim";
-          ls = "eza --icons";
+          ls = "eza --icons always";
           lst = "eza --tree --icons";
           lsa = "eza -a --icons";
           lsh = "eza -l --icons";

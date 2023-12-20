@@ -25,7 +25,7 @@
 	};
 	qt = {
 		enable = true;
-		platformTheme = "gtk";
+		platformTheme = "gtk3";
 		style = {
 			name = "adwaita-dark";
 			package = pkgs.adwaita-qt;

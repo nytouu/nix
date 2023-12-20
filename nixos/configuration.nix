@@ -43,6 +43,11 @@
       wifi.backend = "iwd";
   };
 
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = false;
+  };
+
   networking.firewall = { 
     enable = true;
     allowedTCPPortRanges = [ 
@@ -220,6 +225,7 @@
     sessionVariables = {
       WLR_NO_HARDWARE_CURSORS = "1";
       NIXOS_OZONE_WL = "1";
+			AWESOME_PATH = "${pkgs.awesome}";
     };
 
     etc = let

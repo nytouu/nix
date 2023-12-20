@@ -6,9 +6,9 @@
     bat eza
     unzip unrar p7zip
     btrfs-progs acpi
-    pinentry-curses
-    libnotify
-    brightnessctl
+    pinentry-curses libnotify
+    wirelesstools wget
+    procps psmisc brightnessctl
 
     # nix
     nix-prefetch-git
@@ -19,6 +19,7 @@
     wmctrl
     playerctl
     connman-gtk
+    blueman
     pass 
     feh
     pamixer pulsemixer
@@ -36,12 +37,15 @@
     qmk 
     # (callPackage ../derivations/hydrablocks/default.nix { })
     nsxiv
-    betterlockscreen
+
     # xorg
     xorg.xkill
     xorg.xinput
     xorg.xwininfo
+    xorg.xdpyinfo
     xorg.xset
+    xdotool
+		arandr
     xclip
     # picom
     # (picom.overrideAttrs (oldAttrs: rec {
@@ -93,6 +97,7 @@
 
     # teams-for-linux
     discord
+    obs-studio
     vscode
     zathura
     # mpv
@@ -128,7 +133,7 @@
 
     # rustup
     rustc
-    # jetbrains-toolbox
+    jetbrains-toolbox
     # mold
     cargo
     meson ninja nodejs
@@ -152,10 +157,10 @@
     gcc
     android-tools
     android-udev-rules
+    android-studio
 
     #nvim stuff
     tree-sitter
-    ascii-image-converter
     # ueberzugpp
 
     nixfmt
@@ -166,6 +171,8 @@
 
     lua stylua lua-language-server
     llvmPackages_9.libclang
+
+    nodePackages.bash-language-server
 
     omnisharp-roslyn
     csharp-ls
