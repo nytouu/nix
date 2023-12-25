@@ -270,6 +270,7 @@
   services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
+		open = true;
     modesetting.enable = true;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
@@ -322,6 +323,9 @@
   environment.binsh = "${pkgs.dash}/bin/dash";
 
   programs.dconf.enable = true;
+  services.gnome.evolution-data-server.enable = true;
+  services.gnome.gnome-online-accounts.enable = true;
+	services.gnome.gnome-keyring.enable = true;
   services.gvfs.enable = true;
 
   services.upower.enable = true;

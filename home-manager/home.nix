@@ -2,16 +2,17 @@
 
 {
   imports = [
-    ./zsh.nix
-	./theme.nix
-	./packages.nix
-	./terminal.nix
-    ./x.nix
-	# ./nvim.nix
-	./files.nix
-	./music.nix
-    ./browser.nix
-	./games.nix
+		./zsh.nix
+		./theme.nix
+		./packages.nix
+		./terminal.nix
+		./x.nix
+		# ./nvim.nix
+		./mail.nix
+		./files.nix
+		./music.nix
+		./browser.nix
+		./games.nix
   ];
 
   nixpkgs = {
@@ -20,11 +21,11 @@
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = (_: true);
       permittedInsecurePackages = [
-        "electron-13.6.9"
-		# "electron-24.8.6"
-        "python-2.7.18.6"
-		"openssl-1.1.1u"
-		"openssl-1.1.1w"
+				"electron-13.6.9"
+				# "electron-24.8.6"
+				"python-2.7.18.6"
+				"openssl-1.1.1u"
+				"openssl-1.1.1w"
       ];
     };
   };

@@ -46,7 +46,15 @@
 			name = "Papirus-Dark";
 			package = pkgs.papirus-icon-theme;
 		};
+    gtk2 = {
+      extraConfig = ''
+        gtk-decoration-layout = appmenu:none,menu:none
+      '';
+    };
 		gtk3 = {
+      extraConfig = {
+        gtk-decoration-layout = "appmenu:none,menu:none";
+      };
 			bookmarks = [
 				"file:///mnt/KINGSTON"
 				"file:///home/nytou/docs"
@@ -60,5 +68,10 @@
 				"file:///mnt/KINGSTON/Cours"
 			];
 		};
+		gtk4 = {
+      extraConfig = {
+        gtk-decoration-layout = "appmenu:none,menu:none";
+      };
+    };
 	};
 }

@@ -19,7 +19,7 @@
     wmctrl
     playerctl
     connman-gtk
-    blueman
+    # blueman
     pass 
     feh
     pamixer pulsemixer
@@ -30,6 +30,7 @@
       thunarPlugins = with pkgs.xfce; [
         thunar-archive-plugin 
         thunar-volman 
+        xfconf
       ]; 
     })
     xfce.tumbler
@@ -62,9 +63,7 @@
       version = "1.7.2";
       buildInputs = [
         pcre2
-      ]
-      ++
-        oldAttrs.buildInputs;
+      ] ++ oldAttrs.buildInputs;
       src = pkgs.fetchFromGitHub {
         owner = "allusive-dev";
         repo = "compfy";
@@ -95,7 +94,9 @@
 
     # apps
 
-    # teams-for-linux
+    teams-for-linux
+    gnome.gnome-calendar
+    gnome.gnome-system-monitor
     discord
     obs-studio
     vscode
@@ -103,14 +104,18 @@
     # mpv
     vlc
     # aseprite
+    blender
+    lmms
+    # nitrogen
+    libreoffice-fresh
     (callPackage ../derivations/aseprite/default.nix { })
     # libresprite
-    # bleachbit
+    bleachbit
     libsForQt5.qt5ct
     ytmdl
     mate.engrampa
     gimp
-    # unstable.godot_4
+    godot_4
     # (callPackage ../derivations/godot/default.nix { })
     (unityhub.override {
         extraLibs = pkgs: with pkgs; [
@@ -120,48 +125,20 @@
         ];
     })
 
-    # inputs.nixpkgs-unstable.pkgs.${pkgs.system}.unityhub
-    # unityhub
-    blender
-    lmms
-    # nitrogen
-    # obs-studio
-    # libsForQt5.kdeconnect-kde
-    libreoffice-fresh
-
     # dev
-
-    # rustup
     rustc
-    jetbrains-toolbox
-    # mold
     cargo
     meson ninja nodejs
     gnumake cmake
-    # xorg.libX11
-    # xorg.libXcursor xorg.libXi xorg.libXrandr
-    # libxkbcommon
-    # alsa-lib vulkan-loader
-    # pkg-config
-    # xorg.libXcursor xorg.libXrandr xorg.libXi
-    # vulkan-tools lutris vulkan-headers vulkan-loader 
-    # vulkan-validation-layers alsaLib 
-    # udev
-    # libudev-zero
-    # clang
-    # clang-tools
-    # dotnet-sdk
     mono5
     luarocks
-    # luajit
     gcc
-    android-tools
-    android-udev-rules
-    android-studio
+    # android-tools
+    # android-udev-rules
+    # android-studio
 
     #nvim stuff
     tree-sitter
-    # ueberzugpp
 
     nixfmt
     nil
@@ -174,7 +151,7 @@
 
     nodePackages.bash-language-server
 
-    omnisharp-roslyn
+    # omnisharp-roslyn
     csharp-ls
     # nodePackages_latest.browser-sync
   ];
