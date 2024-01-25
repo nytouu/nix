@@ -9,6 +9,9 @@
     pinentry-curses libnotify
     wirelesstools wget
     procps psmisc brightnessctl
+		python311Packages.psutil
+    python311Packages.types-psutil
+    python311Packages.pip
 
     # nix
     nix-prefetch-git
@@ -90,13 +93,12 @@
     ripgrep fd
     # neovide
 
-    helix
-
     # apps
-
+    audacity
     teams-for-linux
     gnome.gnome-calendar
     gnome.gnome-system-monitor
+    gnome.gnome-control-center
     discord
     obs-studio
     vscode
@@ -105,6 +107,7 @@
     vlc
     # aseprite
     blender
+    # blockbench-electron
     lmms
     # nitrogen
     libreoffice-fresh
@@ -112,11 +115,11 @@
     # libresprite
     bleachbit
     libsForQt5.qt5ct
-    ytmdl
+    # ytmdl
     mate.engrampa
     gimp
-    godot_4
-    # (callPackage ../derivations/godot/default.nix { })
+    # godot_4
+    (callPackage ../derivations/godot4-mono/default.nix { })
     (unityhub.override {
         extraLibs = pkgs: with pkgs; [
             openssl_1_1
@@ -133,9 +136,12 @@
     mono5
     luarocks
     gcc
-    # android-tools
-    # android-udev-rules
+    jetbrains-toolbox
+    android-tools
+    android-udev-rules
     # android-studio
+
+    python3
 
     #nvim stuff
     tree-sitter

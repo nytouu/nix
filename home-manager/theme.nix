@@ -48,12 +48,12 @@
 		};
     gtk2 = {
       extraConfig = ''
-        gtk-decoration-layout = appmenu:none,menu:none
+        gtk-decoration-layout = appmenu:,menu:
       '';
     };
 		gtk3 = {
       extraConfig = {
-        gtk-decoration-layout = "appmenu:none,menu:none";
+        gtk-decoration-layout = "appmenu:,menu:";
       };
 			bookmarks = [
 				"file:///mnt/KINGSTON"
@@ -70,7 +70,7 @@
 		};
 		gtk4 = {
       extraConfig = {
-        gtk-decoration-layout = "appmenu:none,menu:none";
+        gtk-decoration-layout = "appmenu:,menu:";
       };
     };
 	};

@@ -8,7 +8,7 @@
 		./terminal.nix
 		./x.nix
 		# ./nvim.nix
-		./mail.nix
+		# ./mail.nix
 		./files.nix
 		./music.nix
 		./browser.nix
@@ -23,6 +23,7 @@
       permittedInsecurePackages = [
 				"electron-13.6.9"
 				# "electron-24.8.6"
+          "electron-25.9.0"
 				"python-2.7.18.6"
 				"openssl-1.1.1u"
 				"openssl-1.1.1w"

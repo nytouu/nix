@@ -5,6 +5,23 @@ window.messagedialog .response-area > button,
 window.dialog.message .dialog-action-area > button,
 .background.csd{ border-radius: 0; }
 
+.window-frame {
+    box-shadow: 0 0 0 0;
+    margin: 0;
+}
+window decoration {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.background {
+    margin: 0;
+    padding: 0;
+    box-shadow: 0 0 0 0;
+}
+
+
 @define-color accent_color #89B3B6;
 @define-color accent_bg_color mix(#89B3B6, #34302C,0.3);
 @define-color accent_fg_color #ECE1D7;
