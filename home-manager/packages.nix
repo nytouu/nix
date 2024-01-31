@@ -137,6 +137,8 @@
     luarocks
     gcc
     jetbrains-toolbox
+    dotnet-sdk
+    dotnet-sdk_7
     android-tools
     android-udev-rules
     # android-studio
