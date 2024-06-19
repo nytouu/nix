@@ -17,8 +17,8 @@
 			x11.enable = true;
 		};
 
-		# file.".config/gtk-4.0/gtk.css".source = ./config/gtk.css;
-		# file.".config/gtk-3.0/gtk.css".source = ./config/gtk.css;
+	# file.".config/gtk-4.0/gtk.css".source = ./config/gtk-4.0/gtk.css;
+	# file.".config/gtk-3.0/gtk.css".source = ./config/gtk-3.0/gtk.css;
 
 	};
 	qt = {
@@ -47,11 +47,15 @@
     gtk2 = {
       extraConfig = ''
         gtk-decoration-layout = appmenu:,menu:
+        gtk-enable-event-sounds = 0
+        gtk-enable-input-feedback-sounds = 0
       '';
     };
 		gtk3 = {
       extraConfig = {
         gtk-decoration-layout = "appmenu:,menu:";
+        gtk-enable-event-sounds = 0;
+        gtk-enable-input-feedback-sounds = 0;
       };
 			bookmarks = [
 				"file:///mnt/KINGSTON"
@@ -69,6 +73,8 @@
 		gtk4 = {
       extraConfig = {
         gtk-decoration-layout = "appmenu:,menu:";
+        gtk-enable-event-sounds = 0;
+        gtk-enable-input-feedback-sounds = 0;
       };
     };
 	};

@@ -7,6 +7,7 @@
 		./packages.nix
 		./terminal.nix
 		./x.nix
+		./fonts.nix
 		# ./nvim.nix
 		# ./mail.nix
 		./files.nix
