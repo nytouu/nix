@@ -1,31 +1,29 @@
 { pkgs, ... }:
-# let 
-{ 
+{
 	home.packages = with pkgs; [
-		colloid-gtk-theme
 		adw-gtk3
 		papirus-icon-theme
-		bibata-cursors
+		simp1e-cursors
 		lightly-qt
 		adwaita-qt
 	];
 
 	home = {
 		pointerCursor = {
-			package = pkgs.bibata-cursors;
-			name = "Bibata-Original-Ice";
+			package = pkgs.simp1e-cursors;
+			name = "Simp1e-Adw-Dark";
 			size = 24;
 			gtk.enable = true;
 			x11.enable = true;
 		};
 
-		file.".config/gtk-4.0/gtk.css".source = ./config/gtk.css;
-		file.".config/gtk-3.0/gtk.css".source = ./config/gtk.css;
+		# file.".config/gtk-4.0/gtk.css".source = ./config/gtk.css;
+		# file.".config/gtk-3.0/gtk.css".source = ./config/gtk.css;
 
 	};
 	qt = {
 		enable = true;
-		platformTheme = "gtk3";
+		platformTheme.name = "gtk3";
 		style = {
 			name = "adwaita-dark";
 			package = pkgs.adwaita-qt;
@@ -35,7 +33,7 @@
 		enable = true;
 		font.name = "Torus Pro";
 		cursorTheme = {
-			name = "Bibata-Original-Ice";
+			name = "Simp1e-Adw-Dark";
 			package = pkgs.bibata-cursors;
 		};
 		theme = {

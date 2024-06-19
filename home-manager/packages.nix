@@ -51,7 +51,7 @@
     xdotool
 		arandr
     xclip
-    # picom
+    picom
     # (picom.overrideAttrs (oldAttrs: rec {
     # 	src = fetchFromGitHub {
     # 		owner = "fdev31";
@@ -61,20 +61,20 @@
     # 	};
     # 	buildInputs = oldAttrs.buildInputs ++ [ pcre2 ];
     # }))
-    (picom.overrideAttrs (oldAttrs: rec {
-      pname = "compfy";
-      version = "1.7.2";
-      buildInputs = [
-        pcre2
-      ] ++ oldAttrs.buildInputs;
-      src = pkgs.fetchFromGitHub {
-        owner = "allusive-dev";
-        repo = "compfy";
-        rev = version;
-        hash = "sha256-7hvzwLEG5OpJzsrYa2AaIW8X0CPyOnTLxz+rgWteNYY=";
-      };
-      postInstall = '''';
-    }))
+#    (picom.overrideAttrs (oldAttrs: rec {
+#      pname = "compfy";
+#      version = "1.7.2";
+#      buildInputs = [
+#        pcre2
+#      ] ++ oldAttrs.buildInputs;
+#      src = pkgs.fetchFromGitHub {
+#        owner = "allusive-dev";
+#        repo = "compfy";
+#        rev = version;
+#        hash = "sha256-7gKIOxFoiO0QFU9uaFbZZD9LzqH/TeaMImmCRYfg+uQ=";
+#      };
+#      postInstall = '''';
+#    }))
 
     xcolor
 
@@ -86,6 +86,7 @@
     # (callPackage ../derivations/nonicons/default.nix { })
     (callPackage ../derivations/nerd-symbols/default.nix { })
     (callPackage ../derivations/torus-pro/default.nix { })
+    (callPackage ../derivations/sf-pro-fonts/default.nix { })
     material-icons
 
     # neovim
@@ -111,7 +112,7 @@
     lmms
     # nitrogen
     libreoffice-fresh
-    (callPackage ../derivations/aseprite/default.nix { })
+    #(callPackage ../derivations/aseprite/default.nix { })
     # libresprite
     bleachbit
     libsForQt5.qt5ct
@@ -137,8 +138,8 @@
     luarocks
     gcc
     jetbrains-toolbox
-    dotnet-sdk
-    dotnet-sdk_7
+    #dotnet-sdk
+    #dotnet-sdk_7
     android-tools
     android-udev-rules
     # android-studio
@@ -148,14 +149,14 @@
     #nvim stuff
     tree-sitter
 
-    nixfmt
+    nixfmt-classic
     nil
 
     rust-analyzer
     rustfmt
 
     lua stylua lua-language-server
-    llvmPackages_9.libclang
+    llvmPackages.libclang
 
     nodePackages.bash-language-server
 

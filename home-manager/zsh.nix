@@ -3,7 +3,7 @@
 {
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     enableCompletion = true;
     syntaxHighlighting.enable = true;
     dotDir = ".config/zsh";
@@ -11,15 +11,15 @@
     defaultKeymap = "emacs";
 
     plugins = [
-    {
-      name = "zsh-autopair";
-      src = pkgs.fetchFromGitHub {
-        owner = "hlissner";
-        repo = "zsh-autopair";
-        rev = "396c38a7468458ba29011f2ad4112e4fd35f78e6";
-        sha256 = "0q9wg8jlhlz2xn08rdml6fljglqd1a2gbdp063c8b8ay24zz2w9x";
-      };
-    }
+			{
+				name = "zsh-autopair";
+				src = pkgs.fetchFromGitHub {
+					owner = "hlissner";
+					repo = "zsh-autopair";
+					rev = "396c38a7468458ba29011f2ad4112e4fd35f78e6";
+					sha256 = "0q9wg8jlhlz2xn08rdml6fljglqd1a2gbdp063c8b8ay24zz2w9x";
+				};
+			}
     ];
 
     shellAliases = {
@@ -58,9 +58,4 @@
       PROMPT=\"\\$(getprompt)%f%k\"
     ";
   };
-# programs.eza = {
-#     enable = true;
-#     enableAliases = true;
-#     icons = true;
-# };
 }

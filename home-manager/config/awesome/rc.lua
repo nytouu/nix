@@ -582,6 +582,6 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
-awful.spawn.with_shell("picom")
+-- awful.spawn.with_shell("picom")
 awful.spawn.with_shell("sleep 3 && /nix/store/$(ls -la /nix/store | grep polkit | grep gnome | awk '{print $8}' | sed -n '$p')/libexec/polkit-gnome-authentication-agent-1")
 -- }}}

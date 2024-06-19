@@ -17,9 +17,21 @@
 	  (final: prev: {
 	    awesome = inputs.nixpkgs-f2k.packages.${pkgs.system}.awesome-git;
       })
-	  (import (builtins.fetchTarball {
-	        	url = "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
-	  }))
+			(final: prev: {
+  sf-mono-liga-bin = prev.stdenvNoCC.mkDerivation rec {
+    pname = "sf-mono-liga-bin";
+    version = "dev";
+    src = inputs.sf-mono-liga-src;
+    dontConfigure = true;
+    installPhase = ''
+      mkdir -p $out/share/fonts/opentype
+      cp -R $src/*.otf $out/share/fonts/opentype/
+    '';
+  };
+})
+	  #(import (builtins.fetchTarball {
+	  #      	url = "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
+	  #}))
     ];
     config = {
       allowUnfree = true;
@@ -48,15 +60,15 @@
     powerOnBoot = false;
   };
 
-  networking.firewall = { 
+  networking.firewall = {
     enable = true;
-    allowedTCPPortRanges = [ 
+    allowedTCPPortRanges = [
       { from = 1714; to = 1764; } # KDE Connect
-    ];  
-    allowedUDPPortRanges = [ 
+    ];
+    allowedUDPPortRanges = [
       { from = 1714; to = 1764; } # KDE Connect
-    ];  
-  };  
+    ];
+  };
 
   time.timeZone = "Europe/Paris";
   time.hardwareClockInLocalTime = true;
@@ -103,12 +115,12 @@
   };
 
   # Setup keyfile
-  boot.initrd = {
-    systemd.enable = true;
-    secrets = {
-      "/crypto_keyfile.bin" = null;
-    };
-  };
+#  boot.initrd = {
+#    systemd.enable = true;
+#    secrets = {
+#      "/crypto_keyfile.bin" = null;
+#    };
+#  };
 
   boot.kernelParams = [ "quiet" ];
   boot.consoleLogLevel = 0;
@@ -124,32 +136,43 @@
   # };
 
   fonts = {
+
     packages = with pkgs; [
 	  (nerdfonts.override { fonts = [
 	    "JetBrainsMono"
-	    "FantasqueSansMono" 
-	    "FiraCode"
         "IBMPlexMono"
 	  ]; })
-      # nerdfonts
-      # fira-code
-	  # maple-mono
-	  # maple-mono-NF
-      # martian-mono
+			sf-mono-liga-bin
       ibm-plex
       noto-fonts
       noto-fonts-cjk
-      # fantasque-sans-mono
       jetbrains-mono
       siji
     ];
     fontconfig = {
       enable = true;
       defaultFonts = {
-        monospace = [ "JetBrainsMono Nerd Font" ];
+        monospace = [ "Liga SFMono Nerd Font" ];
         serif = [ "Noto Serif" ];
-        sansSerif = [ "Torus Pro" ];
+        sansSerif = [ "SF Pro Display" ];
       };
+    };
+  };
+
+
+  services.libinput = {
+    enable = true;
+    touchpad = {
+      tapping = true;
+      naturalScrolling = true;
+      scrollMethod = "twofinger";
+      disableWhileTyping = true;
+      clickMethod = "clickfinger";
+      accelProfile = "flat";
+    };
+    mouse = {
+      accelProfile = "flat";
+      accelSpeed = "-0.25";
     };
   };
 
@@ -157,12 +180,18 @@
   # Configure X11
   services.xserver = {
     enable = true;
-    layout = "fr";
+    xkb.layout = "fr";
     # xkbVariant = "";
 
-    # windowManager.dwm.enable = true;
-    windowManager.awesome = {
+    windowManager.dwm = {
       enable = true;
+      package = pkgs.dwm.overrideAttrs (oldAttrs: rec {
+        buildInputs = oldAttrs.buildInputs ++ [ pkgs.imlib2 ];
+        src = /home/nytou/git/hydra;
+      });
+    };
+    windowManager.awesome = {
+      enable = false;
       luaModules = with pkgs.luaPackages; [
         luarocks # is the package manager for Lua modules
         luadbi-mysql # Database abstraction layer
@@ -170,34 +199,20 @@
     };
 
     desktopManager.xterm.enable = false;
-    displayManager.defaultSession = "none+awesome";
-    displayManager.autoLogin.enable = true;
-    displayManager.autoLogin.user = "nytou";
 
     updateDbusEnvironment = true;
 
-    libinput = {
+  };
+  services.displayManager = {
+    defaultSession = "none+dwm";
+    autoLogin = {
       enable = true;
-      touchpad = {
-        tapping = true;
-        naturalScrolling = true;
-        scrollMethod = "twofinger";
-        disableWhileTyping = true;
-        clickMethod = "clickfinger";
-        accelProfile = "flat";
-      };
-      mouse = {
-        accelProfile = "flat";
-        accelSpeed = "-0.25";
-      };
+      user = "nytou";
     };
-    
-    displayManager = {
-      sddm = {
-        enable = true;
-        autoNumlock = true;
-        theme = "${import ../derivations/sddm-corners/default.nix { inherit pkgs; }}";
-      };
+    sddm = {
+      enable = true;
+      autoNumlock = true;
+      theme = "${import ../derivations/sddm-corners/default.nix { inherit pkgs; }}";
     };
   };
 
@@ -209,17 +224,15 @@
       libsForQt5.qt5.qtsvg
       git
 
-	  neovim-nightly
-
-	# (dwm.overrideAttrs (oldAttrs: rec {
-	#    src = fetchFromGitHub {
-	#        owner = "nytouu";
-	#        repo = "hydra";
-	#        rev = "6d5ebe623d313e35713a37254e53296b967b9916";
-	#        sha256 = "12cacknp178m1aj2szf67z3wfsh7jrq2jfg9yi0yv9a1g1ravy3v";
-	#    };
-	#    buildInputs = oldAttrs.buildInputs ++ [ xorg.libXinerama ];
-	# }))
+      (dwm.overrideAttrs (oldAttrs: rec {
+	       src = fetchFromGitHub {
+	         owner = "nytouu";
+	         repo = "hydra";
+	         rev = "dc7d986106408814077f09aab3a25c44eb889a3f";
+	         sha256 = "0bfz0w85bnjmzsd6f1qyx66m1gj1k1w2dgwwaravvx2ynpzb5xfq";
+	       };
+	       buildInputs = oldAttrs.buildInputs ++ [ xorg.libXinerama imlib2 ];
+       }))
     ];
 
     sessionVariables = {
@@ -228,34 +241,34 @@
 			AWESOME_PATH = "${pkgs.awesome}";
     };
 
-    etc = let
-      json = pkgs.formats.json {};
-    in {
-      "pipewire/pipewire-pulse.d/92-low-latency.conf".source = json.generate "92-low-latency.conf" {
-        context.modules = [
-          {
-            name = "libpipewire-module-protocol-pulse";
-            args = {
-              pulse.min.req = "128/48000";
-              pulse.default.req = "128/48000";
-              pulse.min.quantum = "128/48000";
-            };
-          }
-        ];
-        # stream.properties = {
-        #   node.latency = "128/48000";
-        #   resample.quality = 1;
-        # };
-      };
-
-      "pipewire/pipewire.conf.d/92-low-latency.conf".text = ''
-        context.properties = {
-          default.clock.rate = 48000
-          default.clock.quantum = 128
-          default.clock.min-quantum = 128
-        }
-      '';
-    };
+#    etc = let
+#      json = pkgs.formats.json {};
+#    in {
+#      "pipewire/pipewire-pulse.d/92-low-latency.conf".source = json.generate "92-low-latency.conf" {
+#        context.modules = [
+#          {
+#            name = "libpipewire-module-protocol-pulse";
+#            args = {
+#              pulse.min.req = "128/48000";
+#              pulse.default.req = "128/48000";
+#              pulse.min.quantum = "128/48000";
+#            };
+#          }
+#        ];
+#        # stream.properties = {
+#        #   node.latency = "128/48000";
+#        #   resample.quality = 1;
+#        # };
+#      };
+#
+#      "pipewire/pipewire.conf.d/92-low-latency.conf".text = ''
+#        context.properties = {
+#          default.clock.rate = 48000
+#          default.clock.quantum = 128
+#          default.clock.min-quantum = 128
+#        }
+#      '';
+#    };
   };
 
   console.keyMap = "fr";
@@ -270,7 +283,7 @@
   services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
-		open = true;
+	  open = true;
     modesetting.enable = true;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
@@ -325,7 +338,7 @@
   programs.dconf.enable = true;
   services.gnome.evolution-data-server.enable = true;
   services.gnome.gnome-online-accounts.enable = true;
-	services.gnome.gnome-keyring.enable = true;
+  services.gnome.gnome-keyring.enable = true;
   services.gvfs.enable = true;
 
   services.upower.enable = true;
@@ -368,14 +381,17 @@
       };
   };
 
+  services.pcscd.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryPackage = pkgs.ncurses;
+    enableSSHSupport = true;
+  };
+
   security.sudo.enable = false;
   security.doas = {
     enable = true;
-    extraConfig = ''
-      permit nopass nytou as root cmd ${pkgs.light}/bin/light
-    '';
     extraRules = [
-      { users = [ "nytou" ]; cmd = "${pkgs.light}/bin/light"; noPass = true;}
       { users = [ "nytou" ]; persist = true; }
     ];
   };
@@ -400,8 +416,8 @@
 
   # system.autoUpgrade.enable = true;
   # system.autoUpgrade.allowReboot = true;
-  system.autoUpgrade.channel = "https://channels.nixos.org/nixos-23.11";
+  # system.autoUpgrade.channel = "https://channels.nixos.org/nixos-23.11";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "23.05";
+  system.stateVersion = "24.05";
 }

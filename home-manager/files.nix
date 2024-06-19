@@ -5,7 +5,7 @@
         file = {
             ".config/htop/htoprc".source = ./config/htop/htoprc;
             ".config/lazygit/config.yml".source = ./config/lazygit/config.yml;
-            ".mozilla/firefox/734y6nh3.default/chrome/userChrome.css".source = ./config/librewolf/userChrome.css;
+            #".mozilla/firefox/734y6nh3.default/chrome/userChrome.css".source = ./config/librewolf/userChrome.css;
             ".config/neofetch/config.conf".source = ./config/neofetch/config.conf;
             ".config/slippy-xd/skippy-xd.rc".source = ./config/skippy-xd/skippy-xd.rc;
             ".config/compfy.conf".source = ./config/compfy.conf;

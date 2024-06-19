@@ -6,33 +6,33 @@
  */
 
 * {
-	gruv0: #1d2021;
-	gruv1: #32302f;
-	gruv2: #45403d;
-	gruv3: #5a524c;
+	gruv0: #202020;
+	gruv1: #323232;
+	gruv2: #404040;
+	gruv3: #525252;
 
-	gruv4: #fbf1c7;
-	gruv5: #f4e8be;
-	gruv6: #eee0b7;
+	gruv4: #F1F1F1;
+	gruv5: #E1E1E1;
+	gruv6: #D3D3D3;
 
-	gruv7: #a89984;
-	gruv8: #928374;
-	gruv9: #7c6f64;
-	gruv10: #504945;
-	red: #ea6962;
+	gruv7: #999999;
+	gruv8: #888888;
+	gruv9: #666666;
+	gruv10: #505050;
+	red: #F66151;
 
-	orange: #e78a4e;
-	yellow: #d8a657;
-	aqua: #89b482;
-	purple: #d3869b;
+	orange: #FFBE6F;
+	yellow: #F9F06B;
+	aqua: #93DDC2;
+	purple: #DC8ADD;
 
-    reddark: #c14a4a;
-    yellowdark: #b47109;
+    reddark: #A51D2D;
+    yellowdark: #D38B09;
 
     foreground:  @gruv9;
     background-color:  transparent;
-    
-    highlight: underline bold #eee0b7;
+
+    highlight: underline bold #F6D32D;
 
     transparent: rgba(46,52,64,0);
 
@@ -41,7 +41,7 @@
 window {
     location: center;
     anchor:   center;
-    border-radius: 10px;
+    border-radius: 0px;
     height: 280px;
     width: 600px;
 
@@ -70,7 +70,7 @@ inputbar {
     border-color: @gruv0;
 
     border: 1px;
-    border-radius: 10px 10px 0px 0px;
+    border-radius: 0px 0px 0px 0px;
 }
 
 entry, prompt, case-indicator {
@@ -84,7 +84,7 @@ prompt {
 
 listview {
     padding: 8px;
-    border-radius: 0px 0px 10px 10px;
+    border-radius: 0px 0px 0px 0px;
     border: 2px 2px 2px 2px;
     border-color: @gruv0;
     background-color: @gruv0;
@@ -101,7 +101,7 @@ element {
 }
 
 element.normal.active {
-    background-color: @yellow;
+    background-color: @red;
 }
 
 element.normal.urgent {
@@ -114,7 +114,7 @@ element.selected.normal {
 }
 
 element.selected.active {
-    background-color: @yellowdark;
+    background-color: @reddark;
 }
 
 element.selected.urgent {

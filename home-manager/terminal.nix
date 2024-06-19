@@ -5,20 +5,21 @@
 			src = fetchFromGitHub {
 				owner = "nytouu";
 				repo = "st";
-				rev = "e1453ec056869e1688c0b6af96524fa00f2d7610";
-				sha256 = "1fma9nk4ir04pg81l4izhp36yq508hba7dwq9fy1qbgqa139nk0f";
+				rev = "c3f09a428e67cc353ea12fddeebec21a7bda8fb2";
+				sha256 = "1r09fca8yqgq1v5sp8ahmrr9sc9gjwa97i4vi75wi9k6y36bwi6x";
 			};
 			buildInputs = oldAttrs.buildInputs ++ [ xorg.libXinerama xorg.libXcursor harfbuzz gd ];
 		}))
-		(tabbed.overrideAttrs (oldAttrs: rec {
-			src = fetchFromGitHub {
-				owner = "nytouu";
-				repo = "tabbed";
-				rev = "7ae52b55471ae4eaa672e9b61928ceaade45e70b";
-				sha256 = "1md0m9gxi6lhfn87w4is76zki4hzwq0ajvw1g421kbk7i3ifmmyv";
-			};
-			buildInputs = oldAttrs.buildInputs;
-		}))
+# 		(tabbed.overrideAttrs (oldAttrs: rec {
+# 			src = fetchFromGitHub {
+# 				owner = "nytouu";
+# 				repo = "tabbed";
+# 				rev = "7ae52b55471ae4eaa672e9b61928ceaade45e70b";
+# 				sha256 = "1md0m9gxi6lhfn87w4is76zki4hzwq0ajvw1g421kbk7i3ifmmyv";
+# 			};
+# 			buildInputs = oldAttrs.buildInputs;
+# 		}))
+    tmux
 	];
 
 	programs.kitty = {

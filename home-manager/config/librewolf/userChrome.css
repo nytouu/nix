@@ -100,11 +100,11 @@
 
 /* Dragging space */
 :root[sizemode="maximized"] #TabsToolbar {
-  margin-top: 0px;
+  margin-top: 1px;
 }
 
 #TabsToolbar {
-  margin-top: 0px;
+  margin-top: 5px;
 }
 
 

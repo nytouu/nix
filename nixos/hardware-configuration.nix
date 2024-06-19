@@ -8,32 +8,27 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "sd_mod" "sdhci_pci" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "usbhid" "sd_mod" "sdhci_pci" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/606e1337-3dfd-47ba-bc44-b806515b3a1f";
+    { device = "/dev/disk/by-uuid/7171faad-7bfe-4d24-bbf2-6d6737d742af";
       fsType = "btrfs";
       options = [ "subvol=@" ];
     };
 
-  boot.initrd.luks.devices."luks-1227c54f-76c5-45d5-aa7c-f3f2dd3a77a2".device = "/dev/disk/by-uuid/1227c54f-76c5-45d5-aa7c-f3f2dd3a77a2";
+  boot.initrd.luks.devices."luks-0559beef-77d3-4cd3-ba52-d2d4d436faf8".device = "/dev/disk/by-uuid/0559beef-77d3-4cd3-ba52-d2d4d436faf8";
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/5991-2F5E";
+    { device = "/dev/disk/by-uuid/F669-BBDF";
       fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
     };
 
-  fileSystems."/mnt/KINGSTON" =
-    { device = "/dev/disk/by-uuid/00666f31-59fa-4d9c-9ae2-415127e27a7d";
-      fsType = "btrfs";
-      # options = [ "subvol=@" "compress=zstd" "noatime" ];
-  };
-
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/3c6e85a3-ee2c-44b3-9c5b-86b2721a5537"; }
+    [ { device = "/dev/disk/by-uuid/51171e06-d73d-489b-b3cd-f8ef7aeab6b6"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

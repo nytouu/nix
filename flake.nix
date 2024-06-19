@@ -3,15 +3,20 @@
 
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-f2k.url = "github:moni-dz/nixpkgs-f2k";
 
     # Home manager
-    home-manager.url = "github:nix-community/home-manager/release-23.11";
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
     # home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
 	# gaming
 	nix-gaming.url = "github:fufexan/nix-gaming";
+
+  sf-mono-liga-src = {
+    url = "github:shaunsingh/SFMono-Nerd-Font-Ligaturized";
+    flake = false;
+  };
 
     # doom
     # nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
