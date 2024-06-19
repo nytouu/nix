@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ ! $(pgrep waybar) ]; then
+    waybar
+else 
+    pkill waybar
+fi

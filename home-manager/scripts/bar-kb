@@ -1,0 +1,26 @@
+#!/bin/sh
+
+. "$HOME"/.local/bin/bar-colors
+
+# TODO there has to be a way to do that in a simpler way
+
+seven=$(xmodmap -pke | grep "keycode  16" | awk '{print $5}')
+
+toggle() {
+    if [ "$seven" = "ampersand" ]; then
+      setxkbmap fr
+    else
+      setxkbmap us
+    fi
+}
+
+case $BUTTON in
+  1) toggle ;;
+esac
+
+# a case statement to support more than 2 kb layout would be nice
+if [ "$seven" = "ampersand" ]; then
+  echo "$bg$orange us ^d^"
+else
+  echo "$bg$orange fr ^d^"
+fi

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+notify-send --app-name="Now Playing" \
+    --icon="$(songcover)" "$(mpc --format '%album% \n%artist% - %title%' current)" &&
+
+pkill -RTMIN+11 hydrablocks

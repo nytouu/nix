@@ -1,0 +1,9 @@
+#!/bin/sh
+
+. "$HOME"/.local/bin/bar-colors
+
+echo "$bg$blue  ^d^"
+
+case $BUTTON in
+	3) blueberry ;;
+esac

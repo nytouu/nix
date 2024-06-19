@@ -1,0 +1,9 @@
+#!/bin/sh
+
+. "$HOME"/.local/bin/bar-colors
+
+echo "$red襤^d^  "
+
+case $BUTTON in
+    1) powermenu ;;
+esac

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+folder="$HOME/Videos"
+filename="$(ls $folder -t | head -n 1)"
+fileloc="$folder/$filename"
+ffmpegthumbnailer -i $fileloc -o /tmp/vidthumbnail.jpg
+
+# xclip -selection clipboard -t video/mkv < $fileloc
+notify-send --app-name="Video saved" "$filename" --icon=/tmp/vidthumbnail.jpg
+rm -f /tmp/vidthumbnail.jpg

@@ -1,0 +1,19 @@
+#!/bin/sh
+
+. "$HOME"/.local/bin/bar-colors
+
+case $BUTTON in
+	3) setsid -f connman-gtk ; pkill -RTMIN+4 hydrablocks ;;
+esac
+
+icon="$red "
+
+case "$(cat /sys/class/net/e*/operstate 2>/dev/null)" in
+	up) icon="$green " ;;
+esac
+
+case "$(cat /sys/class/net/w*/operstate 2>/dev/null)" in
+	up) icon="$(awk '/^\s*w/ { print "'$green'  ", int($3 * 100 / 70) "%" }' /proc/net/wireless)" ;;
+esac
+
+echo "$bg$icon ^d^"

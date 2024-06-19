@@ -3,19 +3,19 @@
 {
   services.xidlehook = {
     enable = true;
-	detect-sleep = true;
-	not-when-audio = true;
-	not-when-fullscreen = true;
-	timers = [
-	  {
-	    delay = 180;
-	    command = "lock";
-	  }
-	  {
-	    delay = 360;
-		command = "systemctl suspend";
-	  }
-	];
+    detect-sleep = true;
+    not-when-audio = true;
+    not-when-fullscreen = true;
+    timers = [
+      {
+        delay = 180;
+        command = "lock";
+      }
+      {
+        delay = 360;
+        command = "systemctl suspend";
+      }
+    ];
   };
 
   xsession = {
@@ -24,37 +24,40 @@
   };
 
   services.fusuma = {
-  	enable = true;
+    enable = true;
     package = pkgs.fusuma;
-	extraPackages = with pkgs; [ coreutils xdotool ];
-	settings = {
-		threshold = {
-			swipe = 0.1;
-		};
-		interval = {
-			swipe = 0.7;
-		};
-		swipe = {
-			"3" = {
-				left = {
-					command = "xdotool key super+Right";
-				};
-				right = {
-					command = "xdotool key super+Left";
-				};
-			};
-		};
-	};
+    extraPackages = with pkgs; [ coreutils xdotool ];
+    settings = {
+      threshold = {
+        swipe = 0.1;
+      };
+      interval = {
+        swipe = 0.7;
+      };
+      swipe = {
+        "3" = {
+          left = {
+            command = "xdotool key super+Right";
+          };
+          right = {
+            command = "xdotool key super+Left";
+          };
+        };
+      };
+    };
   };
 
   xresources.properties = {
-    "*.font" = "Torus Pro";
+    "*.font" = "SF Pro Display";
     "Xft.dpi" = 96;
     "XTerm*renderFont" = true;
-    "XTerm*faceName" = "xft: JetBrains Mono";
+    "XTerm*faceName" = "xft: Liga SFMono Nerd Font";
     "XTerm*faceSize" = 13;
-    #"Xcursor.theme" = "Bibata-Original-Ice";
-    #"Xcursor.size" = 24;
+    "Xft.hinting"    = true;
+    "Xft.hintstyle"  = "hintfull";
+
+#"Xcursor.theme" = "Bibata-Original-Ice";
+#"Xcursor.size" = 24;
 
     "*background" =  "#1D1D1D";
     "*foreground" =  "#FFFFFF";
@@ -75,7 +78,7 @@
     "*color14" =     "#525252";
     "*color15" =     "#525252";
 
-    "st.font" = "BlexMono Nerd Font:style=Medium:size=11";
+    "st.font" = "Liga SFMono Nerd Font:style=Medium:size=11:autohint=true";
     "st.alpha" = "1.00";
     "st.background" = "#1D1D1D";
     "st.foreground" = "#FFFFFF";
@@ -95,29 +98,5 @@
     "st.color13"    = "#93DDC2";
     "st.color14"    = "#525252";
     "st.color15"    = "#525252";
-
-    "hydra.border" =       "#525252";
-    "hydra.white" =        "#FFFFFF";
-    "hydra.lightblue" =    "#93DDC2";
-    "hydra.yellow" =       "#F9F06B";
-    "hydra.orange" =       "#FFAB91";
-    "hydra.purple" =       "#ff7eb6";
-    "hydra.green" =        "#57E389";
-    "hydra.red" =          "#F66151";
-    "hydra.blue" =         "#62A0EA";
-    "hydra.gray" =         "#393939";
-    "hydra.darkgray" =     "#000000";
-    "hydra.black" =        "#0f0f0f";
-    "hydra.buttoncolor" =  "#FFAB91";
-
-    "dmenu.font" = 		    "Torus Pro:style=Regular:size=12";
-    "dmenu.normfg" = 		"#FFFFFF";
-    "dmenu.normbg" = 		"#000000";
-    "dmenu.selfg" = 		"#000000";
-    "dmenu.selbg" = 		"#F66151";
-    "dmenu.selhlfg" = 	"#ffffff";
-    "dmenu.selhlbg" = 	"#F66151";
-    "dmenu.normhlfg" = 	"#F66151";
-    "dmenu.normhlbg" = 	"#000000";
   };
 }

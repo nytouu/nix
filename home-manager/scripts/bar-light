@@ -1,0 +1,20 @@
+#!/bin/sh
+
+. "$HOME"/.local/bin/bar-colors
+
+case $BUTTON in
+	4) brightnessctl s 10%%+;;
+	5) brightnessctl s 10%%-;;
+esac
+
+brightness="$(brightnessctl g -P)"
+
+if [ "$brightness" -gt "70" ]; then
+	icon="󰃠 "
+elif [ "$brightness" -lt "30" ]; then
+	icon="󰃞 "
+else
+	icon="󰃟 "
+fi
+
+echo "$BG_DARK$FG_YELLOW $icon $brightness% ^d^"

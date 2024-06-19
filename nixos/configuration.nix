@@ -184,14 +184,14 @@
     # xkbVariant = "";
 
     windowManager.dwm = {
-      enable = true;
+      enable = false;
       package = pkgs.dwm.overrideAttrs (oldAttrs: rec {
         buildInputs = oldAttrs.buildInputs ++ [ pkgs.imlib2 ];
         src = /home/nytou/git/hydra;
       });
     };
     windowManager.awesome = {
-      enable = false;
+      enable = true;
       luaModules = with pkgs.luaPackages; [
         luarocks # is the package manager for Lua modules
         luadbi-mysql # Database abstraction layer
@@ -204,7 +204,7 @@
 
   };
   services.displayManager = {
-    defaultSession = "none+dwm";
+    defaultSession = "none+awesome";
     autoLogin = {
       enable = true;
       user = "nytou";

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# color=$(hyprpicker -anz)
+color=$($HOME/.cargo/bin/xcolor -P 125)
+convert -size 100x100 xc:$color /tmp/color.png
+
+notify-send --icon=/tmp/color.png --app-name="$color" "Color coppied to clipboard"
+echo -n $color | xclip -selection clipboard
+
+rm /tmp/color.png

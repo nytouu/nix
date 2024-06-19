@@ -8,7 +8,7 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "usbhid" "sd_mod" "sdhci_pci" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" "sd_mod" "sdhci_pci" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
@@ -16,7 +16,7 @@
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/7171faad-7bfe-4d24-bbf2-6d6737d742af";
       fsType = "btrfs";
-      options = [ "subvol=@" ];
+      options = [ "subvol=@" "compress=zstd" "noatime" ];
     };
 
   boot.initrd.luks.devices."luks-0559beef-77d3-4cd3-ba52-d2d4d436faf8".device = "/dev/disk/by-uuid/0559beef-77d3-4cd3-ba52-d2d4d436faf8";
@@ -25,6 +25,12 @@
     { device = "/dev/disk/by-uuid/F669-BBDF";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
+    };
+
+  fileSystems."/mnt/KINGSTON" =
+    { device = "/dev/disk/by-uuid/00666f31-59fa-4d9c-9ae2-415127e27a7d";
+      fsType = "btrfs";
+      options = [ "subvol=@" "compress=zstd" "noatime" ];
     };
 
   swapDevices =

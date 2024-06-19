@@ -1,0 +1,15 @@
+#!/bin/sh
+
+coveralbum="$HOME/music/$(mpc --format '%artist%' current) - $(mpc --format '%album%' current)/cover.png"
+coverartist="$HOME/music/artists/$(mpc --format '%artist%' current).png"
+
+if [ -f "$coveralbum" ]; then
+    # if album cover exists
+    echo "$coveralbum"; exit 0;
+elif [ -f "$coverartist" ]; then
+    # else check for artist img
+    echo "$coverartist"; exit 0;
+else
+    echo "$HOME/docs/fallback.png"; 
+    # else use fallback img
+fi

@@ -11,7 +11,7 @@
     procps psmisc brightnessctl
 		python311Packages.psutil
     python311Packages.types-psutil
-    python311Packages.pip
+    # python311Packages.pip
 
     # nix
     nix-prefetch-git
@@ -24,10 +24,11 @@
     connman-gtk
     # blueman
     pass 
-    feh
-    pamixer pulsemixer
+    # feh
+    pamixer pulsemixer pavucontrol
     lazygit neofetch
-    maim skippy-xd
+    maim
+		# skippy-xd
     ffmpegthumbnailer
     (xfce.thunar.override { 
       thunarPlugins = with pkgs.xfce; [
@@ -38,9 +39,10 @@
     })
     xfce.tumbler
     # inotify-tools
-    qmk 
+    # qmk
     # (callPackage ../derivations/hydrablocks/default.nix { })
     nsxiv
+		betterlockscreen
 
     # xorg
     xorg.xkill
@@ -95,21 +97,21 @@
     # neovide
 
     # apps
-    audacity
-    teams-for-linux
-    gnome.gnome-calendar
-    gnome.gnome-system-monitor
-    gnome.gnome-control-center
-    discord
+    # audacity
+    # teams-for-linux
+    # gnome.gnome-calendar
+    # gnome.gnome-system-monitor
+    # gnome.gnome-control-center
+    vesktop
     obs-studio
-    vscode
+    # vscode
     zathura
-    # mpv
-    vlc
+    mpv
+    # vlc
     # aseprite
     blender
     # blockbench-electron
-    lmms
+    # lmms
     # nitrogen
     libreoffice-fresh
     #(callPackage ../derivations/aseprite/default.nix { })
@@ -130,21 +132,21 @@
     })
 
     # dev
-    rustc
-    cargo
-    meson ninja nodejs
-    gnumake cmake
-    mono5
-    luarocks
-    gcc
-    jetbrains-toolbox
+    # rustc
+    # cargo
+    # meson ninja nodejs
+    # gnumake cmake
+    # mono5
+    # luarocks
+    # gcc
+    # jetbrains-toolbox
     #dotnet-sdk
     #dotnet-sdk_7
-    android-tools
-    android-udev-rules
+    # android-tools
+    # android-udev-rules
     # android-studio
 
-    python3
+    # python3
 
     #nvim stuff
     tree-sitter

@@ -31,7 +31,7 @@
 	};
 	gtk = {
 		enable = true;
-		font.name = "Torus Pro";
+    font.name = "SF Pro Display";
 		cursorTheme = {
 			name = "Simp1e-Adw-Dark";
 			package = pkgs.bibata-cursors;

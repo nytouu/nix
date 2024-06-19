@@ -1,0 +1,24 @@
+#!/bin/sh
+
+. "$HOME"/.local/bin/bar-colors
+
+updates_pacman=$(paru -Qun | wc -l)
+updates_aur=$(paru -Qum | wc -l)
+
+updates=$((updates_pacman + updates_aur))
+
+if [ "$updates" -gt 10 ];then
+    echo "$red $updates "
+elif [ "$updates" -ge 5 ]; then
+    echo "$yellow $updates "
+elif [ "$updates" -ge 1 ]; then
+    echo "$green $updates "
+else
+    exit 0
+fi
+
+# pkill -RTMIN+21 hydrablocks
+
+case $BUTTON in
+    3) setsid -f "$TERMINAL" -e paru && pkill -RTMIN+21 hydrablocks ;;
+esac

@@ -1,0 +1,9 @@
+#!/bin/sh
+export PIPEWIRE_LATENCY=32/48000 
+export PIPEWIRE_QUANTUM=128/48000
+# export SDL_VIDEODRIVER=wayland
+export __NV_PRIME_RENDER_OFFLOAD=1
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
+export __VK_LAYER_NV_optimus=NVIDIA_only
+
+~/apps/osu!.AppImage
