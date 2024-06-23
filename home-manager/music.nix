@@ -4,7 +4,6 @@
 	home.packages = with pkgs; [
 		mpc-cli
 		zscroll
-		ncspot
 	];
 
     services.playerctld.enable = true;

@@ -7,7 +7,6 @@
 		./packages.nix
 		./terminal.nix
 		./x.nix
-		./fonts.nix
 		# ./nvim.nix
 		# ./mail.nix
 		./files.nix
@@ -24,7 +23,7 @@
       permittedInsecurePackages = [
 				"electron-13.6.9"
 				# "electron-24.8.6"
-          "electron-25.9.0"
+        "electron-25.9.0"
 				"python-2.7.18.6"
 				"openssl-1.1.1u"
 				"openssl-1.1.1w"
@@ -59,27 +58,27 @@
         templates = "${config.home.homeDirectory}/docs/templates";
     };
     mimeApps = {
-        enable = true;
-        defaultApplications = {
-            "inode/directory" = "thunar.desktop";
-            "text/plain" = "nvim.desktop";
-        };
+      enable = true;
+      defaultApplications = {
+        "inode/directory" = "thunar.desktop";
+        "text/plain" = "nvim.desktop";
+      };
     };
     desktopEntries = {
-        # https://github.com/neovim/neovim/blob/master/runtime/nvim.desktop
-        neovim = {
-            name = "nvim";
-            genericName = "Neovim";
-            exec = "kitty nvim %F";
-            terminal = false;
-            categories = [ "Application" ];
-            mimeType = [ 
-                "text/english" "text/plain" "text/x-makefile" 
-                "text/x-c++hdr" "text/x-c++src" "text/x-chdr" "text/x-csrc" 
-                "text/x-java" "text/x-moc" "text/x-pascal" "text/x-tcl" 
-                "text/x-tex" "application/x-shellscript" "text/x-c" "text/x-c++"
-            ];
-        };
+      # https://github.com/neovim/neovim/blob/master/runtime/nvim.desktop
+      neovim = {
+        name = "nvim";
+        genericName = "Neovim";
+        exec = "st nvim %F";
+        terminal = false;
+        categories = [ "Application" ];
+        mimeType = [ 
+          "text/english" "text/plain" "text/x-makefile" 
+          "text/x-c++hdr" "text/x-c++src" "text/x-chdr" "text/x-csrc" 
+          "text/x-java" "text/x-moc" "text/x-pascal" "text/x-tcl" 
+          "text/x-tex" "application/x-shellscript" "text/x-c" "text/x-c++"
+        ];
+      };
     };
   };
 

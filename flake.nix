@@ -10,20 +10,20 @@
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     # home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-	# gaming
-	nix-gaming.url = "github:fufexan/nix-gaming";
+		# gaming
+		nix-gaming.url = "github:fufexan/nix-gaming";
 
-  sf-mono-liga-src = {
-    url = "github:shaunsingh/SFMono-Nerd-Font-Ligaturized";
-    flake = false;
-  };
+		sf-mono-liga-src = {
+			url = "github:shaunsingh/SFMono-Nerd-Font-Ligaturized";
+			flake = false;
+		};
 
     # doom
     # nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
 
     # hypr
-	# hyprland.url = "github:hyprwm/Hyprland";
-	# hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
+		# hyprland.url = "github:hyprwm/Hyprland";
+		# hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
   };
 
   outputs = { 

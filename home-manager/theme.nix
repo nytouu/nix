@@ -17,16 +17,16 @@
 			x11.enable = true;
 		};
 
-	# file.".config/gtk-4.0/gtk.css".source = ./config/gtk-4.0/gtk.css;
-	# file.".config/gtk-3.0/gtk.css".source = ./config/gtk-3.0/gtk.css;
+	# file.".config/gtk-4.0/gtk.css".source = ./config/gtk.css;
+	file.".config/gtk-3.0/gtk.css".source = ./config/gtk.css;
 
 	};
 	qt = {
 		enable = true;
-		platformTheme.name = "gtk3";
+		platformTheme.name = "qt5ct";
 		style = {
-			name = "adwaita-dark";
-			package = pkgs.adwaita-qt;
+			name = "Lightly";
+			package = pkgs.lightly-qt;
 		};
 	};
 	gtk = {

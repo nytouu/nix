@@ -4,6 +4,7 @@
     # system
     htop-vim
     bat eza
+    firejail
     unzip unrar p7zip
     btrfs-progs acpi
     pinentry-curses libnotify
@@ -92,7 +93,7 @@
     material-icons
 
     # neovim
-    neovim-remote
+    # neovim-remote
     ripgrep fd
     # neovide
 
@@ -108,13 +109,13 @@
     zathura
     mpv
     # vlc
-    # aseprite
+    aseprite
     blender
+    lutris
     # blockbench-electron
     # lmms
     # nitrogen
     libreoffice-fresh
-    #(callPackage ../derivations/aseprite/default.nix { })
     # libresprite
     bleachbit
     libsForQt5.qt5ct
@@ -132,13 +133,13 @@
     })
 
     # dev
-    # rustc
-    # cargo
-    # meson ninja nodejs
-    # gnumake cmake
+    rustc
+    cargo
+    meson ninja nodejs
+    gnumake cmake
     # mono5
     # luarocks
-    # gcc
+    gcc
     # jetbrains-toolbox
     #dotnet-sdk
     #dotnet-sdk_7

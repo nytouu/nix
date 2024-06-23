@@ -14,24 +14,21 @@
           ]);
         });
       })
-	  (final: prev: {
-	    awesome = inputs.nixpkgs-f2k.packages.${pkgs.system}.awesome-git;
+      (final: prev: {
+        awesome = inputs.nixpkgs-f2k.packages.${pkgs.system}.awesome-git;
       })
-			(final: prev: {
-  sf-mono-liga-bin = prev.stdenvNoCC.mkDerivation rec {
-    pname = "sf-mono-liga-bin";
-    version = "dev";
-    src = inputs.sf-mono-liga-src;
-    dontConfigure = true;
-    installPhase = ''
-      mkdir -p $out/share/fonts/opentype
-      cp -R $src/*.otf $out/share/fonts/opentype/
-    '';
-  };
-})
-	  #(import (builtins.fetchTarball {
-	  #      	url = "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
-	  #}))
+      (final: prev: {
+        sf-mono-liga-bin = prev.stdenvNoCC.mkDerivation rec {
+        pname = "sf-mono-liga-bin";
+        version = "dev";
+        src = inputs.sf-mono-liga-src;
+        dontConfigure = true;
+        installPhase = ''
+          mkdir -p $out/share/fonts/opentype
+          cp -R $src/*.otf $out/share/fonts/opentype/
+         '';
+        };
+      })
     ];
     config = {
       allowUnfree = true;
@@ -51,8 +48,8 @@
   # networking.networkmanager.enable = false;
 
   services.connman = {
-      enable = true;
-      wifi.backend = "iwd";
+    enable = true;
+    wifi.backend = "iwd";
   };
 
   hardware.bluetooth = {
@@ -94,7 +91,7 @@
     systemd-boot = {
       enable = false;
       consoleMode = "max";
-      configurationLimit = 10;
+      configurationLimit = 25;
     };
     efi.canTouchEfiVariables = true;
     timeout = 1;
@@ -114,34 +111,25 @@
     };
   };
 
-  # Setup keyfile
-#  boot.initrd = {
-#    systemd.enable = true;
-#    secrets = {
-#      "/crypto_keyfile.bin" = null;
-#    };
-#  };
+ # Setup keyfile
+ boot.initrd = {
+   systemd.enable = true;
+ };
 
-  boot.kernelParams = [ "quiet" ];
+  # boot.kernelParams = [ "quiet" ];
+  boot.kernelParams = [ "quiet" "splash" "initcall_blacklist=amd_pstate_init" "amd_pstate.enable=0" ];
   boot.consoleLogLevel = 0;
-  
+
   boot.plymouth = {
     enable = true;
   };
 
-  # programs.hyprland = {
-  #   enable = false;
-  #   nvidiaPatches = false;
-  #   xwayland.enable = true;
-  # };
-
   fonts = {
-
     packages = with pkgs; [
-	  (nerdfonts.override { fonts = [
-	    "JetBrainsMono"
+      (nerdfonts.override { fonts = [
+        "JetBrainsMono"
         "IBMPlexMono"
-	  ]; })
+      ]; })
 			sf-mono-liga-bin
       ibm-plex
       noto-fonts
@@ -181,15 +169,7 @@
   services.xserver = {
     enable = true;
     xkb.layout = "fr";
-    # xkbVariant = "";
 
-    windowManager.dwm = {
-      enable = false;
-      package = pkgs.dwm.overrideAttrs (oldAttrs: rec {
-        buildInputs = oldAttrs.buildInputs ++ [ pkgs.imlib2 ];
-        src = /home/nytou/git/hydra;
-      });
-    };
     windowManager.awesome = {
       enable = true;
       luaModules = with pkgs.luaPackages; [
@@ -223,16 +203,6 @@
       libsForQt5.qt5.qtgraphicaleffects
       libsForQt5.qt5.qtsvg
       git
-
-      (dwm.overrideAttrs (oldAttrs: rec {
-	       src = fetchFromGitHub {
-	         owner = "nytouu";
-	         repo = "hydra";
-	         rev = "dc7d986106408814077f09aab3a25c44eb889a3f";
-	         sha256 = "0bfz0w85bnjmzsd6f1qyx66m1gj1k1w2dgwwaravvx2ynpzb5xfq";
-	       };
-	       buildInputs = oldAttrs.buildInputs ++ [ xorg.libXinerama imlib2 ];
-       }))
     ];
 
     sessionVariables = {
@@ -240,35 +210,6 @@
       NIXOS_OZONE_WL = "1";
 			AWESOME_PATH = "${pkgs.awesome}";
     };
-
-#    etc = let
-#      json = pkgs.formats.json {};
-#    in {
-#      "pipewire/pipewire-pulse.d/92-low-latency.conf".source = json.generate "92-low-latency.conf" {
-#        context.modules = [
-#          {
-#            name = "libpipewire-module-protocol-pulse";
-#            args = {
-#              pulse.min.req = "128/48000";
-#              pulse.default.req = "128/48000";
-#              pulse.min.quantum = "128/48000";
-#            };
-#          }
-#        ];
-#        # stream.properties = {
-#        #   node.latency = "128/48000";
-#        #   resample.quality = 1;
-#        # };
-#      };
-#
-#      "pipewire/pipewire.conf.d/92-low-latency.conf".text = ''
-#        context.properties = {
-#          default.clock.rate = 48000
-#          default.clock.quantum = 128
-#          default.clock.min-quantum = 128
-#        }
-#      '';
-#    };
   };
 
   console.keyMap = "fr";
@@ -277,7 +218,6 @@
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
-    # mesaPackage = with pkgs; [ mesa_22_3 ];
   };
 
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -311,8 +251,38 @@
       enable = true;
       support32Bit = true;
     };
+    extraConfig = {
+      pipewire."92-low-latency" = {
+        "context.properties" = {
+          "default.clock.rate" = 48000;
+          "default.clock.quantum" = 128;
+          "default.clock.min-quantum" = 128;
+          "default.clock.max-quantum" = 128;
+        };
+      };
+      pipewire-pulse."92-low-latency" = {
+        "context.properties" = [
+        {
+          name = "libpipewire-module-protocol-pulse";
+          args = { };
+        }
+        ];
+        "pulse.properties" = {
+          "pulse.min.req" = "128/48000";
+          "pulse.default.req" = "128/48000";
+          "pulse.max.req" = "128/48000";
+          "pulse.min.quantum" = "128/48000";
+          "pulse.max.quantum" = "128/48000";
+        };
+        "stream.properties" = {
+          "node.latency" = "128/48000";
+          "resample.quality" = 1;
+        };
+      };
+    };
   };
 
+  powerManagement.enable = true;
   services.auto-cpufreq = {
     enable = true;
     settings = {
@@ -324,6 +294,24 @@
         governor = "performance";
         turbo = "auto";
       };
+    };
+  };
+  services.tlp = {
+    enable = false;
+    settings = {
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+
+      CPU_MIN_PERF_ON_AC = 0;
+      CPU_MAX_PERF_ON_AC = 100;
+      CPU_MIN_PERF_ON_BAT = 0;
+      CPU_MAX_PERF_ON_BAT = 20;
+
+      START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
+      STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
     };
   };
 

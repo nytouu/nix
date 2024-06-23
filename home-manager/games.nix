@@ -3,7 +3,7 @@
 {
 	home.packages = with pkgs; [
 		protonup-qt 
-		heroic-unwrapped
+		# heroic-unwrapped
 		prismlauncher
 
     winetricks
