@@ -6,12 +6,13 @@
 		simp1e-cursors
 		lightly-qt
 		adwaita-qt
+		(callPackage ../derivations/notwaita-cursor/default.nix { })
 	];
 
 	home = {
 		pointerCursor = {
 			package = pkgs.simp1e-cursors;
-			name = "Simp1e-Adw-Dark";
+			name = "Notwaita-Black";
 			size = 24;
 			gtk.enable = true;
 			x11.enable = true;
@@ -33,7 +34,7 @@
 		enable = true;
     font.name = "SF Pro Display";
 		cursorTheme = {
-			name = "Simp1e-Adw-Dark";
+			name = "Notwaita-Black";
 			package = pkgs.bibata-cursors;
 		};
 		theme = {

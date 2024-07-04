@@ -18,6 +18,8 @@
 			flake = false;
 		};
 
+		neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+
     # doom
     # nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
 
@@ -29,9 +31,15 @@
   outputs = { 
     nixpkgs,
     home-manager,
-    # hyprland, 
-    ... 
-  } @inputs: {
+    # hyprland,
+    ...
+  } @inputs: 
+  let
+    neovim-nightly-overlay = [
+      inputs.neovim-nightly-overlay.overlays.default
+    ];
+		in
+  {
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
@@ -52,7 +60,10 @@
         modules = [
             # hyprland.homeManagerModules.default
             # { wayland.windowManager.hyprland.enable = true; }
-	        ./home-manager/home.nix 
+          ./home-manager/home.nix 
+          {
+            nixpkgs.overlays = neovim-nightly-overlay;
+          }
 	      ];
       };
     };

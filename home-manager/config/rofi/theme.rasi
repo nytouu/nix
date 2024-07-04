@@ -6,25 +6,26 @@
  */
 
 * {
-	gruv0: #202020;
-	gruv1: #323232;
-	gruv2: #404040;
-	gruv3: #525252;
+    gruv0: #202020;
+    gruv1: #323232;
+    gruv2: #404040;
+    gruv3: #525252;
+    gruv11: #101010;
 
-	gruv4: #F1F1F1;
-	gruv5: #E1E1E1;
-	gruv6: #D3D3D3;
+    gruv4: #F1F1F1;
+    gruv5: #E1E1E1;
+    gruv6: #D3D3D3;
 
-	gruv7: #999999;
-	gruv8: #888888;
-	gruv9: #666666;
-	gruv10: #505050;
-	red: #F66151;
+    gruv7: #999999;
+    gruv8: #888888;
+    gruv9: #666666;
+    gruv10: #505050;
+    red: #F66151;
 
-	orange: #FFBE6F;
-	yellow: #F9F06B;
-	aqua: #93DDC2;
-	purple: #DC8ADD;
+    orange: #FFBE6F;
+    yellow: #F9F06B;
+    aqua: #93DDC2;
+    purple: #DC8ADD;
 
     reddark: #A51D2D;
     yellowdark: #D38B09;
@@ -32,7 +33,7 @@
     foreground:  @gruv9;
     background-color:  transparent;
 
-    highlight: underline bold #F6D32D;
+    highlight: bold #62a0ea;
 
     transparent: rgba(46,52,64,0);
 
@@ -66,8 +67,8 @@ message {
 inputbar {
     color: @gruv6;
     padding: 14px;
-    background-color: @gruv0;
-    border-color: @gruv0;
+    background-color: @gruv11;
+    border-color: @gruv11;
 
     border: 1px;
     border-radius: 0px 0px 0px 0px;
@@ -97,7 +98,7 @@ element {
     border-radius: 10px;
     color: @foreground;
     text-color: @gruv6;
-    background-color: @gruv1;
+    background-color: @gruv0;
 }
 
 element.normal.active {
@@ -109,7 +110,7 @@ element.normal.urgent {
 }
 
 element.selected.normal {
-    background-color: @gruv7;
+    background-color: @gruv2;
     text-color: @gruv0;
 }
 

@@ -9,11 +9,12 @@ pkgs.stdenv.mkDerivation rec {
         sha256 = "1wkcsh1182krmpsq4vaw15cc85dfcyzvvkzgc7h63ap2cjf8v4lk";
     };
 
-    buildInputs = [ pkgs.tar ];
+    buildInputs = [ pkgs.gnutar ];
 
-    unpackPhase = "tar -xvf Notwaita.tar.gz";
+    unpackPhase = "tar -xvf $src";
 
     installPhase = ''
-        mv Notwaita-* $out/share/icons/
+      mkdir -p $out/share/icons
+      mv Notwaita-* $out/share/icons/
     '';
 }

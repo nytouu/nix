@@ -23,7 +23,7 @@
 	];
 
 	programs.kitty = {
-		enable = true;
+		enable = false;
 		settings = {
 			background 	= "#1d2021";
 			foreground 	= "#ebdbb2";

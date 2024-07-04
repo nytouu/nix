@@ -7,7 +7,7 @@
 		./packages.nix
 		./terminal.nix
 		./x.nix
-		# ./nvim.nix
+		./nvim.nix
 		# ./mail.nix
 		./files.nix
 		./music.nix
@@ -30,7 +30,7 @@
       ];
     };
   };
-  
+
   home = {
     username = "nytou";
     homeDirectory = "/home/nytou";
@@ -67,12 +67,12 @@
     desktopEntries = {
       # https://github.com/neovim/neovim/blob/master/runtime/nvim.desktop
       neovim = {
-        name = "nvim";
+        name = "Neovim";
         genericName = "Neovim";
         exec = "st nvim %F";
         terminal = false;
         categories = [ "Application" ];
-        mimeType = [ 
+        mimeType = [
           "text/english" "text/plain" "text/x-makefile" 
           "text/x-c++hdr" "text/x-c++src" "text/x-chdr" "text/x-csrc" 
           "text/x-java" "text/x-moc" "text/x-pascal" "text/x-tcl" 

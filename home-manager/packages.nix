@@ -23,21 +23,19 @@
     wmctrl
     playerctl
     connman-gtk
-    # blueman
+    blueman
     pass 
     # feh
-    pamixer pulsemixer pavucontrol
+    pamixer pulsemixer 
+		pavucontrol
     lazygit neofetch
     maim
-		# skippy-xd
+		skippy-xd
     ffmpegthumbnailer
-    (xfce.thunar.override { 
-      thunarPlugins = with pkgs.xfce; [
-        thunar-archive-plugin 
-        thunar-volman 
-        xfconf
-      ]; 
-    })
+    xfce.thunar
+    xfce.thunar-archive-plugin 
+    xfce.thunar-volman 
+    xfce.xfconf
     xfce.tumbler
     # inotify-tools
     # qmk
@@ -100,9 +98,9 @@
     # apps
     # audacity
     # teams-for-linux
-    # gnome.gnome-calendar
+    gnome.gnome-calendar
     # gnome.gnome-system-monitor
-    # gnome.gnome-control-center
+    gnome.gnome-control-center
     vesktop
     obs-studio
     # vscode
@@ -122,8 +120,8 @@
     # ytmdl
     mate.engrampa
     gimp
-    # godot_4
-    (callPackage ../derivations/godot4-mono/default.nix { })
+    godot_4
+    # (callPackage ../derivations/godot4-mono/default.nix { })
     (unityhub.override {
         extraLibs = pkgs: with pkgs; [
             openssl_1_1
@@ -138,7 +136,7 @@
     meson ninja nodejs
     gnumake cmake
     # mono5
-    # luarocks
+    luarocks
     gcc
     # jetbrains-toolbox
     #dotnet-sdk
@@ -158,7 +156,9 @@
     rust-analyzer
     rustfmt
 
-    lua stylua lua-language-server
+    # lua
+    stylua lua-language-server
+    lua51Packages.lua
     llvmPackages.libclang
 
     nodePackages.bash-language-server
