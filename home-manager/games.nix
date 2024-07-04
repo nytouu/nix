@@ -7,6 +7,7 @@
 
     # osu-lazer-bin
     (callPackage ../derivations/osu-lazer-bin/default.nix { })
+    (callPackage ../derivations/osu-mime/default.nix { })
 
     winetricks
 		inputs.nix-gaming.packages.${pkgs.system}.wine-osu
