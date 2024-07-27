@@ -79,6 +79,10 @@ in
 #      };
 #      postInstall = '''';
 #    }))
+		(dwmblocks.overrideAttrs (oldAttrs: rec {
+			src = ../dwmblocks;
+		}))
+
 
     xcolor
 
@@ -87,7 +91,7 @@ in
     rofi-power-menu
 
     # fonts
-    # (callPackage ../derivations/nonicons/default.nix { })
+    (callPackage ../derivations/nonicons/default.nix { })
     (callPackage ../derivations/nerd-symbols/default.nix { })
     (callPackage ../derivations/torus-pro/default.nix { })
     (callPackage ../derivations/sf-pro-fonts/default.nix { })

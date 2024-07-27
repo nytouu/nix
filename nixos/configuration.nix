@@ -186,9 +186,10 @@
     };
 		windowManager.dwm = {
 			enable = true;
-			package = pkgs.dwm.overrideAttrs {
-				src = ./dwm;
-			};
+			package = pkgs.dwm.overrideAttrs (oldAttrs: rec {
+				src = ../dwm;
+        buildInputs = with pkgs; oldAttrs.buildInputs ++ [ imlib2 yajl ];
+			});
 		};
 
     desktopManager.xterm.enable = false;
