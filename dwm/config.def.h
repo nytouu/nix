@@ -36,12 +36,11 @@ static const int riodraw_borders    = 0;        /* 0 or 1, indicates whether the
 static const int riodraw_matchpid   = 1;        /* 0 or 1, indicates whether to match the PID of the client that was spawned with riospawn */
 static const int riodraw_spawnasync = 0;        /* 0 spawns after successful sel, 1 spawn during selection */
 static const char *fonts[]          = {
-    "SF Pro Display:size=11:style=Regular:autohint=true", 
+    "Torus Pro:size=11:style=Regular:autohint=true", 
     "nonicons:size=11",
     "Symbols Nerd Font Mono:size=11:style=Regular", 
     "Siji:size=14"
 };
-static const char dmenufont[]       = "SF Mono:size=12:style=Medium";
 static char black[]           = "#0a0a0a";
 static char darkgray[]        = "#1a1b26";
 static char gray[]            = "#414868";
@@ -198,10 +197,8 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-/* static const char *dmenucmd[] = { "dmenu_run", NULL }; */
 static const char *dmenucmd[] = { "rofi", "-show", "drun", NULL };
-static const char *termcmd[] = { "st", "-e", "tmux", NULL };
+static const char *termcmd[] = { "tabbed", "-c", "-k", "-b", "-r", "2", "st", "-w", "''", NULL };
 
 #include <X11/XF86keysym.h>
 
@@ -222,12 +219,12 @@ static Key keys[] = {
 	{ MODKEY,                       XK_x,      spawn,          SHCMD("xkill") },
 	{ MODKEY,                       XK_p,      spawn,          SHCMD("maim $HOME/pics/screenshots/$(date +%d-%m-%G-%T).png && screenshotnotify") },
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("sleep 0.3 && maim -s $HOME/pics/screenshots/$(date +%d-%m-%G-%T).png && screenshotnotify") },
-	{ MODKEY|ControlMask,           XK_p,      spawn,          SHCMD("cd $HOME/pics/screenshots && sxiv $(/bin/ls -t | head -n1)") },
+	{ MODKEY|ControlMask,           XK_p,      spawn,          SHCMD("cd $HOME/pics/screenshots && nsxiv $(/bin/ls -t | head -n1)") },
 	{ MODKEY|ShiftMask,             XK_h,      spawn,          SHCMD("colorpicknotify") },
 	{ MODKEY|ControlMask,           XK_x,      spawn,          SHCMD("kill -USR1 $(pidof st)") },
 	/* { MODKEY|ShiftMask,             XK_d,      spawn,          SHCMD("[ $(dunstctl is-paused) ] && (dunstctl set-paused false && notify-send -a Notifications \"Disabled\") || (dunstctl set-paused true && notify-send -a Notifications \"Enabled\")") }, */
 	{ MODKEY|ShiftMask,             XK_d,      spawn,          SHCMD("dunstctl set-paused toggle") },
-	{ MODKEY|ShiftMask,             XK_c,      spawn,          SHCMD("[ ! $(pgrep compfy) ] && (notify-send -r 555 -a Picom Enabled && compfy) || (notify-send -r 555 -a Picom Disabled && pkill compfy)") },
+	{ MODKEY|ShiftMask,             XK_c,      spawn,          SHCMD("[ ! $(pgrep picom) ] && (notify-send -r 555 -a Picom Enabled && compfy) || (notify-send -r 555 -a Picom Disabled && pkill picom)") },
 	{ Mod1Mask,                     XK_Tab,    spawn,          SHCMD("skippy-xd --switch --next") },
 	{ Mod1Mask|ShiftMask,           XK_Tab,    spawn,          SHCMD("skippy-xd --switch --prev") },
     /* keyboard */
