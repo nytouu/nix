@@ -1,13 +1,8 @@
 {inputs, config, pkgs, ...}:
 
 {
-  imports = [
-    ./waybar.nix
-  ];
-
   wayland.windowManager.hyprland = {
     extraConfig = ''
-
 monitor=,preferred,auto,1
 
 input {
@@ -36,6 +31,7 @@ general {
     col.inactive_border = rgba(333333ee)
 
     layout = master
+    allow_tearing = true
 }
 
  decoration {
@@ -93,28 +89,27 @@ dwindle {
 }
 
 master {
-    new_is_master = true
-    no_gaps_when_only = yes
+    new_status = master
+    no_gaps_when_only = false
     new_on_top = true
     mfact = 0.50
 }
 
 gestures {
     workspace_swipe = on
-    # workspace_swipe_distance = 400
-    workspace_swipe_distance = 500px
-	workspace_swipe_create_new = yes
+    workspace_swipe_distance = 500
+    workspace_swipe_create_new = yes
 }
 
 misc {
-    disable_hyprland_logo = yes
+    disable_hyprland_logo = no
     vfr = yes
     vrr = no
     enable_swallow = yes
-	mouse_move_enables_dpms = yes
-	focus_on_activate = yes
+    mouse_move_enables_dpms = yes
+    focus_on_activate = yes
     # animate_manual_resizes = true
-	# animate_mouse_windowdragging = true
+    # animate_mouse_windowdragging = true
 }
 
 plugin {
@@ -122,6 +117,17 @@ plugin {
         add_borders = 1 # 0 - 2
         col.border_1 = rgb(000000) # example col for border 1
         # col.border_2 = rgb(000000) # example col for border 2
+    }
+    hyprexpo {
+      columns = 3
+        gap_size = 5
+        bg_col = rgb(111111)
+        workspace_method = center current # [center/first] [workspace] e.g. first 1 or center m+1
+
+        enable_gesture = true # laptop touchpad
+        gesture_fingers = 3  # 3 or 4
+        gesture_distance = 300 # how far is the "max"
+        gesture_positive = true # positive = swipe down. Negative = swipe up.
     }
     # hyprfocus {
     #     enabled = yes
@@ -151,6 +157,7 @@ windowrule = workspace 4, ^(firefox)$
 windowrule = workspace 4, ^(librewolf)$
 windowrule = workspace 6, ^(discord)$
 windowrule = workspace 5, ^(osu!.exe)$
+windowrule = workspace 5, ^(osu!)$
 windowrule = pin, title:^(Picture-in-Picture)$
 
 windowrulev2 = opacity 0.9 0.9,class:^(discord)$
@@ -162,18 +169,24 @@ windowrulev2 = opacity 0.9 0.9,class:^(Pavucontrol)$
 windowrulev2 = opacity 0.9 0.9,class:^(Thunar)$
 windowrulev2 = opacity 0.9 0.9,class:^(Dunst)$
 windowrulev2 = opacity 0.5 0.5,class:^(Fuzzel)$
+windowrulev2 = immediate, class:^(osu!)$
 
 
 bind = SUPER, Return, exec, foot
 bind = SUPER, A, killactive,
 bind = SUPER, Space, togglefloating,
-bind = SUPER, D, exec, fuzzel
+bind = SUPER, D, exec, asztal -t launcher
 bind = SUPER, F, fullscreen
 # bind = SUPER, P, pseudo, # dwindle
 # bind = SUPER, X, togglesplit, # dwindle
-bind = SUPER SHIFT, E, exec, wlogout
-bind = SUPER SHIFT, U, exec, [ pgrep wayabr ] && killall waybar || waybar
+bind = SUPER SHIFT, E, exec, asztal -t powermenu
+# bind = SUPER SHIFT, U, exec, [ pgrep wayabr ] && killall waybar || waybar
 bind = SUPER SHIFT, H, exec, hyprpicker -anz
+bind = SUPER, Tab,     exec, asztal -t overview
+
+bind = SUPER, R, exec, asztal -r 'recorder.start()'
+bind = SUPER, P, exec, asztal -r 'recorder.screenshot()'
+bind = SUPER SHIFT, P, exec, asztal -r 'recorder.screenshot(true)'
 
 # bind = CTRL ALT, L, exec, mpc next
 # bind = CTRL ALT, H, exec, mpc prev
@@ -189,6 +202,8 @@ bind = SUPER SHIFT, H, exec, hyprpicker -anz
 # bind=,XF86AudioNext, exec, mpc next && songnotify
 # bind=,XF86AudioPrev, exec, mpc prev && songnotify
 # bind=,XF86AudioPlay, exec, mpc toggle
+
+bind = SUPER, Escape, hyprexpo:expo, toggle
 
 bind = SUPER, N, exec, Thunar
 bind = SUPER, B, exec, firefox
@@ -246,22 +261,26 @@ bind = SUPER SHIFT, agrave, movetoworkspace, 10
 bindm = SUPER, mouse:272, movewindow
 bindm = SUPER, mouse:273, resizewindow
 
-exec-once = hyprpaper
+exec-once = hypridle
 exec-once = ~/.config/hypr/autostart.sh
 
   '';
   plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.system}.borders-plus-plus
+			inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.borders-plus-plus
+			inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprexpo
+			# inputs.hyprspace.packages.${pkgs.stdenv.hostPlatform.system}.Hyprspace
     ];
   };
 
   home.packages = with pkgs; [
     foot
-    fuzzel
     hyprpaper
 	  wl-clipboard
 	  wf-recorder
 	  hyprpicker
-    wlogout
+		wayshot
+		swappy
+		hypridle
+		hyprlock
   ];
 }

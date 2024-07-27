@@ -1,14 +1,17 @@
 {
-  description = "Your new nix config";
+  description = "nytou's config";
 
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-f2k.url = "github:moni-dz/nixpkgs-f2k";
 
     # Home manager
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
-    # home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+			url = "github:nix-community/home-manager/release-24.05";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 
 		# gaming
 		nix-gaming.url = "github:fufexan/nix-gaming";
@@ -18,27 +21,30 @@
 			flake = false;
 		};
 
-		neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-
-    # doom
-    # nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
-
     # hypr
-		# hyprland.url = "github:hyprwm/Hyprland";
-		# hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
+    hyprland = {
+      type = "git";
+      url = "https://github.com/hyprwm/Hyprland";
+      submodules = true;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+		hyprland-plugins = {
+			url = "github:hyprwm/hyprland-plugins";
+			inputs.hyprland.follows = "hyprland";
+		};
+    # hyprspace = {
+    #   url = "github:KZDKM/Hyprspace";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
   };
 
   outputs = { 
     nixpkgs,
+    unstable,
     home-manager,
-    # hyprland,
+    hyprland,
     ...
   } @inputs: 
-  let
-    neovim-nightly-overlay = [
-      inputs.neovim-nightly-overlay.overlays.default
-    ];
-		in
   {
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
@@ -58,12 +64,9 @@
         extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
         # > Our main home-manager configuration file <
         modules = [
-            # hyprland.homeManagerModules.default
-            # { wayland.windowManager.hyprland.enable = true; }
+          hyprland.homeManagerModules.default
+          { wayland.windowManager.hyprland.enable = true; }
           ./home-manager/home.nix 
-          {
-            nixpkgs.overlays = neovim-nightly-overlay;
-          }
 	      ];
       };
     };

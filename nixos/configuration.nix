@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, ... }: 
+				{ inputs, config, pkgs, ... }: 
 
 {
   imports = [
@@ -129,6 +129,7 @@
       (nerdfonts.override { fonts = [
         "JetBrainsMono"
         "IBMPlexMono"
+        "MartianMono"
       ]; })
 			sf-mono-liga-bin
       ibm-plex
@@ -140,9 +141,11 @@
     fontconfig = {
       enable = true;
       defaultFonts = {
-        monospace = [ "Liga SFMono Nerd Font" ];
+        # monospace = [ "Liga SFMono Nerd Font" ];
+        # sansSerif = [ "SF Pro Display" ];
+        monospace = [ "MartianMono Nerd Font" ];
         serif = [ "Noto Serif" ];
-        sansSerif = [ "SF Pro Display" ];
+        sansSerif = [ "Torus Pro" ];
       };
     };
   };
@@ -164,6 +167,10 @@
     };
   };
 
+  programs.hyprland = {
+	  enable = true;
+		xwayland.enable = true;
+	};
 
   # Configure X11
   services.xserver = {
@@ -171,12 +178,18 @@
     xkb.layout = "fr";
 
     windowManager.awesome = {
-      enable = true;
+      enable = false;
       luaModules = with pkgs.luaPackages; [
         luarocks # is the package manager for Lua modules
         luadbi-mysql # Database abstraction layer
       ];
     };
+		windowManager.dwm = {
+			enable = true;
+			package = pkgs.dwm.overrideAttrs {
+				src = ./dwm;
+			};
+		};
 
     desktopManager.xterm.enable = false;
 
@@ -184,7 +197,7 @@
 
   };
   services.displayManager = {
-    defaultSession = "none+awesome";
+    defaultSession = "none+dwm";
     autoLogin = {
       enable = true;
       user = "nytou";
@@ -223,10 +236,11 @@
   services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
-	  open = true;
+	  open = false;
     modesetting.enable = true;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
+    powerManagement.enable = true;
 
     prime = {
       offload = {

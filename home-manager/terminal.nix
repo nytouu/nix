@@ -10,15 +10,15 @@
 			};
 			buildInputs = oldAttrs.buildInputs ++ [ xorg.libXinerama xorg.libXcursor harfbuzz gd ];
 		}))
-# 		(tabbed.overrideAttrs (oldAttrs: rec {
-# 			src = fetchFromGitHub {
-# 				owner = "nytouu";
-# 				repo = "tabbed";
-# 				rev = "7ae52b55471ae4eaa672e9b61928ceaade45e70b";
-# 				sha256 = "1md0m9gxi6lhfn87w4is76zki4hzwq0ajvw1g421kbk7i3ifmmyv";
-# 			};
-# 			buildInputs = oldAttrs.buildInputs;
-# 		}))
+		(tabbed.overrideAttrs (oldAttrs: rec {
+			src = fetchFromGitHub {
+				owner = "nytouu";
+				repo = "tabbed";
+				rev = "6e3d32d87016a111e5f7583c21471410d82a68ca";
+				sha256 = "05x53n0013j6816nmbq6p4bjpn7nildbd4g1jn8564d0ivm32zxw";
+			};
+			buildInputs = oldAttrs.buildInputs;
+		}))
     tmux
 	];
 

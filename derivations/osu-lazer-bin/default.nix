@@ -1,6 +1,5 @@
 {
   lib,
-  pins,
   SDL2,
   alsa-lib,
   appimageTools,
@@ -25,10 +24,11 @@
     # won't hurt users even if they don't have it set up
     then "${gamemode}/bin/gamemoderun"
     else null,
-  osu-mime,
 }: let
   pname = "osu-lazer-bin";
-  inherit (pins.osu) version;
+  version = "2024.625.2";
+
+  # osu-mime = ../osu-mime/default.nix;
 
   appimageBin = fetchurl {
     url = "https://github.com/ppy/osu/releases/download/${version}/osu.AppImage";
@@ -101,7 +101,7 @@ in
     paths = [
       derivation
       desktopItem
-      osu-mime
+      # osu-mime
     ];
 
     meta = {

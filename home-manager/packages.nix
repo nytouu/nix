@@ -1,4 +1,7 @@
-{ pkgs, ...}:
+{ pkgs, inputs, ...}:
+let 
+		pkgs-unstable = import inputs.unstable { system = "x86_64-linux"; config.allowUnfree = true; };
+in
 {
   home.packages = with pkgs; [
     # system
@@ -52,7 +55,7 @@
     xdotool
 		arandr
     xclip
-    picom
+    pkgs-unstable.picom-pijulius
     # (picom.overrideAttrs (oldAttrs: rec {
     # 	src = fetchFromGitHub {
     # 		owner = "fdev31";
@@ -101,15 +104,15 @@
     gnome.gnome-calendar
     # gnome.gnome-system-monitor
     gnome.gnome-control-center
-    vesktop
-    obs-studio
+    pkgs-unstable.vesktop
+    pkgs-unstable.obs-studio
     # vscode
     zathura
     mpv
     # vlc
-    aseprite
-    blender
-    lutris
+    pkgs-unstable.aseprite
+    pkgs-unstable.blender
+    pkgs-unstable.lutris
     # blockbench-electron
     # lmms
     # nitrogen

@@ -15,7 +15,11 @@
 # 
 # pipewire &
 #
-sleep 2 && waybar &
+# sleep 2 && waybar &
+#
+
+asztal
+
 # 
 # /usr/lib/xdg-desktop-portal &
 # sleep 2

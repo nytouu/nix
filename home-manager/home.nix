@@ -8,7 +8,7 @@
 		./terminal.nix
 		./x.nix
 		./nvim.nix
-		# ./mail.nix
+		./hyprland.nix
 		./files.nix
 		./music.nix
 		./browser.nix
@@ -27,6 +27,7 @@
 				"python-2.7.18.6"
 				"openssl-1.1.1u"
 				"openssl-1.1.1w"
+				"openssl-1.1.1w"
       ];
     };
   };
@@ -42,6 +43,21 @@
 
   programs.gpg.enable = true;
   services.gpg-agent.enable = true;
+
+	gtk.gtk3 = {
+		bookmarks = [
+			"file:///mnt/KINGSTON"
+				"file:///home/nytou/docs"
+				"file:///home/nytou/music"
+				"file:///home/nytou/pics"
+				"file:///home/nytou/vids"
+				"file:///home/nytou/downloads"
+				"file:///home/nytou/nix"
+				"file:///home/nytou/git"
+				"file:///home/nytou/code"
+				"file:///mnt/KINGSTON/Cours"
+		];
+	};
 
   xdg = {
     enable = true;
@@ -64,22 +80,22 @@
         "text/plain" = "nvim.desktop";
       };
     };
-    desktopEntries = {
-      # https://github.com/neovim/neovim/blob/master/runtime/nvim.desktop
-      neovim = {
-        name = "Neovim";
-        genericName = "Neovim";
-        exec = "st nvim %F";
-        terminal = false;
-        categories = [ "Application" ];
-        mimeType = [
-          "text/english" "text/plain" "text/x-makefile" 
-          "text/x-c++hdr" "text/x-c++src" "text/x-chdr" "text/x-csrc" 
-          "text/x-java" "text/x-moc" "text/x-pascal" "text/x-tcl" 
-          "text/x-tex" "application/x-shellscript" "text/x-c" "text/x-c++"
-        ];
-      };
-    };
+    # desktopEntries = {
+    #   # https://github.com/neovim/neovim/blob/master/runtime/nvim.desktop
+    #   neovim = {
+    #     name = "Neovim";
+    #     genericName = "Neovim";
+    #     exec = "st nvim %F";
+    #     terminal = false;
+    #     categories = [ "Application" ];
+    #     mimeType = [
+    #       "text/english" "text/plain" "text/x-makefile"
+    #       "text/x-c++hdr" "text/x-c++src" "text/x-chdr" "text/x-csrc"
+    #       "text/x-java" "text/x-moc" "text/x-pascal" "text/x-tcl"
+    #       "text/x-tex" "application/x-shellscript" "text/x-c" "text/x-c++"
+    #     ];
+    #   };
+    # };
   };
 
   programs.git = {
@@ -97,6 +113,8 @@
     # XCURSOR_THEME = "Bibata-Original-Ice";
     # QT_QPA_PLATFORMTHEME = "qt5ct";
     JAVA_AWT_WM_NONPARENTING = "1";
+		WLR_NO_HARDWARE_CURSORS = "1";
+		NIXOS_OZONE_WL = "1";
   };
 
   home.sessionPath = [
