@@ -6,7 +6,7 @@
             ".config/htop".source = ./config/htop;
             ".config/lazygit".source = ./config/lazygit;
             ".config/neofetch".source = ./config/neofetch;
-            ".config/slippy-xd".source = ./config/skippy-xd;
+            ".config/slippy-xd.conf".source = ./config/skippy-xd/skippy-xd.rc;
             ".config/compfy.conf".source = ./config/compfy.conf;
             ".config/picom.conf".source = ./config/picom.conf;
             ".config/rofi".source = ./config/rofi;

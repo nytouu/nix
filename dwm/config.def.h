@@ -224,15 +224,15 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_x,      spawn,          SHCMD("kill -USR1 $(pidof st)") },
 	/* { MODKEY|ShiftMask,             XK_d,      spawn,          SHCMD("[ $(dunstctl is-paused) ] && (dunstctl set-paused false && notify-send -a Notifications \"Disabled\") || (dunstctl set-paused true && notify-send -a Notifications \"Enabled\")") }, */
 	{ MODKEY|ShiftMask,             XK_d,      spawn,          SHCMD("dunstctl set-paused toggle") },
-	{ MODKEY|ShiftMask,             XK_c,      spawn,          SHCMD("[ ! $(pgrep picom) ] && (notify-send -r 555 -a Picom Enabled && compfy) || (notify-send -r 555 -a Picom Disabled && pkill picom)") },
+	{ MODKEY|ShiftMask,             XK_c,      spawn,          SHCMD("[ ! $(pgrep picom) ] && (notify-send -r 555 -a Picom Enabled && picom) || (notify-send -r 555 -a Picom Disabled && pkill picom)") },
 	{ Mod1Mask,                     XK_Tab,    spawn,          SHCMD("skippy-xd --switch --next") },
 	{ Mod1Mask|ShiftMask,           XK_Tab,    spawn,          SHCMD("skippy-xd --switch --prev") },
     /* keyboard */
 	{ Mod1Mask|ShiftMask,           XK_f,      spawn,          SHCMD("setxkbmap fr # && pkill -RTMIN+5 dwmblocks") },
 	{ Mod1Mask|ShiftMask,           XK_e,      spawn,          SHCMD("setxkbmap us # && pkill -RTMIN+5 dwmblocks") },
     /* fn keys */
-    { (unsigned int)NULL,          XF86XK_MonBrightnessDown, spawn,          SHCMD("brightnessctl s 10-%% && pkill -RTMIN+9 dwmblocks && notify-send -r 555 -a Brightness \"$(printf \"%.0f\\n\" \"$(brightnessctl g -P)\")\"%") },
-    { (unsigned int)NULL,          XF86XK_MonBrightnessUp,   spawn,          SHCMD("brightnessctl s 10+%% 1 && pkill -RTMIN+9 dwmblocks && notify-send -r 555 -a Brightness \"$(printf \"%.0f\\n\" \"$(brightnessctl g -P)\")\"%") },
+    { (unsigned int)NULL,          XF86XK_MonBrightnessDown, spawn,          SHCMD("brightnessctl s 10-%% && pkill -RTMIN+9 dwmblocks && notify-send -r 555 -a Brightness \"$(printf \"%.0f\\n\" \"$(($(brightnessctl g) * 100 / 255)\")\"%") },
+    { (unsigned int)NULL,          XF86XK_MonBrightnessUp,   spawn,          SHCMD("brightnessctl s 10+%% 1 && pkill -RTMIN+9 dwmblocks && notify-send -r 555 -a Brightness \"$(printf \"%.0f\\n\" \"$(($(brightnessctl g) * 100 / 255)\")\"%") },
     { (unsigned int)NULL,          XF86XK_AudioMute,         spawn,          SHCMD("pamixer -t && pkill -RTMIN+4 dwmblocks && notify-send -r 555 -a Volume $( [ $(pamixer --get-mute) = \"true\" ] && (echo Muted) || (echo Unmuted) )") },
     { (unsigned int)NULL,          XF86XK_AudioRaiseVolume,  spawn,          SHCMD("pamixer -i 1 && pkill -RTMIN+4 dwmblocks && notify-send -r 555 -a Volume \"$(pamixer --get-volume)\"%") },
     { (unsigned int)NULL,          XF86XK_AudioLowerVolume,  spawn,          SHCMD("pamixer -d 1 && pkill -RTMIN+4 dwmblocks && notify-send -r 555 -a Volume \"$(pamixer --get-volume)\"%") },
@@ -302,7 +302,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_6,					   5)
 	TAGKEYS(                        XK_7,					   6)
     { MODKEY|ShiftMask,             XK_r,      self_restart,   {0} },
-	{ MODKEY|ShiftMask,             XK_e,      spawn,          SHCMD("powermenu")},
+	{ MODKEY|ShiftMask,             XK_e,      spawn,          SHCMD("rofi -show menu -modi \"menu:rofi-power-menu\"")},
 };
 
 /* button definitions */

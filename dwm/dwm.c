@@ -354,8 +354,6 @@ static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void xinitvisual();
 static void xrdb(const Arg *arg);
 static void zoom(const Arg *arg);
-char *get_dwm_path();
-void self_restart(const Arg *arg);
 static void quit(const Arg *arg);
 
 static int swallow(Client *p, Client *c);
@@ -1435,7 +1433,7 @@ drawbar(Monitor *m)
 				drw_polygon(drw, boxs - w + icw + is * 2, m->sel->isfloating ? boxs * 2 + boxw : boxs, stickyiconbb.x, stickyiconbb.y, boxw, boxw * stickyiconbb.y / stickyiconbb.x, stickyicon, LENGTH(stickyicon), Nonconvex, m->sel->tags & m->tagset[m->seltags]);
 		} else {
 			drw_setscheme(drw, scheme[single ? SchemeAlt : SchemeInfo]);
-			drw_rect(drw, x, 0, w - stw, bh, 1, 1);
+			drw_rect(drw, x, 0, w + stw, bh, 1, 1);
 		}
 	}
 	drw_map(drw, m->barwin, 0, 0, m->ww, bh);
@@ -3200,8 +3198,6 @@ pid_t
 spawncmd(const Arg *arg)
 {
 	pid_t pid;
-	if (arg->v == dmenucmd)
-		dmenumon[0] = '0' + selmon->num;
 	if ((pid = fork()) == 0) {
 		if (dpy)
 			close(ConnectionNumber(dpy));
@@ -4158,63 +4154,6 @@ quit(const Arg *arg)
 	running = 0;
 }
 
-/**
- * Magically finds the current's executable path
- *
- * I'm doing the do{}while(); trick because Linux (what I'm running) is not
- * POSIX compilant and so lstat() cannot be trusted on /proc entries
- *
- * @return char* the path of the current executable
- */
-char *get_dwm_path()
-{
-    struct stat s;
-    int r, length, rate = 42;
-    char *path = NULL;
-
-    if (lstat("/proc/self/exe", &s) == -1) {
-        perror("lstat:");
-        return NULL;
-    }
-
-    length = s.st_size + 1 - rate;
-
-    do
-    {
-        length+=rate;
-
-        free(path);
-        path = malloc(sizeof(char) * length);
-
-        if (path == NULL){
-            perror("malloc:");
-            return NULL;
-        }
-
-        r = readlink("/proc/self/exe", path, length);
-
-        if (r == -1){
-            perror("readlink:");
-            return NULL;
-        }
-    } while (r >= length);
-
-    path[r] = '\0';
-
-    return path;
-}
-
-void
-self_restart(const Arg *arg){
-    char *const argv[] = {get_dwm_path(), NULL};
-
-    if (argv[0] == NULL) {
-        return;
-    }
-
-    execv(argv[0], argv);
-}
-
 int
 main(int argc, char *argv[])
 {
@@ -4239,9 +4178,8 @@ main(int argc, char *argv[])
 	scan();
 	runautostart();
 	run();
-	if(restart) {
-        self_restart();
-    }
+	if(restart)
+        execv(argv[0], argv);
 	cleanup();
 	XCloseDisplay(dpy);
 	return EXIT_SUCCESS;

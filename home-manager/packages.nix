@@ -45,6 +45,7 @@ in
     # (callPackage ../derivations/hydrablocks/default.nix { })
     nsxiv
 		betterlockscreen
+    eww
 
     # xorg
     xorg.xkill
@@ -79,7 +80,7 @@ in
 #      };
 #      postInstall = '''';
 #    }))
-		(dwmblocks.overrideAttrs (oldAttrs: rec {
+		(dwmblocks.overrideAttrs (oldAttrs: {
 			src = ../dwmblocks;
 		}))
 
@@ -87,7 +88,7 @@ in
     xcolor
 
     rofi
-    rofi-pass
+    # rofi-pass
     rofi-power-menu
 
     # fonts
@@ -117,16 +118,15 @@ in
     pkgs-unstable.aseprite
     pkgs-unstable.blender
     pkgs-unstable.lutris
+    pkgs-unstable.gimp
     # blockbench-electron
     # lmms
-    # nitrogen
     libreoffice-fresh
     # libresprite
     bleachbit
     libsForQt5.qt5ct
-    # ytmdl
+    ytmdl
     mate.engrampa
-    gimp
     godot_4
     # (callPackage ../derivations/godot4-mono/default.nix { })
     (unityhub.override {
@@ -141,13 +141,17 @@ in
     rustc
     cargo
     meson ninja nodejs
+    # clang
     gnumake cmake
     # mono5
     luarocks
+    python3
     gcc
     # jetbrains-toolbox
+    go
     #dotnet-sdk
     #dotnet-sdk_7
+    dotnetCorePackages.sdk_9_0
     # android-tools
     # android-udev-rules
     # android-studio

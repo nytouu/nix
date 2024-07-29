@@ -4,7 +4,7 @@
 	home.packages = with pkgs; [
 		mpc-cli
     ytmdl
-		# zscroll
+		zscroll
 	];
 
   services.playerctld.enable = true;
@@ -21,7 +21,7 @@
         follow_inside_symlinks		"yes"
 
         input {
-                plugin "curl"
+            plugin "curl"
         }
 
         input {

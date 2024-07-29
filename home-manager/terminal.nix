@@ -14,8 +14,8 @@
 			src = fetchFromGitHub {
 				owner = "nytouu";
 				repo = "tabbed";
-				rev = "6e3d32d87016a111e5f7583c21471410d82a68ca";
-				sha256 = "05x53n0013j6816nmbq6p4bjpn7nildbd4g1jn8564d0ivm32zxw";
+				rev = "0ee3b96a867bffed46f3565caded67281fd5eac8";
+				sha256 = "01wy6a8d2x192567f77c3lhv2faw97hx7hyspk0xwpy1sg3qm7df";
 			};
 			buildInputs = oldAttrs.buildInputs;
 		}))

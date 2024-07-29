@@ -13,6 +13,7 @@
 		./music.nix
 		./browser.nix
 		./games.nix
+		./notif.nix
   ];
 
   nixpkgs = {
@@ -22,11 +23,9 @@
       allowUnfreePredicate = (_: true);
       permittedInsecurePackages = [
 				"electron-13.6.9"
-				# "electron-24.8.6"
         "electron-25.9.0"
 				"python-2.7.18.6"
 				"openssl-1.1.1u"
-				"openssl-1.1.1w"
 				"openssl-1.1.1w"
       ];
     };
@@ -110,8 +109,8 @@
     EDITOR = "nvim";
     BROWSER = "firefox";
     FILEBROWSER = "thunar";
-    # XCURSOR_THEME = "Bibata-Original-Ice";
-    # QT_QPA_PLATFORMTHEME = "qt5ct";
+    XCURSOR_THEME = "Notwaita-Black";
+    QT_QPA_PLATFORMTHEME = "qt5ct";
     JAVA_AWT_WM_NONPARENTING = "1";
 		WLR_NO_HARDWARE_CURSORS = "1";
 		NIXOS_OZONE_WL = "1";

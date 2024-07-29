@@ -30,18 +30,18 @@
                 corner_radius = 12;
             };
             urgency_low = {
-                background = "#131313";
-                foreground = "#dde1e6";
+                background = "#1D1D1D";
+                foreground = "#FFFFFF";
                 timeout = 10;
             };
             urgency_normal = {
-                background = "#131313";
-                foreground = "#dde1e6";
+                background = "#1D1D1D";
+                foreground = "#FFFFFF";
                 timeout = 10;
             };
             urgency_critical = {
-                background = "#131313";
-                foreground = "#dde1e6";
+                background = "#1D1D1D";
+                foreground = "#FFFFFF";
                 frame_color = "#ffab91";
                 timeout = 0;
             };
