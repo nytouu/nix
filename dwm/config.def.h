@@ -28,7 +28,7 @@ static const int user_bh            = 38;       /* 0 means that dwm will calcula
 static const unsigned int systraypinning = 1;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayspacing = 4;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
-static const int showsystray             = 1;   /* 0 means no systray */
+static const int showsystray             = 0;   /* 0 means no systray */
 static const unsigned int systrayiconsize = 20; /* systray icon size in px */
 static const char slopspawnstyle[]  = "-t 0 -b 2 -c 1.0,0.8,0.7"; /* do NOT define -f (format) here "-t 0 -b 2 -c 0.7,0.6,0.9,0.1 -l" for alternate, hope the highlight thing gets fixed or maybe i should do it myself but im lazy */
 static const char slopresizestyle[] = "-t 0 -b 2 -c 1.0,0.8,0.7"; /* do NOT define -f (format) here */
@@ -54,7 +54,7 @@ static char lightblue[]       = "#7dcfff";
 static char white[]           = "#c0caf5";
 static char border[]          = "#ffffff";
 static char buttoncolor[]     = "#7aa2f7";
-static const unsigned int baralpha  = 0xe5; // 0xe5 - 0xf2 = 0.95
+static const unsigned int baralpha  = OPAQUE; // 0xe5 - 0xf2 = 0.95 0x00U = trans
 static const unsigned int borderalpha = OPAQUE;
 static const char buttonbar[]       = "󰘳 ";
 static const char *colors[][3]      = {

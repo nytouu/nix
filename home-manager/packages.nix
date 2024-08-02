@@ -87,6 +87,7 @@ in
 
     xcolor
 
+    (callPackage ../derivations/rglauncher/default.nix { })
     rofi
     # rofi-pass
     rofi-power-menu

@@ -13,7 +13,7 @@
 		./music.nix
 		./browser.nix
 		./games.nix
-		./notif.nix
+		# ./notif.nix
   ];
 
   nixpkgs = {

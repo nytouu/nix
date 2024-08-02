@@ -178,27 +178,26 @@
     xkb.layout = "fr";
 
     windowManager.awesome = {
-      enable = false;
+      enable = true;
       luaModules = with pkgs.luaPackages; [
-        luarocks # is the package manager for Lua modules
-        luadbi-mysql # Database abstraction layer
+        luarocks
+        luadbi-mysql
       ];
     };
 		windowManager.dwm = {
-			enable = true;
-			package = pkgs.dwm.overrideAttrs (oldAttrs: rec {
+			enable = false;
+			package = pkgs.dwm.overrideAttrs (oldAttrs: {
 				src = ../dwm;
         buildInputs = with pkgs; oldAttrs.buildInputs ++ [ imlib2 yajl ];
 			});
 		};
 
     desktopManager.xterm.enable = false;
-
     updateDbusEnvironment = true;
 
   };
   services.displayManager = {
-    defaultSession = "none+dwm";
+    defaultSession = "none+awesome";
     autoLogin = {
       enable = true;
       user = "nytou";

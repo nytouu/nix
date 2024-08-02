@@ -27,7 +27,7 @@ general {
     gaps_in = 12
     gaps_out = 24
     border_size = 1
-    col.active_border = rgba(666666ee)
+    col.active_border = rgba(ffffffee) rgba(000000ee) 135deg
     col.inactive_border = rgba(333333ee)
 
     layout = master

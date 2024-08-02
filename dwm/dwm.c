@@ -1433,7 +1433,7 @@ drawbar(Monitor *m)
 				drw_polygon(drw, boxs - w + icw + is * 2, m->sel->isfloating ? boxs * 2 + boxw : boxs, stickyiconbb.x, stickyiconbb.y, boxw, boxw * stickyiconbb.y / stickyiconbb.x, stickyicon, LENGTH(stickyicon), Nonconvex, m->sel->tags & m->tagset[m->seltags]);
 		} else {
 			drw_setscheme(drw, scheme[single ? SchemeAlt : SchemeInfo]);
-			drw_rect(drw, x, 0, w + stw, bh, 1, 1);
+			drw_rect(drw, x, 0, w, bh, 1, 1);
 		}
 	}
 	drw_map(drw, m->barwin, 0, 0, m->ww, bh);
