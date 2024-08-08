@@ -1,6 +1,6 @@
 configuration {
     show-icons: true;
-    font: "SF Pro Display 12";
+    font: "Torus Pro 12";
     icon-theme: "Papirus-Dark";
 
     display-ssh:    "󰣀 ssh:";

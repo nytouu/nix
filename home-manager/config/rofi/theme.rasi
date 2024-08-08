@@ -1,150 +1,181 @@
 /**
- * Gruvbox rofi theme
  *
- * Color palette imported from https://github.com/sainnhe/gruvbox-material
- *
- */
+ * Author : Aditya Shakya (adi1090x)
+ * Github : @adi1090x
+ * 
+ * Rofi Theme File
+ * Rofi Version: 1.7.3
+ **/
 
+/*****----- Configuration -----*****/
+configuration {
+	modi:                       "drun";
+    show-icons:                 true;
+    display-drun:               "Apps";
+    display-run:                "Run";
+    display-filebrowser:        "Files";
+    display-window:             "Windows";
+	drun-display-format:        "{name}\n[<span weight='light' size='small'><i>({generic})</i></span>]";
+	window-format:              "Class : {c}\nWorkspace : {w}";
+}
+
+/*****----- Global Properties -----*****/
 * {
-    gruv0: #202020;
-    gruv1: #323232;
-    gruv2: #404040;
-    gruv3: #525252;
-    gruv11: #101010;
-
-    gruv4: #F1F1F1;
-    gruv5: #E1E1E1;
-    gruv6: #D3D3D3;
-
-    gruv7: #999999;
-    gruv8: #888888;
-    gruv9: #666666;
-    gruv10: #505050;
-    red: #F66151;
-
-    orange: #FFBE6F;
-    yellow: #F9F06B;
-    aqua: #93DDC2;
-    purple: #DC8ADD;
-
-    reddark: #A51D2D;
-    yellowdark: #D38B09;
-
-    foreground:  @gruv9;
-    background-color:  transparent;
-
-    highlight: bold #62a0ea;
-
-    transparent: rgba(46,52,64,0);
-
+    font:                        "Torus Pro 11";
+    border-radius:               1px;
+    border-color:                #2a2a2a;
 }
 
+/*****----- Main Window -----*****/
 window {
-    location: center;
-    anchor:   center;
-    border-radius: 0px;
-    height: 280px;
-    width: 600px;
+    /* properties for window widget */
+    transparency:                "real";
+    location:                    center;
+    anchor:                      north;
+    fullscreen:                  false;
+    width:                       500px;
+    x-offset:                    0px;
+    y-offset:                    -240px;
+	border:                      1px;
+	border-radius:               6px;
+	border-color:                #4a4a4a;
 
-    background-color: @transparent;
-    spacing: 0;
-    children:  [mainbox];
-    orientation: horizontal;
+    /* properties for all widgets */
+    enabled:                     true;
+    margin:                      0px;
+    padding:                     0px;
+    cursor:                      "default";
+    background-color:            #242424;
 }
 
+/*****----- Main Box -----*****/
 mainbox {
-    spacing: 0;
-    children: [ inputbar, message, listview ];
+    enabled:                     true;
+    spacing:                     10px;
+    padding:                     20px;
+    background-color:            transparent;
+    children:                    [ "inputbar", "listview" ];
 }
 
-message {
-    padding: 10px;
-    border:  0px 2px 2px 2px;
-    border-color: @gruv0;
-    background-color: @gruv7;
-}
-
+/*****----- Inputbar -----*****/
 inputbar {
-    color: @gruv6;
-    padding: 14px;
-    background-color: @gruv11;
-    border-color: @gruv11;
-
-    border: 1px;
-    border-radius: 0px 0px 0px 0px;
+    enabled:                     true;
+    spacing:                     10px;
+    margin:                      0px;
+    background-color:            transparent;
+    children:                    [ "textbox-prompt-colon", "entry" ];
+    text-color:                  gray/40%;
 }
 
-entry, prompt, case-indicator {
-    text-font: inherit;
-    text-color: inherit;
+textbox-prompt-colon {
+    enabled:                     true;
+    expand:                      false;
+    padding:                     12px 16px;
+    border-color:                gray/50%;
+    background-color:            inherit;
+    text-color:                  white;
+    str:                         "";
+    font:                        "Symbols Nerd Font Mono 13";
+    vertical-align:              0.75;
+    horizontal-align:            0.50;
+}
+entry {
+    enabled:                     true;
+    font:                        "Torus Pro 12";
+    padding:                     12px 16px;
+    border:                      0px;
+    border-radius:               10px;
+    border-color:                gray/50%;
+    background-color:            inherit;
+    text-color:                  white;
+    cursor:                      text;
+    placeholder:                 "Search...";
+    placeholder-color:           gray/50%;
+    vertical-align:              0.75;
+    horizontal-align:            -0.5;
 }
 
-prompt {
-    margin: 0px 1em 0em 0em ;
-}
-
+/*****----- Listview -----*****/
 listview {
-    padding: 8px;
-    border-radius: 0px 0px 0px 0px;
-    border: 2px 2px 2px 2px;
-    border-color: @gruv0;
-    background-color: @gruv0;
-    dynamic: false;
+    enabled:                     true;
+    columns:                     1;
+    lines:                       6;
+    cycle:                       true;
+    dynamic:                     true;
+    scrollbar:                   false;
+    layout:                      vertical;
+    reverse:                     false;
+    fixed-height:                false;
+    fixed-columns:               true;
+
+    spacing:                     5px;
+    background-color:            transparent;
+    cursor:                      "default";
 }
 
+/*****----- Elements -----*****/
 element {
-    padding: 5px;
-    vertical-align: 0.5;
-    border-radius: 10px;
-    color: @foreground;
-    text-color: @gruv6;
-    background-color: @gruv0;
+    enabled:                     true;
+    spacing:                     10px;
+    margin:                      0px;
+    padding:                     6px;
+    border:                      0px solid;
+    border-radius:               10px;
+    background-color:            transparent;
+    text-color:                  white;
+    cursor:                      pointer;
 }
-
-element.normal.active {
-    background-color: @red;
+element normal.active {
+    background-image:            linear-gradient(to right, #19B466, #7BF4B7);
+    text-color:                  white;
 }
-
-element.normal.urgent {
-    background-color: @reddark;
+element selected.normal {
+    border-radius:               8px;
+    background-color:            #393939f2;
+    text-color:                  white;
 }
-
-element.selected.normal {
-    background-color: @gruv2;
-    text-color: @gruv0;
+element selected.active {
+    background-image:            linear-gradient(to right, #EA5553, #EAACAB);
+    text-color:                  white;
 }
-
-element.selected.active {
-    background-color: @reddark;
+element-icon {
+    background-color:            transparent;
+    size:                        48px;
+    cursor:                      inherit;
 }
-
-element.selected.urgent {
-    background-color: @red;
-}
-
-element.alternate.normal {
-    background-color: @transparent;
-}
-
-element-text, element-icon {
-    size: 3ch;
-    margin: 0 10 0 0;
-    vertical-align: 0.5;
-    background-color: inherit;
-    text-color: @gruv6;
+element-text {
+    background-color:            inherit;
+    text-color:                  inherit;
+    cursor:                      inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
 }
 
 button {
-    padding: 6px;
-    color: @foreground;
-    horizontal-align: 0.5;
-
-    border: 2px 0px 2px 2px;
-    border-radius: 10px;
-    border-color: @foreground;
+    font:                        "Torus Pro Bold 12";
+    padding:                     8px;
+    border-radius:               100%;
+    background-image:            linear-gradient(to right, #C03FF2, #EEC2FF);
+    text-color:                  black;
+    cursor:                      pointer;
+}
+button selected {
+    background-image:            linear-gradient(to right, #44A2F0, #BDDDF8);
+    text-color:                  white;
 }
 
-button.selected.normal {
-    border: 2px 0px 2px 2px;
-    border-color: @foreground;
+/*****----- Message -----*****/
+error-message {
+    padding:                     14px;
+    background-color:            black;
+    text-color:                  white;
 }
+textbox {
+    padding:                     0px;
+    border-radius:               0px;
+    text-color:                  white;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
+}
+
+/* vim:ft=css */

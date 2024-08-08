@@ -22,6 +22,11 @@
     ];
   };
 
+  services.unclutter = {
+    enable = true;
+    timeout = 15;
+  };
+
   xsession = {
     enable = true;
     numlock.enable = true;
@@ -98,7 +103,7 @@
 
 
     "st.font" = "MartianMono Nerd Font:style=Medium:size=10:autohint=true";
-    "st.alpha" = "1.00";
+    "st.alpha" = "0.95";
     "st.background" = "#1D1D1D";
     "st.foreground" = "#FFFFFF";
     "st.color0"     = "#262626";

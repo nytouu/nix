@@ -28,6 +28,7 @@ in
     connman-gtk
     blueman
     pass 
+		screenkey
     # feh
     pamixer pulsemixer 
 		pavucontrol
@@ -53,33 +54,11 @@ in
     xorg.xwininfo
     xorg.xdpyinfo
     xorg.xset
+		xwinwrap
     xdotool
 		arandr
     xclip
     pkgs-unstable.picom-pijulius
-    # (picom.overrideAttrs (oldAttrs: rec {
-    # 	src = fetchFromGitHub {
-    # 		owner = "fdev31";
-    # 		repo = "picom";
-    # 		rev = "7834dd3147ba605bba5cbe911bacfa8b217c37e0";
-    # 		sha256 = "05cd3yj3lv8nk433v0j2k86mhg72pf5lijkshqwarr8hp3h00cvx";
-    # 	};
-    # 	buildInputs = oldAttrs.buildInputs ++ [ pcre2 ];
-    # }))
-#    (picom.overrideAttrs (oldAttrs: rec {
-#      pname = "compfy";
-#      version = "1.7.2";
-#      buildInputs = [
-#        pcre2
-#      ] ++ oldAttrs.buildInputs;
-#      src = pkgs.fetchFromGitHub {
-#        owner = "allusive-dev";
-#        repo = "compfy";
-#        rev = version;
-#        hash = "sha256-7gKIOxFoiO0QFU9uaFbZZD9LzqH/TeaMImmCRYfg+uQ=";
-#      };
-#      postInstall = '''';
-#    }))
 		(dwmblocks.overrideAttrs (oldAttrs: {
 			src = ../dwmblocks;
 		}))
@@ -87,9 +66,7 @@ in
 
     xcolor
 
-    (callPackage ../derivations/rglauncher/default.nix { })
     rofi
-    # rofi-pass
     rofi-power-menu
 
     # fonts
@@ -120,10 +97,7 @@ in
     pkgs-unstable.blender
     pkgs-unstable.lutris
     pkgs-unstable.gimp
-    # blockbench-electron
-    # lmms
     libreoffice-fresh
-    # libresprite
     bleachbit
     libsForQt5.qt5ct
     ytmdl
@@ -150,8 +124,6 @@ in
     gcc
     # jetbrains-toolbox
     go
-    #dotnet-sdk
-    #dotnet-sdk_7
     dotnetCorePackages.sdk_9_0
     # android-tools
     # android-udev-rules
@@ -175,8 +147,6 @@ in
 
     nodePackages.bash-language-server
 
-    # omnisharp-roslyn
     csharp-ls
-    # nodePackages_latest.browser-sync
   ];
 }

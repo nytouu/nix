@@ -9,12 +9,16 @@ pkgs.stdenv.mkDerivation rec {
     sha256 = "1d0q961bizj4bpisxp9kf5i6brma0yq2c95df2add7fz0lnjf13h";
   };
 
+  nativeBuildInputs = with pkgs; [
+    pkg-config
+  ];
+
   buildInputs = with pkgs; [
-    rust
+    rustc
     cargo
   ];
 
-  installPhase = ''
-    cargo install $out/bin/rglauncher
-  '';
+  # installPhase = ''
+  #   cargo install $out/bin/rglauncher
+  # '';
 }
