@@ -8,7 +8,7 @@
 		./terminal.nix
 		./x.nix
 		./nvim.nix
-		./hyprland.nix
+		# ./hyprland.nix
 		./files.nix
 		./music.nix
 		./browser.nix

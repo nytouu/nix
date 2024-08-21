@@ -7,6 +7,7 @@ in
     # system
     htop-vim
     bat eza
+    slop
     firejail
     unzip unrar p7zip
     btrfs-progs acpi
@@ -58,11 +59,19 @@ in
     xdotool
 		arandr
     xclip
-    pkgs-unstable.picom-pijulius
+    # pkgs-unstable.picom-pijulius
+    (picom.overrideAttrs (oldAttrs: {
+    	src = fetchFromGitHub {
+    		owner = "yshui";
+    		repo = "picom";
+    		rev = "bc455e866e253c822324244df1c2aeb5c7f8c620";
+    		sha256 = "16by8ar16yx2j381dzxx8407mk3qbgrjkka3vbar5frphnwz500x";
+    	};
+      buildInputs = oldAttrs.buildInputs ++ [ asciidoctor ];
+    }))
 		(dwmblocks.overrideAttrs (oldAttrs: {
 			src = ../dwmblocks;
 		}))
-
 
     xcolor
 
@@ -89,6 +98,7 @@ in
     gnome.gnome-control-center
     pkgs-unstable.vesktop
     pkgs-unstable.obs-studio
+    pkgs-unstable.planify
     # vscode
     zathura
     mpv

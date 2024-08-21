@@ -18,7 +18,7 @@
 		};
 
 		# file.".config/gtk-4.0/gtk.css".source = ./config/gtk.css;
-		file.".config/gtk-3.0/gtk.csm".source = ./config/gtk.css;
+		# file.".config/gtk-3.0/gtk.css".source = ./config/gtk.css;
 	};
 
 	qt = {

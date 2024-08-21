@@ -1,8 +1,11 @@
-{ pkgs, ... }:
-
+{ pkgs, inputs, ... }:
+let 
+		pkgs-unstable = import inputs.unstable { system = "x86_64-linux"; config.allowUnfree = true; };
+in
 {
   home.packages = with pkgs; [
-    firefox
+    # firefox
+    pkgs-unstable.librewolf
   ];
 	# programs.firefox = {
 	# 	enable = true;
