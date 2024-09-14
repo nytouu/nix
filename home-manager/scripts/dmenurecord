@@ -1,0 +1,82 @@
+#!/bin/sh
+
+# If there is already a running instance, user will be prompted to end it.
+
+. "$HOME"/.local/bin/bar-colors
+
+VIDS=$HOME/vids
+RES="1920x1080"
+DMENUOPTS="-x 0 -y 0 -z 1920 -i"
+# DMENUOPTS="-x 560 -y 980 -z 800"
+
+updateicon() {
+    echo "$1" > /tmp/recordingicon
+    pkill -RTMIN+2 hydrablocks
+}
+
+killrecording() {
+    recpid="$(cat /tmp/recordingpid)"
+    # kill with SIGTERM, allowing finishing touches.
+    kill -15 "$recpid"
+    rm -f /tmp/recordingpid
+    updateicon ""
+    pkill -RTMIN+2 hydrablocks
+    # even after SIGTERM, ffmpeg may still run, so SIGKILL it.
+    sleep 3
+    kill -9 "$recpid"
+    videonotify
+}
+
+fullscreen() {
+    ffmpeg \
+    -f x11grab \
+    -s $RES \
+    -i "$DISPLAY" \
+    -c:v libx264 -qp 0 -r 60 \
+    "$VIDS/$(date +%d-%m-%G-%T).mp4" &
+    echo $! > /tmp/recordingpid
+    updateicon "$FG_RED  rec"
+}
+
+sloppy() {
+    opts=$(slop -f "-video_size %wx%h -i :0.0+%x,%y")
+    ffmpeg \
+    -f x11grab \
+    $opts \
+    -c:v libx264 -qp 0 -r 60 \
+    "$VIDS/$(date +%d-%m-%G-%T).mp4" &
+    echo $! > /tmp/recordingpid
+    updateicon "$FG_RED  rec"
+}
+
+audio() {
+    ffmpeg \
+    -f pulse -i default \
+    -c:a flac \
+    "$VIDS/audio-$(date +%d-%m-%G-%T).flac" &
+    echo $! > /tmp/recordingpid
+    updateicon "$FG_RED  rec"
+}
+
+askrecording() {
+    choice=$(printf "fullscreen\\nslop\\naudio" | dmenu $DMENUOPTS -p " ")
+    case "$choice" in
+        fullscreen) fullscreen;;
+        slop) sloppy;;
+        audio) audio;;
+        quit) exit 0;;
+    esac
+}
+
+asktoend() {
+    response=$(printf "yes\\nno" | dmenu $DMENUOPTS -p " ?") &&
+    [ "$response" = "yes" ] && killrecording
+}
+
+case "$1" in
+    fullscreen) fullscreen;;
+    slop) slop;;
+    audio) audio;;
+    kill) killrecording;;
+    *) if [ -f /tmp/recordingpid ]; then asktoend; else askrecording; fi;;
+esac

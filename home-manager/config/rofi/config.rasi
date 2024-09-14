@@ -1,0 +1,8 @@
+configuration {
+    show-icons: true;
+    font: "Torus Pro 12";
+    icon-theme: "Papirus-Dark";
+    dpi: 92;
+}
+
+@theme "theme"

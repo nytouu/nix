@@ -1,0 +1,3 @@
+#!/bin/sh
+# awesome-client "awesome.emit_signal('toggle::lock')"
+betterlockscreen -l dimblur --time-format "%H:%M" -- --greeter-font "Torus Pro" --time-font "Torus Pro"

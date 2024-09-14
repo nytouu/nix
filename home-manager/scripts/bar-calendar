@@ -1,0 +1,9 @@
+#!/bin/sh
+
+. "$HOME"/.local/bin/bar-colors
+
+echo "$bg$blue   $(date '+%a %d %b') ^d^"
+
+case $BUTTON in
+    3) setsid -f "$TERMINAL" -e calcurse;
+esac

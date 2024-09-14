@@ -1,0 +1,135 @@
+{
+    "layer": "top", 
+    "position": "top",
+    "height": 30,
+    "spacing": 4, 
+	"modules-left": ["custom/launcher", "backlight", "custom/dunst"],
+    "modules-center": ["wlr/workspaces"],
+    "modules-right": ["mpd", "pulseaudio", "battery", "clock", "tray"],
+
+    "wlr/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "6": "󰙯",
+            "7": "",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        },
+        "on-click": "activate"
+    },
+	"custom/launcher": {
+		"interval": "once",
+		"format": "",
+		"on-click": "fuzzel",
+		"tooltip": false
+	},
+    "mpd": {
+        "format": "{stateIcon} {artist} - {title} 󰝚 ",
+        "format-disconnected": "Disconnected 󰝚 ",
+        "format-stopped": "",
+        "unknown-tag": "N/A",
+        "interval": 2,
+        "consume-icons": {
+            "on": " "
+        },
+        "random-icons": {
+            "off": "<span color=\"#f53c3c\"></span> ",
+            "on": " "
+        },
+        "repeat-icons": {
+            "on": " "
+        },
+        "single-icons": {
+            "on": "1 "
+        },
+        "state-icons": {
+            "paused": " ",
+            "playing": " "
+        },
+        "tooltip-format": "MPD (connected)",
+        "tooltip-format-disconnected": "MPD (disconnected)",
+        "on-click": "mpc toggle",
+        "on-click-right": "foot ncmpcpp",
+        "on-scroll-up": "mpc volume +1",
+        "on-scroll-down": "mpc volume -1"
+    },
+    "tray": {
+        "spacing": 14
+    },
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y %m %d}"
+    },
+    "backlight": {
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "on-scroll-up": "doas light -A 1",
+        "on-scroll-down": "doas light -U 1"
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% 󱐋",
+        "format-plugged": "{capacity}% 󱐥",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰁹"]
+    },
+	"custom/dunst": {
+		"exec": "way-dunst",
+		"on-click": "dunstctl set-paused toggle",
+		"restart-interval": 1,
+		"tooltip": false
+	},
+    "battery#bat2": {
+        "bat": "BAT2"
+    },
+    "network": {
+        "format-wifi": "({signalStrength}%) ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠"
+    },
+    "pulseaudio": {
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": "",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click-right": "foot pulsemixer",
+        "on-click-middle": "pamixer -t"
+    },
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null"
+    }
+}
+// vim: ft=json

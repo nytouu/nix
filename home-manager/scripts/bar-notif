@@ -1,0 +1,17 @@
+#!/bin/sh
+
+. "$HOME"/.local/bin/bar-colors
+
+state=$(dunstctl is-paused)
+
+case $state in 
+    "false" ) text="" ;;
+    "true" ) text="" ;;
+esac
+
+case $BUTTON in
+	1) dunstctl set-paused toggle ;;
+esac
+
+# pkill -RTMIN+13 hydrablocks
+echo "$bg$yellow $text ^d^"
