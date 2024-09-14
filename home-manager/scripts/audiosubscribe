@@ -1,7 +1,0 @@
-#!/bin/sh
-
-pactl subscribe | while read x event y type num; do
-    if [ $event == "'change'" -a $type == 'source' ]; then
-        pkill -RTMIN+4 hydrablocks
-    fi
-done

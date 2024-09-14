@@ -1,7 +1,0 @@
-#!/bin/sh
-
-# Run xidlehook
-xidlehook --not-when-fullscreen --not-when-audio \
-    --timer 180 'brightnessctl -s; brightness s 1%%' 'brightnessctl -r' \
-    --timer 20 'lock' '' \
-    --timer 200 'systemctl suspend' ''

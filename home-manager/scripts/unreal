@@ -1,4 +1,0 @@
-#!/bin/sh
-
-cd "/mnt/KINGSTON/Epic Merde/UnrealLinux/" || exit
-./Engine/Binaries/Linux/UnrealEditor

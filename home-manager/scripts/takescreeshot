@@ -1,8 +1,0 @@
-#!/bin/sh
-
-FOLDER="$HOME/Pictures/Screenshots"
-
-case $1 in
-    slop) sleep 0.3 && maim -s $FOLDER/$(date +%d-%m-%G-%T).png && screenshotnotify ;;
-    *) maim $FOLDER/$(date +%d-%m-%G-%T).png && screenshotnotify ;;
-esac
