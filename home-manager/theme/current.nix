@@ -1,0 +1,1 @@
+/home/nytou/nix/home-manager/theme/light.nix
