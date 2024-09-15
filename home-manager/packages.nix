@@ -1,21 +1,28 @@
-{ pkgs, inputs, ...}:
-let 
-		pkgs-unstable = import inputs.unstable { system = "x86_64-linux"; config.allowUnfree = true; };
+{ pkgs, inputs, ... }:
+let
+  pkgs-unstable = import inputs.unstable { system = "x86_64-linux"; config.allowUnfree = true; };
 in
 {
   home.packages = with pkgs; [
     # system
     htop-vim
-    bat eza
+    bat
+    eza
     slop
     firejail
-    unzip unrar p7zip
-    btrfs-progs acpi
+    unzip
+    unrar
+    p7zip
+    btrfs-progs
+    acpi
     # pinentry-curses
-		libnotify
-    wirelesstools wget
-    procps psmisc brightnessctl
-		python311Packages.psutil
+    libnotify
+    wirelesstools
+    wget
+    procps
+    psmisc
+    brightnessctl
+    python311Packages.psutil
     python311Packages.types-psutil
     ffmpegthumbnailer
 
@@ -29,25 +36,25 @@ in
     connman-gtk
     blueman
     # pass
-		# screenkey
+    # screenkey
     # feh
-    pamixer 
-		# pulsemixer 
-		pavucontrol
+    pamixer
+    # pulsemixer 
+    pavucontrol
     lazygit
-		fastfetch
+    fastfetch
     maim
-		# skippy-xd
+    # skippy-xd
     xfce.thunar
-    xfce.thunar-archive-plugin 
-    xfce.thunar-volman 
+    xfce.thunar-archive-plugin
+    xfce.thunar-volman
     xfce.xfconf
     xfce.tumbler
     inotify-tools
     # qmk
     # (callPackage ../derivations/hydrablocks/default.nix { })
     nsxiv
-		# betterlockscreen
+    # betterlockscreen
     # eww
 
     # xorg
@@ -56,23 +63,23 @@ in
     xorg.xwininfo
     xorg.xdpyinfo
     xorg.xset
-		xwinwrap
+    xwinwrap
     xdotool
-		arandr
+    arandr
     xclip
     # pkgs-unstable.picom-pijulius
     (picom.overrideAttrs (oldAttrs: {
-    	src = fetchFromGitHub {
-    		owner = "yshui";
-    		repo = "picom";
-    		rev = "3899d2c4cdd902623592aab7839c8da91fbce86c";
-    		sha256 = "14wwi74m5k4fqa5c7cvn3adbakbc1v59f46vjgkk5qzqr6pma7yc";
-    	};
+      src = fetchFromGitHub {
+        owner = "yshui";
+        repo = "picom";
+        rev = "3899d2c4cdd902623592aab7839c8da91fbce86c";
+        sha256 = "14wwi74m5k4fqa5c7cvn3adbakbc1v59f46vjgkk5qzqr6pma7yc";
+      };
       buildInputs = oldAttrs.buildInputs ++ [ asciidoctor ];
     }))
-		# (dwmblocks.overrideAttrs (oldAttrs: {
-		# 	src = ../dwmblocks;
-		# }))
+    # (dwmblocks.overrideAttrs (oldAttrs: {
+    # 	src = ../dwmblocks;
+    # }))
 
     xcolor
 
@@ -88,7 +95,8 @@ in
 
     # neovim
     # neovim-remote
-    ripgrep fd
+    ripgrep
+    fd
     # neovide
 
     # apps
@@ -117,48 +125,11 @@ in
     # godot_4
     # (callPackage ../derivations/godot4-mono/default.nix { })
     (unityhub.override {
-        extraLibs = pkgs: with pkgs; [
-            openssl_1_1
-            gradle
-            # glibc
-        ];
+      extraLibs = pkgs: with pkgs; [
+        openssl_1_1
+        gradle
+        # glibc
+      ];
     })
-
-    # dev
-    # rustc
-    # cargo
-    # meson ninja nodejs
-    # clang
-    # gnumake cmake
-    # mono5
-    # luarocks
-    # python3
-    # gcc
-    # jetbrains-toolbox
-    # go
-    # dotnetCorePackages.sdk_9_0
-    # android-tools
-    # android-udev-rules
-    # android-studio
-
-    # python3
-
-    #nvim stuff
-    # tree-sitter
-
-    # nixfmt-classic
-    # nil
-
-    # rust-analyzer
-    # rustfmt
-
-    # lua
-    # stylua lua-language-server
-    # lua51Packages.lua
-    # llvmPackages.libclang
-    #
-    # nodePackages.bash-language-server
-    #
-    # csharp-ls
   ];
 }

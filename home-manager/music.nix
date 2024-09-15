@@ -1,69 +1,69 @@
-{ config, pkgs, ...}:
+{ config, pkgs, ... }:
 
 {
-	home.packages = with pkgs; [
-		mpc-cli
+  home.packages = with pkgs; [
+    mpc-cli
     ytmdl
-		zscroll
+    zscroll
     playerctl
-		# youtube-music
+    # youtube-music
     monophony
-	];
+  ];
 
   services.playerctld.enable = true;
-	services.mpd-mpris = {
+  services.mpd-mpris = {
     enable = false;
   };
-	services.mpd = {
-		enable = false;
-      extraConfig = ''
-        save_absolute_paths_in_playlists	"yes"
-        metadata_to_use	"artist,album,title,track,name,genre,date,composer,performer,disc"
-        auto_update	"yes"
-        follow_outside_symlinks	"yes"
-        follow_inside_symlinks		"yes"
+  services.mpd = {
+    enable = false;
+    extraConfig = ''
+      save_absolute_paths_in_playlists	"yes"
+      metadata_to_use	"artist,album,title,track,name,genre,date,composer,performer,disc"
+      auto_update	"yes"
+      follow_outside_symlinks	"yes"
+      follow_inside_symlinks		"yes"
 
-        input {
-            plugin "curl"
-        }
+      input {
+          plugin "curl"
+      }
 
-        input {
-            plugin "tidal"
-            enabled "no"
-        }
+      input {
+          plugin "tidal"
+          enabled "no"
+      }
 
-        input {
-            plugin "qobuz"
-            enabled "no"
-        }
+      input {
+          plugin "qobuz"
+          enabled "no"
+      }
 
-        decoder {
-            plugin "wildmidi"
-            enabled "no"
-        }
+      decoder {
+          plugin "wildmidi"
+          enabled "no"
+      }
 
-        decoder {
-            plugin "hybrid_dsd"
-            enabled "no"
-        }
+      decoder {
+          plugin "hybrid_dsd"
+          enabled "no"
+      }
 
-        audio_output {
-            type		"pulse"
-            name		"Pulse Output"
-        }
+      audio_output {
+          type		"pulse"
+          name		"Pulse Output"
+      }
 
-        audio_output {
-            type		"fifo"
-            name		"fifo Visualizer"
-            path		"/tmp/mpd.fifo"
-            format		"44100:16:2"
-        }
+      audio_output {
+          type		"fifo"
+          name		"fifo Visualizer"
+          path		"/tmp/mpd.fifo"
+          format		"44100:16:2"
+      }
     '';
   };
 
-	services.mpd-discord-rpc = {
-		enable = false;
-	};
+  services.mpd-discord-rpc = {
+    enable = false;
+  };
 
   programs.ncmpcpp = {
     enable = true;

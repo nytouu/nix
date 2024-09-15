@@ -1,4 +1,4 @@
-				{ inputs, config, pkgs, ... }: 
+{ inputs, config, pkgs, ... }:
 
 {
   imports = [
@@ -8,25 +8,22 @@
   nixpkgs = {
     overlays = [
       (final: prev: {
-        steam = prev.steam.override ({ extraPkgs ? pkgs': [], ... }: {
+        steam = prev.steam.override ({ extraPkgs ? pkgs': [ ], ... }: {
           extraPkgs = pkgs': (extraPkgs pkgs') ++ (with pkgs'; [
             libgdiplus
           ]);
         });
       })
       (final: prev: {
-        awesome = inputs.nixpkgs-f2k.packages.${pkgs.system}.awesome-git;
-      })
-      (final: prev: {
         sf-mono-liga-bin = prev.stdenvNoCC.mkDerivation rec {
-        pname = "sf-mono-liga-bin";
-        version = "dev";
-        src = inputs.sf-mono-liga-src;
-        dontConfigure = true;
-        installPhase = ''
-          mkdir -p $out/share/fonts/opentype
-          cp -R $src/*.otf $out/share/fonts/opentype/
-         '';
+          pname = "sf-mono-liga-bin";
+          version = "dev";
+          src = inputs.sf-mono-liga-src;
+          dontConfigure = true;
+          installPhase = ''
+            mkdir -p $out/share/fonts/opentype
+            cp -R $src/*.otf $out/share/fonts/opentype/
+          '';
         };
       })
     ];
@@ -39,8 +36,8 @@
     settings = {
       experimental-features = "nix-command flakes";
       auto-optimise-store = true;
-      substituters = ["https://nix-gaming.cachix.org"];
-      trusted-public-keys = ["nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="];
+      substituters = [ "https://nix-gaming.cachix.org" ];
+      trusted-public-keys = [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];
     };
   };
 
@@ -111,10 +108,10 @@
     };
   };
 
- # Setup keyfile
- boot.initrd = {
-   systemd.enable = true;
- };
+  # Setup keyfile
+  boot.initrd = {
+    systemd.enable = true;
+  };
 
   # boot.kernelParams = [ "quiet" ];
   boot.kernelParams = [ "quiet" "splash" "initcall_blacklist=amd_pstate_init" "amd_pstate.enable=0" ];
@@ -126,12 +123,14 @@
 
   fonts = {
     packages = with pkgs; [
-      (nerdfonts.override { fonts = [
-        "JetBrainsMono"
-        "IBMPlexMono"
-        "MartianMono"
-      ]; })
-			sf-mono-liga-bin
+      (nerdfonts.override {
+        fonts = [
+          "JetBrainsMono"
+          "IBMPlexMono"
+          "MartianMono"
+        ];
+      })
+      sf-mono-liga-bin
       ibm-plex
       noto-fonts
       noto-fonts-cjk
@@ -141,9 +140,9 @@
     fontconfig = {
       enable = true;
       defaultFonts = {
-				sansSerif = [ "Torus Pro" ];
-				# monospace = [ "Liga SFMono Nerd Font" ];
-				# sansSerif = [ "SF Pro Display" ];
+        sansSerif = [ "Torus Pro" ];
+        # monospace = [ "Liga SFMono Nerd Font" ];
+        # sansSerif = [ "SF Pro Display" ];
         monospace = [ "MartianMono Nerd Font" ];
         serif = [ "Noto Serif" ];
       };
@@ -167,10 +166,10 @@
     };
   };
 
-	#   programs.hyprland = {
-	#   enable = false;
-	# 	xwayland.enable = true;
-	# };
+  #   programs.hyprland = {
+  #   enable = false;
+  # 	xwayland.enable = true;
+  # };
 
   # Configure X11
   services.xserver = {
@@ -178,19 +177,38 @@
     xkb.layout = "fr";
 
     windowManager.awesome = {
+      package = pkgs.awesome-git;
+      # package = (pkgs.awesome.override { gtk3Support = true; }).overrideAttrs (old: {
+      #   src = pkgs.fetchFromGitHub {
+      #     owner = "awesomewm";
+      #     repo = "awesome";
+      #     rev = "d53eb1be67f594f62fb6134fe40928e8ca17304a";
+      #     sha256 = "17sn960prh4x559mgandqi9r8afiwdj5i5sw6hsc6gycw22fsfqn";
+      #   };
+      #   buildInputs = old.buildInputs;
+      #   patches = [ ];
+      #
+      #   postPatch = ''
+      #       patchShebangs tests/examples/_postprocess.lua
+      #       patchShebangs tests/examples/_postprocess_cleanup.lua
+      #   '';
+      #
+      #   cmakeFlags = old.cmakeFlags ++ [ "-DGENERATE_MANPAGES=OFF" ];
+      # });
       enable = true;
       luaModules = with pkgs.luaPackages; [
         luarocks
         luadbi-mysql
+        lgi
       ];
     };
-		windowManager.dwm = {
-			enable = false;
-			package = pkgs.dwm.overrideAttrs (oldAttrs: {
-				src = ../dwm;
+    windowManager.dwm = {
+      enable = false;
+      package = pkgs.dwm.overrideAttrs (oldAttrs: {
+        src = ../dwm;
         buildInputs = with pkgs; oldAttrs.buildInputs ++ [ imlib2 yajl ];
-			});
-		};
+      });
+    };
 
     desktopManager.xterm.enable = false;
     updateDbusEnvironment = true;
@@ -218,19 +236,19 @@
       git
 
       gtk3
-			adw-gtk3
+      adw-gtk3
       gsettings-desktop-schemas
     ];
 
     variables = rec {
-      GSETTINGS_SCHEMA_DIR="${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}/glib-2.0/schemas";
+      GSETTINGS_SCHEMA_DIR = "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}/glib-2.0/schemas";
     };
 
     sessionVariables = {
       WLR_NO_HARDWARE_CURSORS = "1";
       NIXOS_OZONE_WL = "1";
-			AWESOME_PATH = "${pkgs.awesome}";
-			# ADW_DISABLE_PORTAL = "1";
+      AWESOME_PATH = "${pkgs.awesome}";
+      # ADW_DISABLE_PORTAL = "1";
     };
   };
 
@@ -245,7 +263,7 @@
   services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
-	  open = true;
+    open = true;
     modesetting.enable = true;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
@@ -387,19 +405,19 @@
   security.polkit.enable = true;
 
   systemd = {
-      user.services.polkit-gnome-authentication-agent-1 = {
-          description = "polkit-gnome-authentication-agent-1";
-          wantedBy = [ "graphical-session.target" ];
-          wants = [ "graphical-session.target" ];
-          after = [ "graphical-session.target" ];
-          serviceConfig = {
-              Type = "simple";
-              ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-              Restart = "on-failure";
-              RestartSec = 1;
-              TimeoutStopSec = 10;
-          };
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
       };
+    };
   };
 
   services.pcscd.enable = true;
