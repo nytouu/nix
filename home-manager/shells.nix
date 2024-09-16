@@ -1,11 +1,28 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   programs.zsh = {
     enable = true;
+
     autosuggestion.enable = true;
     enableCompletion = true;
     syntaxHighlighting.enable = true;
+		zsh-abbr = {
+			enable = true;
+			abbreviations = {
+				nv = "nvim";
+				cdnv = "cd $HOME/.config/nvim";
+				cdnix = "cd $HOME/nix";
+				cdaw = "cd $HOME/.config/awesome";
+				lg = "lazygit";
+				mi = "make install";
+				dmi = "doas make install";
+				lst = "eza --tree --icons";
+				lsa = "eza -a --icons";
+				lsh = "eza -l --icons";
+			};
+		};
+
     dotDir = ".config/zsh";
     history.path = "$ZDOTDIR/.zsh_history";
     defaultKeymap = "emacs";
@@ -25,18 +42,8 @@
     ];
 
     shellAliases = {
-      nv = "nvim";
-      cdnv = "cd $HOME/.config/nvim";
       ls = "eza --icons always";
-      lst = "eza --tree --icons";
-      lsa = "eza -a --icons";
-      lsh = "eza -l --icons";
-      lg = "lazygit";
-      mi = "make install";
-      dmi = "doas make install";
       rel = "xrdb merge $HOME/.config/x11/Xresources && kill -USR1 $(pidof st)";
-      cdnix = "cd $HOME/nix";
-      cdaw = "cd $HOME/.config/awesome";
       renix = "cd $HOME/nix && doas nixos-rebuild switch --flake ./#nixos --impure";
       rehome = "cd $HOME/nix && home-manager switch --flake ./#nytou@nixos";
     };

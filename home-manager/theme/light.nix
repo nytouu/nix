@@ -66,12 +66,12 @@ in
     adw-gtk3
     papirus-icon-theme
 
-    (callPackage ../derivations/notwaita-cursor/default.nix { })
+    (callPackage ../../derivations/notwaita-cursor/default.nix { })
   ];
 
   home = {
     pointerCursor = {
-      package = pkgs.callPackage ../derivations/notwaita-cursor/default.nix { };
+      package = pkgs.callPackage ../../derivations/notwaita-cursor/default.nix { };
       name = "Notwaita-Black";
       size = 24;
       gtk.enable = true;
@@ -93,14 +93,14 @@ in
     font.name = "Torus Pro";
     cursorTheme = {
       name = "Notwaita-Black";
-      package = pkgs.callPackage ../derivations/notwaita-cursor/default.nix { };
+      package = pkgs.callPackage ../../derivations/notwaita-cursor/default.nix { };
     };
     theme = {
       name = "adw-gtk3";
       package = pkgs.adw-gtk3;
     };
     iconTheme = {
-      name = "Papirus-Dark";
+      name = "Papirus-Light";
       package = pkgs.papirus-icon-theme;
     };
     gtk2 = {
@@ -126,5 +126,58 @@ in
       };
       extraCss = gtkCssContent;
     };
+  };
+
+  xresources.properties = {
+    "*.font" = "Torus Pro";
+    "Xft.dpi" = 96;
+    "XTerm*renderFont" = true;
+    "XTerm*faceName" = "xft: MartianMono Nerd Font";
+    "XTerm*faceSize" = 13;
+    "Xft.hinting" = true;
+    "Xft.hintstyle" = "hintfull";
+
+    "Xcursor.theme" = "Notwaita-Black";
+    "Xcursor.size" = 24;
+
+    "*background" = "#fcfcfc";
+    "*foreground" = "#3d3846FFFFFF";
+    "*color0" = "#262626";
+    "*color8" = "#393939";
+    "*color1" = "#F66151";
+    "*color9" = "#F66151";
+    "*color2" = "#57E389";
+    "*color10" = "#57E389";
+    "*color3" = "#F9F06B";
+    "*color11" = "#F9F06B";
+    "*color4" = "#62A0EA";
+    "*color12" = "#62A0EA";
+    "*color5" = "#DC8ADD";
+    "*color13" = "#DC8ADD";
+    "*color6" = "#93DDC2";
+    "*color14" = "#93DDC2";
+    "*color7" = "#525252";
+    "*color15" = "#525252";
+
+    "st.font" = "MartianMono Nerd Font:style=Medium:size=10:autohint=true";
+    "st.alpha" = "0.95";
+    "st.background" = "#fcfcfc";
+    "st.foreground" = "#3d3846";
+    "st.color0" = "#262626";
+    "st.color8" = "#393939";
+    "st.color1" = "#F66151";
+    "st.color9" = "#F66151";
+    "st.color2" = "#57E389";
+    "st.color10" = "#57E389";
+    "st.color3" = "#F9F06B";
+    "st.color11" = "#F9F06B";
+    "st.color4" = "#62A0EA";
+    "st.color12" = "#62A0EA";
+    "st.color5" = "#DC8ADD";
+    "st.color13" = "#DC8ADD";
+    "st.color6" = "#93DDC2";
+    "st.color14" = "#93DDC2";
+    "st.color7" = "#525252";
+    "st.color15" = "#525252";
   };
 }

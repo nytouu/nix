@@ -41,7 +41,6 @@ in
     pamixer
     # pulsemixer 
     pavucontrol
-    lazygit
     fastfetch
     maim
     # skippy-xd

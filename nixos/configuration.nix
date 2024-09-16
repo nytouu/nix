@@ -366,7 +366,14 @@
     };
   };
 
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    drivers = with pkgs; [
+      gutenprint
+    ];
+  };
+
+  services.avahi.enable = true;
 
   environment.shells = with pkgs; [ zsh ];
   environment.pathsToLink = [ "/share/zsh" ];
@@ -377,8 +384,10 @@
   programs.dconf.enable = true;
   services.gnome.evolution-data-server.enable = false;
   services.gnome.gnome-online-accounts.enable = false;
-  services.gnome.gnome-keyring.enable = true;
   services.gvfs.enable = true;
+
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.sddm.enableGnomeKeyring = true;
 
   services.upower.enable = false;
 

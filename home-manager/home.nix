@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./zsh.nix
+    ./shells.nix
     ./theme/current.nix
     ./packages.nix
     ./terminal.nix
@@ -12,8 +12,7 @@
     ./music.nix
     ./browser.nix
     ./games.nix
-    # ./hyprland.nix
-    # ./notif.nix
+    ./git.nix
   ];
 
   nixpkgs = {
@@ -35,8 +34,6 @@
     username = "nytou";
     homeDirectory = "/home/nytou";
   };
-
-  # manual.manpages.enable = false;
 
   programs.java.enable = true;
 
@@ -78,32 +75,6 @@
         "inode/directory" = "thunar.desktop";
         "text/plain" = "nvim.desktop";
       };
-    };
-    # desktopEntries = {
-    #   # https://github.com/neovim/neovim/blob/master/runtime/nvim.desktop
-    #   neovim = {
-    #     name = "Neovim";
-    #     genericName = "Neovim";
-    #     exec = "st nvim %F";
-    #     terminal = false;
-    #     categories = [ "Application" ];
-    #     mimeType = [
-    #       "text/english" "text/plain" "text/x-makefile"
-    #       "text/x-c++hdr" "text/x-c++src" "text/x-chdr" "text/x-csrc"
-    #       "text/x-java" "text/x-moc" "text/x-pascal" "text/x-tcl"
-    #       "text/x-tex" "application/x-shellscript" "text/x-c" "text/x-c++"
-    #     ];
-    #   };
-    # };
-  };
-
-  programs.git = {
-    enable = true;
-    userName = "nytouu";
-    userEmail = "capitaine7312@gmail.com";
-    signing = {
-      signByDefault = true;
-      key = "3D59B7C1AAB592E7";
     };
   };
 
