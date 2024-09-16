@@ -230,7 +230,7 @@
       WLR_NO_HARDWARE_CURSORS = "1";
       NIXOS_OZONE_WL = "1";
       AWESOME_PATH = "${pkgs.awesome}";
-      # ADW_DISABLE_PORTAL = "1";
+      ADW_DISABLE_PORTAL = "1";
     };
   };
 
