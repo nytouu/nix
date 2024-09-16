@@ -13,9 +13,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # gaming
+    # Stylix
+    stylix.url = "github:danth/stylix";
+
+    # Gaming
     nix-gaming.url = "github:fufexan/nix-gaming";
 
+    # SF Mono Font
     sf-mono-liga-src = {
       url = "github:shaunsingh/SFMono-Nerd-Font-Ligaturized";
       flake = false;
@@ -42,7 +46,8 @@
                 nixpkgs-f2k.overlays.window-managers
               ];
             }
-            ./nixos/configuration.nix 
+            ./nixos/configuration.nix
+            inputs.stylix.nixosModules.stylix
           ];
         };
       };

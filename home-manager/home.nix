@@ -3,7 +3,7 @@
 {
   imports = [
     ./shells.nix
-    ./theme/current.nix
+    # ./theme/current.nix
     ./packages.nix
     ./terminal.nix
     ./x.nix
