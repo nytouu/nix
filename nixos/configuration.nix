@@ -3,7 +3,6 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./stylix.nix
   ];
 
   nixpkgs = {
@@ -43,7 +42,6 @@
   };
 
   networking.hostName = "nixos";
-  # networking.networkmanager.enable = false;
 
   services.connman = {
     enable = true;
@@ -167,7 +165,7 @@
     };
   };
 
-  #   programs.hyprland = {
+  # programs.hyprland = {
   #   enable = false;
   # 	xwayland.enable = true;
   # };
@@ -179,23 +177,6 @@
 
     windowManager.awesome = {
       package = pkgs.awesome-git;
-      # package = (pkgs.awesome.override { gtk3Support = true; }).overrideAttrs (old: {
-      #   src = pkgs.fetchFromGitHub {
-      #     owner = "awesomewm";
-      #     repo = "awesome";
-      #     rev = "d53eb1be67f594f62fb6134fe40928e8ca17304a";
-      #     sha256 = "17sn960prh4x559mgandqi9r8afiwdj5i5sw6hsc6gycw22fsfqn";
-      #   };
-      #   buildInputs = old.buildInputs;
-      #   patches = [ ];
-      #
-      #   postPatch = ''
-      #       patchShebangs tests/examples/_postprocess.lua
-      #       patchShebangs tests/examples/_postprocess_cleanup.lua
-      #   '';
-      #
-      #   cmakeFlags = old.cmakeFlags ++ [ "-DGENERATE_MANPAGES=OFF" ];
-      # });
       enable = true;
       luaModules = with pkgs.luaPackages; [
         luarocks
@@ -249,7 +230,7 @@
       WLR_NO_HARDWARE_CURSORS = "1";
       NIXOS_OZONE_WL = "1";
       AWESOME_PATH = "${pkgs.awesome}";
-      # ADW_DISABLE_PORTAL = "1";
+      ADW_DISABLE_PORTAL = "1";
     };
   };
 
@@ -373,8 +354,7 @@
       gutenprint
     ];
   };
-
-  services.avahi.enable = true;
+	services.avahi.enable = true;
 
   environment.shells = with pkgs; [ zsh ];
   environment.pathsToLink = [ "/share/zsh" ];

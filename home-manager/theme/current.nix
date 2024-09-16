@@ -1,66 +1,4 @@
 { pkgs, ... }:
-let
-  gtkCssContent = ''
-    menu,
-    .menu,
-    .context-menu {
-      margin: 4px;
-      padding: 4px 4px;
-      background-clip: border-box;
-      border-radius: 0px;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-    }
-
-    .csd menu,
-    .csd .menu,
-    .csd .context-menu {
-      border: none;
-      border-radius: 12px;
-    }
-
-    menu menuitem,
-    .menu menuitem,
-    .context-menu
-    menuitem {
-      margin: 0;
-      border-radius: 6px;
-      padding: 5px 5px;
-    }
-
-    window {
-        border: none;
-        border-radius: 0px;
-    }
-
-    decoration {
-        border: none;
-        border-radius: 0px;
-    }
-
-    .titlebar {
-        border: none;
-        border-radius: 0;
-    }
-
-    .header-bar {
-        background-image: none;
-        box-shadow: none;
-        border: none;
-        border-radius: 0;
-    }
-
-    GtkLabel.title {
-        opacity: 0;
-    }
-
-    menu separator { margin: 4px; }
-
-    .csd.popup decoration {
-      border-radius: 12px;
-      box-shadow: 0 2px 2.4px -1px rgba(0, 0, 0, 0.2), 0 4px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
-    }
-    	'';
-in
 {
   home.packages = with pkgs; [
     adw-gtk3
@@ -116,7 +54,7 @@ in
         gtk-enable-event-sounds = 0;
         gtk-enable-input-feedback-sounds = 0;
       };
-      extraCss = gtkCssContent;
+      extraCss = builtins.readFile ../config/gtk.css;
     };
     gtk4 = {
       extraConfig = {
@@ -124,7 +62,7 @@ in
         gtk-enable-event-sounds = 0;
         gtk-enable-input-feedback-sounds = 0;
       };
-      extraCss = gtkCssContent;
+      extraCss = builtins.readFile ../config/gtk.css;
     };
   };
 
@@ -161,23 +99,5 @@ in
 
     "st.font" = "MartianMono Nerd Font:style=Medium:size=10:autohint=true";
     "st.alpha" = "0.95";
-    "st.background" = "#1D1D1D";
-    "st.foreground" = "#FFFFFF";
-    "st.color0" = "#262626";
-    "st.color8" = "#393939";
-    "st.color1" = "#F66151";
-    "st.color9" = "#F66151";
-    "st.color2" = "#57E389";
-    "st.color10" = "#57E389";
-    "st.color3" = "#F9F06B";
-    "st.color11" = "#F9F06B";
-    "st.color4" = "#62A0EA";
-    "st.color12" = "#62A0EA";
-    "st.color5" = "#DC8ADD";
-    "st.color13" = "#DC8ADD";
-    "st.color6" = "#93DDC2";
-    "st.color14" = "#93DDC2";
-    "st.color7" = "#525252";
-    "st.color15" = "#525252";
   };
 }

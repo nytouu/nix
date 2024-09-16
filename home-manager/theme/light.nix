@@ -141,7 +141,7 @@ in
     "Xcursor.size" = 24;
 
     "*background" = "#fcfcfc";
-    "*foreground" = "#3d3846FFFFFF";
+    "*foreground" = "#3d3846";
     "*color0" = "#262626";
     "*color8" = "#393939";
     "*color1" = "#F66151";

@@ -13,9 +13,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Stylix
-    stylix.url = "github:danth/stylix";
-
     # Gaming
     nix-gaming.url = "github:fufexan/nix-gaming";
 
@@ -47,7 +44,6 @@
               ];
             }
             ./nixos/configuration.nix
-            inputs.stylix.nixosModules.stylix
           ];
         };
       };

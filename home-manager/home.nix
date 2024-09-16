@@ -1,9 +1,10 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   imports = [
     ./shells.nix
     # ./theme/current.nix
+		./theme.nix
     ./packages.nix
     ./terminal.nix
     ./x.nix

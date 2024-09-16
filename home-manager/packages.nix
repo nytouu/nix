@@ -3,11 +3,29 @@ let
   pkgs-unstable = import inputs.unstable { system = "x86_64-linux"; config.allowUnfree = true; };
 in
 {
+  programs = with pkgs; {
+    bat.enable = true;
+    eza.enable = true;
+    htop = {
+      enable = true;
+      package = htop-vim;
+    };
+    fastfetch.enable = true;
+    fd.enable = true;
+    ripgrep.enable = true;
+
+    zathura.enable = true;
+    mpv = {
+      enable = true;
+      bindings = {
+        WHEEL_UP = "volume 5";
+        WHEEL_DOWN = "volume -5";
+      };
+    };
+  };
+
   home.packages = with pkgs; [
     # system
-    htop-vim
-    bat
-    eza
     slop
     firejail
     unzip
@@ -41,7 +59,6 @@ in
     pamixer
     # pulsemixer 
     pavucontrol
-    fastfetch
     maim
     # skippy-xd
     xfce.thunar
@@ -62,7 +79,7 @@ in
     xorg.xwininfo
     xorg.xdpyinfo
     xorg.xset
-    xwinwrap
+    # xwinwrap
     xdotool
     arandr
     xclip
@@ -94,13 +111,11 @@ in
 
     # neovim
     # neovim-remote
-    ripgrep
-    fd
     # neovide
 
     # apps
     # audacity
-    # teams-for-linux
+    teams-for-linux
     gnome.gnome-calendar
     gnome-secrets
     gnome.gnome-system-monitor
@@ -109,8 +124,6 @@ in
     pkgs-unstable.obs-studio
     # pkgs-unstable.planify
     # vscode
-    zathura
-    mpv
     # vlc
     # pkgs-unstable.aseprite
     # pkgs-unstable.blender
