@@ -8,15 +8,22 @@
     darkmode = true;
 
     home.packages = with pkgs; [
-      adw-gtk3
-      papirus-icon-theme
-
-      (callPackage ../../derivations/notwaita-cursor/default.nix { })
+      glib
+      gsettings-desktop-schemas
     ];
+
+    dconf = {
+      enable = true;
+      settings = {
+        "org/gnome/desktop/interface" = {
+          color-scheme = if config.darkmode then "prefer-dark" else "prefer-light";
+        };
+      };
+    };
 
     home = {
       pointerCursor = {
-        package = pkgs.callPackage ../../derivations/notwaita-cursor/default.nix { };
+        package = pkgs.callPackage ../derivations/notwaita-cursor/default.nix { };
         name = "Notwaita-Black";
         size = 24;
         gtk.enable = true;
@@ -38,7 +45,7 @@
       font.name = "Torus Pro";
       cursorTheme = {
         name = "Notwaita-Black";
-        package = pkgs.callPackage ../../derivations/notwaita-cursor/default.nix { };
+        package = pkgs.callPackage ../derivations/notwaita-cursor/default.nix { };
       };
       theme = {
         name = if config.darkmode then "adw-gtk3-dark" else "adw-gtk3";
@@ -61,7 +68,7 @@
           gtk-enable-event-sounds = 0;
           gtk-enable-input-feedback-sounds = 0;
         };
-        extraCss = builtins.readFile ../config/gtk.css;
+        extraCss = builtins.readFile ./config/gtk.css;
       };
       gtk4 = {
         extraConfig = {
@@ -69,7 +76,7 @@
           gtk-enable-event-sounds = 0;
           gtk-enable-input-feedback-sounds = 0;
         };
-        extraCss = builtins.readFile ../config/gtk.css;
+        extraCss = builtins.readFile ./config/gtk.css;
       };
     };
 
@@ -103,6 +110,25 @@
       "*color14" = "#93DDC2";
       "*color7" = "#525252";
       "*color15" = "#525252";
+
+      "st.background" = if config.darkmode then "#1D1D1D" else "#FCFCFC";
+      "st.foreground" = if config.darkmode then "#FFFFFF" else "#3d3846";
+      "st.color0" = if config.darkmode then "#262626" else "#ECEFF1";
+      "st.color8" = "#393939";
+      "st.color1" = "#F66151";
+      "st.color9" = "#F66151";
+      "st.color2" = "#57E389";
+      "st.color10" = "#57E389";
+      "st.color3" = "#F9F06B";
+      "st.color11" = "#F9F06B";
+      "st.color4" = "#62A0EA";
+      "st.color12" = "#62A0EA";
+      "st.color5" = "#DC8ADD";
+      "st.color13" = "#DC8ADD";
+      "st.color6" = "#93DDC2";
+      "st.color14" = "#93DDC2";
+      "st.color7" = "#525252";
+      "st.color15" = "#525252";
 
       "st.font" = "MartianMono Nerd Font:style=Medium:size=10:autohint=true";
       "st.alpha" = "0.95";
