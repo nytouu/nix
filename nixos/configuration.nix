@@ -354,7 +354,7 @@
       gutenprint
     ];
   };
-	services.avahi.enable = true;
+  services.avahi.enable = true;
 
   environment.shells = with pkgs; [ zsh ];
   environment.pathsToLink = [ "/share/zsh" ];
