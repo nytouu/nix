@@ -84,8 +84,6 @@
     BROWSER = "zen";
     FILEBROWSER = "thunar";
     XCURSOR_THEME = "Notwaita-Black";
-    # QT_QPA_PLATFORMTHEME = "qt5ct";
-    # QT_STYLE_OVERRIDE = "kvantum";
     JAVA_AWT_WM_NONPARENTING = "1";
     WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = "1";

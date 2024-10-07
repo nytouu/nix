@@ -10,6 +10,8 @@
     home.packages = with pkgs; [
       glib
       gsettings-desktop-schemas
+			graphite-kde-theme
+			adwsteamgtk
     ];
 
     dconf = {
@@ -33,11 +35,8 @@
 
     qt = {
       enable = true;
-      platformTheme.name = "gtk3";
-      style = {
-        name = if config.darkmode then "adwaita-dark" else "adwaita";
-        package = pkgs.adwaita-qt;
-      };
+      platformTheme.name = "qt5ct";
+      style.name = "kvantum";
     };
 
     gtk = {
@@ -53,7 +52,9 @@
       };
       iconTheme = {
         name = if config.darkmode then "Papirus-Dark" else "Papirus-Light";
-        package = pkgs.papirus-icon-theme;
+        package = pkgs.papirus-icon-theme.override {
+					color = "adwaita";
+				};
       };
       gtk2 = {
         extraConfig = ''
@@ -67,6 +68,12 @@
           gtk-decoration-layout = "appmenu:,menu:";
           gtk-enable-event-sounds = 0;
           gtk-enable-input-feedback-sounds = 0;
+          gtk-button-images = 1;
+          gtk-menu-images = 1;
+          gtk-xft-antialias = 1;
+          gtk-xft-hinting = 1;
+          gtk-xft-hintstyle = "hintfull";
+          gtk-xft-rgba = "rgb";
         };
         extraCss = builtins.readFile ./config/gtk.css;
       };
@@ -75,6 +82,12 @@
           gtk-decoration-layout = "appmenu:,menu:";
           gtk-enable-event-sounds = 0;
           gtk-enable-input-feedback-sounds = 0;
+          gtk-button-images = 1;
+          gtk-menu-images = 1;
+          gtk-xft-antialias = 1;
+          gtk-xft-hinting = 1;
+          gtk-xft-hintstyle = "hintfull";
+          gtk-xft-rgba = "rgb";
         };
         extraCss = builtins.readFile ./config/gtk.css;
       };
@@ -131,7 +144,24 @@
       "st.color15" = "#525252";
 
       "st.font" = "MartianMono Nerd Font:style=Medium:size=10:autohint=true";
-      "st.alpha" = "0.95";
+      "st.alpha" = "0.90";
+    };
+
+    xdg.configFile = {
+      "Kvantum/kvantum.kvconfig".text =
+        if config.darkmode then
+          ''
+          [General]
+          theme=GraphiteDark
+          ''
+        else
+          ''
+          [General]
+          theme=Graphite
+          '';
+
+      "Kvantum/Graphite".source = "${pkgs.graphite-kde-theme}/share/Kvantum/Graphite";
     };
   };
+
 }
