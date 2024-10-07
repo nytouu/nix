@@ -5,8 +5,8 @@
       src = fetchFromGitHub {
         owner = "nytouu";
         repo = "st";
-        rev = "c3f09a428e67cc353ea12fddeebec21a7bda8fb2";
-        sha256 = "1r09fca8yqgq1v5sp8ahmrr9sc9gjwa97i4vi75wi9k6y36bwi6x";
+        rev = "494daa1428a0d7f073df7a3653348ed087f751db";
+        sha256 = "1dvffr8jr953nwin3mx9l3rwq4ambrjjhbkss2xdpjp29x3zhhdz";
       };
       buildInputs = oldAttrs.buildInputs ++ [ xorg.libXinerama xorg.libXcursor harfbuzz gd ];
     }))
