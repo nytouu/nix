@@ -368,6 +368,13 @@
 
   security.polkit.enable = true;
 
+	security.pam.loginLimits = [{
+		domain = "*";
+		type = "soft";
+		item = "nofile";
+		value = "4096";
+	}];
+
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {
       description = "polkit-gnome-authentication-agent-1";
