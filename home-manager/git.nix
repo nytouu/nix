@@ -13,7 +13,22 @@
       signByDefault = true;
       key = "3D59B7C1AAB592E7";
     };
+		extraConfig = {
+			merge = {
+				tool = "nvimdiff3";
+			};
+		};
   };
 
-  programs.lazygit.enable = true;
+  programs.lazygit = {
+		enable = true;
+		settings = {
+			core = {
+				editor = "nvim";
+			};
+			os = {
+				editPreset = "nvim";
+			};
+		};
+	};
 }
