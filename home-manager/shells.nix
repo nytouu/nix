@@ -1,27 +1,32 @@
 { pkgs, ... }:
 
 {
+  programs.autojump = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   programs.zsh = {
     enable = true;
 
     autosuggestion.enable = true;
     enableCompletion = true;
     syntaxHighlighting.enable = true;
-		zsh-abbr = {
-			enable = true;
-			abbreviations = {
-				nv = "nvim";
-				cdnv = "cd $HOME/.config/nvim";
-				cdnix = "cd $HOME/nix";
-				cdaw = "cd $HOME/.config/awesome";
-				lg = "lazygit";
-				mi = "make install";
-				dmi = "doas make install";
-				lst = "eza --tree --icons";
-				lsa = "eza -a --icons";
-				lsh = "eza -l --icons";
-			};
-		};
+    zsh-abbr = {
+      enable = true;
+      abbreviations = {
+        nv = "nvim";
+        cdnv = "cd $HOME/.config/nvim";
+        cdnix = "cd $HOME/nix";
+        cdaw = "cd $HOME/.config/awesome";
+        lg = "lazygit";
+        mi = "make install";
+        dmi = "doas make install";
+        lst = "eza --tree --icons";
+        lsa = "eza -a --icons";
+        lsh = "eza -l --icons";
+      };
+    };
 
     dotDir = ".config/zsh";
     history.path = "$ZDOTDIR/.zsh_history";
