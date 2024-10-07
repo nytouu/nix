@@ -6,18 +6,19 @@
     ytmdl
     zscroll
     playerctl
-    # youtube-music
+		amberol
+    youtube-music
     # monophony
   ];
 
   services.playerctld.enable = true;
 
-  services.mpd.enable = true;
-  services.mpdris2.enable = true;
-  services.mpd-discord-rpc.enable = true;
+  services.mpd.enable = false;
+  services.mpdris2.enable = false;
+  services.mpd-discord-rpc.enable = false;
 
   programs.ncmpcpp = {
-    enable = true;
+    enable = false;
     bindings = [
       { key = "j"; command = "scroll_down"; }
       { key = "k"; command = "scroll_up"; }
