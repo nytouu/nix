@@ -21,6 +21,9 @@
       url = "github:shaunsingh/SFMono-Nerd-Font-Ligaturized";
       flake = false;
     };
+
+    # zen browser
+    zen-browser.url = "github:MarceColl/zen-browser-flake";
   };
 
   outputs =

@@ -81,7 +81,7 @@
     TERMINFO_DIRS = "${pkgs.st.terminfo.outPath}/share/terminfo";
     TERMINAL = "st";
     EDITOR = "nvim";
-    BROWSER = "firefox";
+    BROWSER = "zen";
     FILEBROWSER = "thunar";
     XCURSOR_THEME = "Notwaita-Black";
     # QT_QPA_PLATFORMTHEME = "qt5ct";
