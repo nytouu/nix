@@ -344,6 +344,12 @@
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.sddm.enableGnomeKeyring = true;
 
+  programs.xfconf.enable = true;
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman tumbler ];
+  };
+
   services.upower.enable = false;
 
   hardware.opentabletdriver.enable = true;
