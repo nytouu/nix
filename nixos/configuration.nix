@@ -198,8 +198,16 @@
     };
   };
 
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+  };
+	hardware.nvidia-container-toolkit.enable = true;
+
   environment = {
     systemPackages = with pkgs; [
+      distrobox
+
       pulseaudio
       libsForQt5.qt5.qtquickcontrols2
       libsForQt5.qt5.qtgraphicaleffects
