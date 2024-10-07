@@ -217,6 +217,24 @@
       gtk3
       adw-gtk3
       gsettings-desktop-schemas
+
+			(unityhub.override {
+				extraPkgs = fhsPkgs: [
+					fhsPkgs.harfbuzz
+					fhsPkgs.libogg
+
+    			fhsPkgs.vulkan-tools
+    			fhsPkgs.vulkan-loader
+    			fhsPkgs.vulkan-helper
+    			fhsPkgs.vulkan-headers
+    			fhsPkgs.vulkan-extension-layer
+    			fhsPkgs.vulkan-validation-layers
+    			fhsPkgs.vulkan-utility-libraries
+    			fhsPkgs.mono
+    			fhsPkgs.mesa
+    			fhsPkgs.glibc
+				];
+			})
     ];
 
     variables = rec {
