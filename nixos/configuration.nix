@@ -323,12 +323,12 @@
   };
 
   services.printing = {
-    enable = true;
+    enable = false;
     drivers = with pkgs; [
       gutenprint
     ];
   };
-  services.avahi.enable = true;
+  services.avahi.enable = false;
 
   environment.shells = with pkgs; [ zsh ];
   environment.pathsToLink = [ "/share/zsh" ];
