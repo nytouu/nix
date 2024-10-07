@@ -3,6 +3,10 @@ let
   pkgs-unstable = import inputs.unstable { system = "x86_64-linux"; config.allowUnfree = true; };
 in
 {
+	home.packages = with pkgs; [
+		neovide
+	];
+
   programs.neovim = {
     enable = true;
     package = pkgs-unstable.neovim-unwrapped;
@@ -18,7 +22,7 @@ in
       python3
       gcc
       go
-      dotnetCorePackages.sdk_9_0
+      dotnetCorePackages.sdk_8_0
       tree-sitter
 
       nixfmt-classic
