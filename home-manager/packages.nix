@@ -43,35 +43,24 @@ in
     python311Packages.psutil
     python311Packages.types-psutil
     ffmpegthumbnailer
+    ffmpeg-full
 
     # nix
     nix-prefetch-git
 
     # tools
     imagemagick
-    # tesseract
     wmctrl
     connman-gtk
     blueman
-    # pass
     # screenkey
-    # feh
     pamixer
-    # pulsemixer 
     pavucontrol
     maim
     # skippy-xd
-    xfce.thunar
-    xfce.thunar-archive-plugin
-    xfce.thunar-volman
-    xfce.xfconf
-    xfce.tumbler
     inotify-tools
     # qmk
-    # (callPackage ../derivations/hydrablocks/default.nix { })
     nsxiv
-    # betterlockscreen
-    # eww
 
     # xorg
     xorg.xkill
@@ -83,7 +72,6 @@ in
     xdotool
     arandr
     xclip
-    # pkgs-unstable.picom-pijulius
     (picom.overrideAttrs (oldAttrs: {
       src = fetchFromGitHub {
         owner = "yshui";
@@ -93,9 +81,6 @@ in
       };
       buildInputs = oldAttrs.buildInputs ++ [ asciidoctor ];
     }))
-    # (dwmblocks.overrideAttrs (oldAttrs: {
-    # 	src = ../dwmblocks;
-    # }))
 
     xcolor
 
@@ -118,15 +103,15 @@ in
     teams-for-linux
     gnome.gnome-calendar
     gnome-secrets
-    gnome.gnome-system-monitor
+    resources
+		jetbrains-toolbox
+    vscode
+		pkgs-unstable.boxbuddy
     # gnome.gnome-control-center
     pkgs-unstable.vesktop
     pkgs-unstable.obs-studio
-    # pkgs-unstable.planify
-    # vscode
-    # vlc
     # pkgs-unstable.aseprite
-    # pkgs-unstable.blender
+    pkgs-unstable.blender
     pkgs-unstable.lutris
     pkgs-unstable.gimp
     libreoffice-fresh
@@ -134,14 +119,7 @@ in
     libsForQt5.qt5ct
     ytmdl
     mate.engrampa
-    # godot_4
+    pkgs-unstable.godot_4
     # (callPackage ../derivations/godot4-mono/default.nix { })
-    (unityhub.override {
-      extraLibs = pkgs: with pkgs; [
-        openssl_1_1
-        gradle
-        # glibc
-      ];
-    })
   ];
 }
