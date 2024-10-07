@@ -53,16 +53,6 @@
     powerOnBoot = false;
   };
 
-  # networking.firewall = {
-  #   enable = true;
-  #   allowedTCPPortRanges = [
-  #     { from = 1714; to = 1764; } # KDE Connect
-  #   ];
-  #   allowedUDPPortRanges = [
-  #     { from = 1714; to = 1764; } # KDE Connect
-  #   ];
-  # };
-
   time.timeZone = "Europe/Paris";
   time.hardwareClockInLocalTime = true;
 
@@ -148,7 +138,6 @@
     };
   };
 
-
   services.libinput = {
     enable = true;
     touchpad = {
@@ -194,8 +183,8 @@
 
     desktopManager.xterm.enable = false;
     updateDbusEnvironment = true;
-
   };
+
   services.displayManager = {
     defaultSession = "none+awesome";
     autoLogin = {
@@ -288,21 +277,6 @@
             args = { };
           }
         ];
-        # "pulse.rules" = [
-        #   {
-        #     "matches" = [
-        #       {
-        #         "application.name" = "osu!";
-        #       }
-        #     ];
-        #     "actions" = {
-        #       "update-props" = {
-        #           "pulse.min.req"          = "32/48000";
-        #           "pulse.min.quantum"      = "32/48000";
-        #       };
-        #     };
-        #   }
-        # ];
         "pulse.properties" = {
           "pulse.min.req" = "32/48000";
           "pulse.min.quantum" = "32/48000";
