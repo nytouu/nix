@@ -1,5 +1,8 @@
 { inputs, config, pkgs, ... }:
 
+let
+  pkgs-unstable = import inputs.unstable { system = "x86_64-linux"; config.allowUnfree = true; };
+in
 {
   imports = [
     ./hardware-configuration.nix
@@ -36,8 +39,12 @@
     settings = {
       experimental-features = "nix-command flakes";
       auto-optimise-store = true;
-      substituters = [ "https://nix-gaming.cachix.org" ];
-      trusted-public-keys = [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];
+      substituters = [
+        "https://nix-gaming.cachix.org"
+      ];
+      trusted-public-keys = [
+        "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+      ];
     };
   };
 
@@ -102,8 +109,7 @@
     systemd.enable = true;
   };
 
-  # boot.kernelParams = [ "quiet" ];
-  boot.kernelParams = [ "quiet" "splash" "initcall_blacklist=amd_pstate_init" "amd_pstate.enable=0" ];
+  boot.kernelParams = [ "quiet" "splash" "initcall_blacklist=amd_pstate_init" "amd_pstate.enable=0" "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
   boot.consoleLogLevel = 0;
 
   boot.plymouth = {
@@ -154,10 +160,11 @@
     };
   };
 
-  # programs.hyprland = {
-  #   enable = false;
-  # 	xwayland.enable = true;
-  # };
+  programs.hyprland = {
+    enable = true;
+		xwayland.enable = true;
+		# package = pkgs-unstable.hyprland;
+  };
 
   # Configure X11
   services.xserver = {
@@ -202,7 +209,7 @@
     enable = true;
     dockerCompat = true;
   };
-	hardware.nvidia-container-toolkit.enable = true;
+  hardware.nvidia-container-toolkit.enable = true;
 
   environment = {
     systemPackages = with pkgs; [
@@ -214,27 +221,30 @@
       libsForQt5.qt5.qtsvg
       git
 
+			hyprlandPlugins.borders-plus-plus
+			hyprlandPlugins.csgo-vulkan-fix
+
       gtk3
       adw-gtk3
       gsettings-desktop-schemas
 
-			(unityhub.override {
-				extraPkgs = fhsPkgs: [
-					fhsPkgs.harfbuzz
-					fhsPkgs.libogg
+      (unityhub.override {
+        extraPkgs = fhsPkgs: [
+          fhsPkgs.harfbuzz
+          fhsPkgs.libogg
 
-    			fhsPkgs.vulkan-tools
-    			fhsPkgs.vulkan-loader
-    			fhsPkgs.vulkan-helper
-    			fhsPkgs.vulkan-headers
-    			fhsPkgs.vulkan-extension-layer
-    			fhsPkgs.vulkan-validation-layers
-    			fhsPkgs.vulkan-utility-libraries
-    			fhsPkgs.mono
-    			fhsPkgs.mesa
-    			fhsPkgs.glibc
-				];
-			})
+          fhsPkgs.vulkan-tools
+          fhsPkgs.vulkan-loader
+          fhsPkgs.vulkan-helper
+          fhsPkgs.vulkan-headers
+          fhsPkgs.vulkan-extension-layer
+          fhsPkgs.vulkan-validation-layers
+          fhsPkgs.vulkan-utility-libraries
+          fhsPkgs.mono
+          fhsPkgs.mesa
+          fhsPkgs.glibc
+        ];
+      })
     ];
 
     variables = rec {
@@ -260,11 +270,11 @@
   services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
-    open = true;
+    open = false;
     modesetting.enable = true;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
-    powerManagement.enable = false;
+    powerManagement.enable = true;
     powerManagement.finegrained = false;
 
     prime = {
@@ -401,12 +411,12 @@
 
   security.polkit.enable = true;
 
-	security.pam.loginLimits = [{
-		domain = "*";
-		type = "soft";
-		item = "nofile";
-		value = "4096";
-	}];
+  security.pam.loginLimits = [{
+    domain = "*";
+    type = "soft";
+    item = "nofile";
+    value = "4096";
+  }];
 
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {

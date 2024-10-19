@@ -23,13 +23,18 @@
     };
 
     # zen browser
-    zen-browser.url = "github:MarceColl/zen-browser-flake";
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+
+		# hypr
+		hyprland.url = "github:hyprwm/Hyprland";
+		ags.url = "github:Aylur/ags";
   };
 
   outputs =
     { nixpkgs
     , unstable
     , home-manager
+		, hyprland
     , nixpkgs-f2k
     , ...
     } @inputs:

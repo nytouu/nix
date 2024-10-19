@@ -1,11 +1,12 @@
 { pkgs, inputs, ... }:
 let
   pkgs-unstable = import inputs.unstable { system = "x86_64-linux"; config.allowUnfree = true; };
+
 in
 {
-	home.packages = with pkgs; [
-		neovide
-	];
+  home.packages = with pkgs-unstable; [
+    neovide
+  ];
 
   programs.neovim = {
     enable = true;
@@ -13,6 +14,9 @@ in
     extraPackages = with pkgs-unstable; [
       rustc
       cargo
+			rust-analyzer
+			rustfmt
+
       meson
       ninja
       nodejs
@@ -28,8 +32,6 @@ in
       nixfmt-classic
       nil
 
-      rust-analyzer
-      rustfmt
       stylua
       lua-language-server
       lua51Packages.lua

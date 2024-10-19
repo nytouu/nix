@@ -7,10 +7,13 @@ in
     # protonup-qt
     prismlauncher
 
-    pkgs-unstable.osu-lazer-bin
+    # pkgs-unstable.osu-lazer-bin
 
     winetricks
     protontricks
+
+    inputs.nix-gaming.packages.${pkgs.system}.osu-lazer-bin
+
     inputs.nix-gaming.packages.${pkgs.system}.wine-osu
     inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
   ];

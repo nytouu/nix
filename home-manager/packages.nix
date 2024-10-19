@@ -76,15 +76,15 @@ in
       src = fetchFromGitHub {
         owner = "yshui";
         repo = "picom";
-        rev = "3899d2c4cdd902623592aab7839c8da91fbce86c";
-        sha256 = "14wwi74m5k4fqa5c7cvn3adbakbc1v59f46vjgkk5qzqr6pma7yc";
+        rev = "6caa76a281e906784deb05038e38919e878be6e0";
+        sha256 = "09d8r8b3fdm29hh9ypys9zhq3aw33awlvgxw1py0nv3fachy566k";
       };
       buildInputs = oldAttrs.buildInputs ++ [ asciidoctor ];
     }))
 
     xcolor
 
-    rofi
+    rofi-wayland
     # rofi-power-menu
 
     # fonts
@@ -111,7 +111,6 @@ in
     pkgs-unstable.vesktop
     pkgs-unstable.obs-studio
     # pkgs-unstable.aseprite
-    pkgs-unstable.blender
     pkgs-unstable.lutris
     pkgs-unstable.gimp
     libreoffice-fresh
