@@ -1,34 +1,7 @@
-{ inputs, config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  imports = [ inputs.ags.homeManagerModules.default ];
-
-  programs.foot = {
-    enable = true;
-    settings = {
-      main = {
-        term = "xterm-256color";
-        font = "MartianMono Nerd Font:size=11";
-				line-height = 17;
-      };
-
-      mouse = {
-        hide-when-typing = "yes";
-      };
-
-			colors = {
-				alpha = 0.9;
-			};
-    };
-  };
-
   home.packages = with pkgs; [
-    hyprpaper
-    wl-clipboard
-    wf-recorder
-    rofi-wayland
-    wayshot
-    swappy
     hypridle
     hyprlock
   ];
@@ -47,17 +20,6 @@
       ];
     };
   };
-
-  programs.ags = {
-    enable = true;
-
-    extraPackages = with pkgs; [
-      gtksourceview
-      webkitgtk
-      accountsservice
-    ];
-  };
-
   wayland.windowManager.hyprland = {
     enable = true;
     plugins = with pkgs.hyprlandPlugins; [
@@ -66,6 +28,8 @@
     ];
 
     settings = {
+			"debug:disable_logs" = false;
+
       monitor = ",preferred,auto,1";
       input = {
         kb_layout = "fr";
@@ -89,8 +53,8 @@
         gaps_in = 12;
         gaps_out = 24;
         border_size = 1;
-        "col.active_border" = "rgba(777777ee) rgba(444444ee) 90deg";
-        "col.inactive_border" = "rgba(333333ee)";
+        "col.active_border" = "rgba(4a4a4aee) rgba(444444ee) 90deg";
+        "col.inactive_border" = "rgba(303030ee)";
 
         layout = "master";
         allow_tearing = true;
@@ -299,7 +263,7 @@
 
         border_size_1 = 1;
 
-        natural_rounding = true;
+        natural_rounding = false;
       };
 
       exec-once = [

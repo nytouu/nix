@@ -12,7 +12,7 @@
     ./browser.nix
     ./games.nix
     ./git.nix
-		./hyprland.nix
+		./wayland/default.nix
   ];
 
   nixpkgs = {
