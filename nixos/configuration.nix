@@ -1,7 +1,14 @@
-{ inputs, config, pkgs, ... }:
-
+{
+  inputs,
+  config,
+  pkgs,
+  ...
+}:
 let
-  pkgs-unstable = import inputs.unstable { system = "x86_64-linux"; config.allowUnfree = true; };
+  pkgs-unstable = import inputs.unstable {
+    system = "x86_64-linux";
+    config.allowUnfree = true;
+  };
 in
 {
   imports = [
@@ -11,11 +18,20 @@ in
   nixpkgs = {
     overlays = [
       (final: prev: {
-        steam = prev.steam.override ({ extraPkgs ? pkgs': [ ], ... }: {
-          extraPkgs = pkgs': (extraPkgs pkgs') ++ (with pkgs'; [
-            libgdiplus
-          ]);
-        });
+        steam = prev.steam.override (
+          {
+            extraPkgs ? pkgs': [ ],
+            ...
+          }:
+          {
+            extraPkgs =
+              pkgs':
+              (extraPkgs pkgs')
+              ++ (with pkgs'; [
+                libgdiplus
+              ]);
+          }
+        );
       })
       (final: prev: {
         sf-mono-liga-bin = prev.stdenvNoCC.mkDerivation rec {
@@ -109,7 +125,13 @@ in
     systemd.enable = true;
   };
 
-  boot.kernelParams = [ "quiet" "splash" "initcall_blacklist=amd_pstate_init" "amd_pstate.enable=0" "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
+  boot.kernelParams = [
+    "quiet"
+    "splash"
+    "initcall_blacklist=amd_pstate_init"
+    "amd_pstate.enable=0"
+    "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+  ];
   boot.consoleLogLevel = 0;
 
   boot.plymouth = {
@@ -162,8 +184,8 @@ in
 
   programs.hyprland = {
     enable = true;
-		xwayland.enable = true;
-		# package = pkgs-unstable.hyprland;
+    xwayland.enable = true;
+    # package = pkgs-unstable.hyprland;
   };
 
   # Configure X11
@@ -184,7 +206,13 @@ in
       enable = false;
       package = pkgs.dwm.overrideAttrs (oldAttrs: {
         src = ../dwm;
-        buildInputs = with pkgs; oldAttrs.buildInputs ++ [ imlib2 yajl ];
+        buildInputs =
+          with pkgs;
+          oldAttrs.buildInputs
+          ++ [
+            imlib2
+            yajl
+          ];
       });
     };
 
@@ -221,12 +249,15 @@ in
       libsForQt5.qt5.qtsvg
       git
 
-			hyprlandPlugins.borders-plus-plus
-			hyprlandPlugins.csgo-vulkan-fix
+      hyprlandPlugins.borders-plus-plus
+      hyprlandPlugins.csgo-vulkan-fix
 
       gtk3
       adw-gtk3
       gsettings-desktop-schemas
+
+      man-pages
+      man-pages-posix
 
       (unityhub.override {
         extraPkgs = fhsPkgs: [
@@ -384,7 +415,11 @@ in
   programs.xfconf.enable = true;
   programs.thunar = {
     enable = true;
-    plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman tumbler ];
+    plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-volman
+      tumbler
+    ];
   };
 
   services.upower.enable = false;
@@ -396,6 +431,7 @@ in
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
+	hardware.xpadneo.enable = true;
 
   xdg.portal = {
     enable = true;
@@ -411,12 +447,14 @@ in
 
   security.polkit.enable = true;
 
-  security.pam.loginLimits = [{
-    domain = "*";
-    type = "soft";
-    item = "nofile";
-    value = "4096";
-  }];
+  security.pam.loginLimits = [
+    {
+      domain = "*";
+      type = "soft";
+      item = "nofile";
+      value = "4096";
+    }
+  ];
 
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {
@@ -445,7 +483,10 @@ in
   security.doas = {
     enable = true;
     extraRules = [
-      { users = [ "nytou" ]; persist = true; }
+      {
+        users = [ "nytou" ];
+        persist = true;
+      }
     ];
   };
 
@@ -455,7 +496,13 @@ in
       openssh.authorizedKeys.keys = [
         # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
       ];
-      extraGroups = [ "networkmanager" "wheel" "plugdev" "input" "video" ];
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "plugdev"
+        "input"
+        "video"
+      ];
       shell = pkgs.zsh;
     };
   };

@@ -1,12 +1,18 @@
-{ config, pkgs, ... }:
-
+{ inputs, config, pkgs, ... }:
+let
+  pkgs-unstable = import inputs.unstable {
+    system = "x86_64-linux";
+    config.allowUnfree = true;
+  };
+in
 {
   home.packages = with pkgs; [
     mpc-cli
     ytmdl
     zscroll
     playerctl
-		amberol
+    amberol
+		pkgs-unstable.lollypop
     youtube-music
     # monophony
   ];
@@ -20,10 +26,22 @@
   programs.ncmpcpp = {
     enable = false;
     bindings = [
-      { key = "j"; command = "scroll_down"; }
-      { key = "k"; command = "scroll_up"; }
-      { key = "l"; command = "next_column"; }
-      { key = "h"; command = "previous_column"; }
+      {
+        key = "j";
+        command = "scroll_down";
+      }
+      {
+        key = "k";
+        command = "scroll_up";
+      }
+      {
+        key = "l";
+        command = "next_column";
+      }
+      {
+        key = "h";
+        command = "previous_column";
+      }
     ];
     package = pkgs.ncmpcpp.override {
       visualizerSupport = true;

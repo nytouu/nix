@@ -10,7 +10,7 @@
     enable = true;
     settings = {
       ipc = false;
-      splash = true;
+      splash = false;
       splash_offset = 2.0;
 
       preload = "~/pics/wallpaper.png";
@@ -108,6 +108,7 @@
           "border, 1, 10, default"
           "fade, 1, 7, default"
           "workspaces, 1, 4, md3_decel, slide"
+					"layers, 1, 7, default, popin 90% "
         ];
       };
 
@@ -175,16 +176,18 @@
         "SUPER, Return, exec, foot"
         "SUPER, A, killactive,"
         "SUPER, Space, togglefloating,"
+        "SUPER, S, pin,"
         "SUPER, D, exec, rofi -show drun"
+        # "SUPER, D, exec, ags -t launcher"
         # "SUPER, D, exec, asztal -t launcher"
         "SUPER, F, fullscreen"
-        "SUPER SHIFT, E, exec, asztal -t powermenu"
+        "SUPER SHIFT, E, exec, ags -t powermenu"
         "SUPER SHIFT, H, exec, hyprpicker -anz"
-        "SUPER, Tab,     exec, asztal -t overview"
+        "SUPER, Tab,     exec, ags -t overview"
 
-        "SUPER, R, exec, asztal -r 'recorder.start()'"
-        "SUPER, P, exec, asztal -r 'recorder.screenshot()'"
-        "SUPER SHIFT, P, exec, asztal -r 'recorder.screenshot(true)'"
+        "SUPER, R, exec, ags -r 'recorder.start()'"
+				"SUPER, P, exec, ags -r 'recorder.screenshot(true)'"
+        "SUPER SHIFT, P, exec, ags -r 'recorder.screenshot()'"
 
         "SUPER, N, exec, Thunar"
         "SUPER, B, exec, zen"

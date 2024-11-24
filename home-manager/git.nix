@@ -7,6 +7,7 @@
 
   programs.git = {
     enable = true;
+		lfs.enable = true;
     userName = "nytouu";
     userEmail = "capitaine7312@gmail.com";
     signing = {

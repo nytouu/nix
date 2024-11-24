@@ -1,14 +1,17 @@
 { pkgs, inputs, ... }:
 let
-  pkgs-unstable = import inputs.unstable { system = "x86_64-linux"; config.allowUnfree = true; };
+  pkgs-unstable = import inputs.unstable {
+    system = "x86_64-linux";
+    config.allowUnfree = true;
+  };
 in
 {
-  programs = with pkgs; {
+  programs = {
     bat.enable = true;
     eza.enable = true;
     htop = {
       enable = true;
-      package = htop-vim;
+      package = pkgs-unstable.htop-vim;
     };
     fastfetch.enable = true;
     fd.enable = true;
@@ -100,15 +103,17 @@ in
 
     # apps
     # audacity
+		meld
     teams-for-linux
     gnome.gnome-calendar
     gnome-secrets
     resources
-		jetbrains-toolbox
+    jetbrains-toolbox
     vscode
-		pkgs-unstable.boxbuddy
+    pkgs-unstable.boxbuddy
     # gnome.gnome-control-center
     pkgs-unstable.vesktop
+		pkgs-unstable.blender
     pkgs-unstable.obs-studio
     # pkgs-unstable.aseprite
     pkgs-unstable.lutris

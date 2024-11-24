@@ -50,7 +50,7 @@
       ls = "eza --icons always";
       rel = "xrdb merge $HOME/.config/x11/Xresources && kill -USR1 $(pidof st)";
       renix = "cd $HOME/nix && doas nixos-rebuild switch --flake ./#nixos --impure";
-      rehome = "cd $HOME/nix && home-manager switch --flake ./#nytou@nixos";
+      rehome = "rm ~/.config/mimeapps.list ; cd $HOME/nix && home-manager switch --flake ./#nytou@nixos";
     };
 
     initExtra = ''

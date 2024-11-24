@@ -1,17 +1,25 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
-  options = with lib; with types; {
-    darkmode = mkOption { type = bool; };
-  };
+  options =
+    with lib;
+    with types;
+    {
+      darkmode = mkOption { type = bool; };
+    };
   config = {
     darkmode = true;
 
     home.packages = with pkgs; [
       glib
       gsettings-desktop-schemas
-			graphite-kde-theme
-			adwsteamgtk
+      graphite-kde-theme
+      adwsteamgtk
     ];
 
     dconf = {
@@ -53,8 +61,8 @@
       iconTheme = {
         name = if config.darkmode then "Papirus-Dark" else "Papirus-Light";
         package = pkgs.papirus-icon-theme.override {
-					color = "adwaita";
-				};
+          color = "adwaita";
+        };
       };
       gtk2 = {
         extraConfig = ''
@@ -144,20 +152,20 @@
       "st.color15" = "#525252";
 
       "st.font" = "MartianMono Nerd Font:style=Medium:size=10:autohint=true";
-      "st.alpha" = "0.90";
+      "st.alpha" = "0.95";
     };
 
     xdg.configFile = {
       "Kvantum/kvantum.kvconfig".text =
         if config.darkmode then
           ''
-          [General]
-          theme=GraphiteDark
+            [General]
+            theme=GraphiteDark
           ''
         else
           ''
-          [General]
-          theme=Graphite
+            [General]
+            theme=Graphite
           '';
 
       "Kvantum/Graphite".source = "${pkgs.graphite-kde-theme}/share/Kvantum/Graphite";
