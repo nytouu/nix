@@ -80,7 +80,7 @@
 
   home.sessionVariables = {
     TERMINFO_DIRS = "${pkgs.st.terminfo.outPath}/share/terminfo";
-    TERMINAL = "st";
+    TERMINAL = "kitty";
     EDITOR = "nvim";
     BROWSER = "zen";
     FILEBROWSER = "thunar";

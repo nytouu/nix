@@ -25,4 +25,55 @@
       buildInputs = oldAttrs.buildInputs;
     }))
   ];
+  programs.kitty = {
+    enable = true;
+    settings = {
+      font_size = "10.0";
+      font_family = "MartianMono Nerd Font Medium";
+      bold_font = "auto";
+      italic_font = "auto";
+      bold_italic_font = "auto";
+      background_opacity = "0.95";
+
+      cursor_trail = "3";
+      cursor_trail_decay = "0.1 0.4";
+      cursor_trail_start_threshold = "2";
+
+      undercurl_style = "thick-sparse";
+
+      # symbol_map = "U+f101-U+f208 nonicons";
+      window_padding_width = "14";
+      tab_bar_style = "custom";
+      tab_separator = "";
+      tab_fade = "0 0 0 0";
+      tab_title_template = "{fmt.fg._665c54}{fmt.bg.default}  {index}:{f'{title[:6]}…{title[-6:]}' if title.rindex(title[-1]) + 1 > 25 else title}{' []' if layout_name == 'stack' else ''} ";
+      active_tab_title_template = "{fmt.fg._458588}{fmt.bg.default}  {index}:{f'{title[:6]}…{title[-6:]}' if title.rindex(title[-1]) + 1 > 25 else title}{' []' if layout_name == 'stack' else ''} ";
+      tab_bar_edge = "bottom";
+      tab_bar_align = "left";
+      tab_bar_margin_width = "0.0";
+      tab_bar_margin_height = "4.0 4.0";
+      active_tab_font_style = "bold-italic";
+      inactive_tab_font_style = "normal";
+      tab_bar_min_tabs = "2";
+      tab_activity_symbol = "none";
+      bell_on_tab = "no";
+      enable_audio_bell = "no";
+
+      clear_all_shortcuts = "no";
+      confirm_os_window_close = 0;
+    };
+
+    extraConfig = ''
+      	modify_font cell_height 4px
+      	modify_font cell_width 102%
+    '';
+
+    keybindings = {
+      "ctrl+shift+j" = "next_tab";
+      "ctrl+shift+k" = "previous_tab";
+      "ctrl+shift+x" = "close_tab";
+      "ctrl+shift+enter" = "new_tab";
+    };
+
+  };
 }
