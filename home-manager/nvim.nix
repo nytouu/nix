@@ -37,7 +37,7 @@ in
       tree-sitter
 
       nixfmt-rfc-style
-      nixd
+      pkgs.nixd
 
       stylua
       lua-language-server
