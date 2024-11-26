@@ -1,11 +1,18 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  ...
+}:
 let
-  pkgs-unstable = import inputs.unstable { system = "x86_64-linux"; config.allowUnfree = true; };
+  pkgs-unstable = import inputs.unstable {
+    system = "x86_64-linux";
+    config.allowUnfree = true;
+  };
 in
 {
   home.packages = with pkgs; [
     # protonup-qt
-    prismlauncher
+    pkgs-unstable.prismlauncher
 
     # pkgs-unstable.osu-lazer-bin
 
