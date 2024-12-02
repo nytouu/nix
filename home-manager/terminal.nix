@@ -5,8 +5,8 @@
       src = fetchFromGitHub {
         owner = "nytouu";
         repo = "st";
-        rev = "494daa1428a0d7f073df7a3653348ed087f751db";
-        sha256 = "1dvffr8jr953nwin3mx9l3rwq4ambrjjhbkss2xdpjp29x3zhhdz";
+        rev = "b2089a2c514d6264379bb1c84e7655b90f45e7d1";
+        sha256 = "0nqivk9vrqvq92p2h2l72rr21hggk3gjj1fp06icql169vjwr551";
       };
       buildInputs = oldAttrs.buildInputs ++ [
         xorg.libXinerama
@@ -25,23 +25,25 @@
       buildInputs = oldAttrs.buildInputs;
     }))
   ];
+
   programs.kitty = {
     enable = true;
     settings = {
-      font_size = "10.0";
-      font_family = "MartianMono Nerd Font Medium";
-      bold_font = "auto";
-      italic_font = "auto";
-      bold_italic_font = "auto";
+      font_size = "12.0";
+      font_family = "Liga SFMono Nerd Font Medium";
+      # bold_font = "auto";
+      # italic_font = "BlexMono Nerd Font Italic";
+      # bold_italic_font = "auto";
       background_opacity = "0.95";
 
       cursor_trail = "3";
       cursor_trail_decay = "0.1 0.4";
       cursor_trail_start_threshold = "2";
+			cursor_shape = "beam";
 
       undercurl_style = "thick-sparse";
 
-      # symbol_map = "U+f101-U+f208 nonicons";
+      symbol_map = "U+f101-U+f208 nonicons";
       window_padding_width = "14";
       tab_bar_style = "custom";
       tab_separator = "";
@@ -61,11 +63,12 @@
 
       clear_all_shortcuts = "no";
       confirm_os_window_close = 0;
+			allow_remote_control = "yes";
     };
 
     extraConfig = ''
-      	modify_font cell_height 4px
-      	modify_font cell_width 102%
+      	modify_font cell_height 6px
+      	modify_font cell_width 105%
     '';
 
     keybindings = {
@@ -74,6 +77,5 @@
       "ctrl+shift+x" = "close_tab";
       "ctrl+shift+enter" = "new_tab";
     };
-
   };
 }

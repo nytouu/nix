@@ -157,6 +157,7 @@
 
     programs.kitty = {
       settings = {
+				cursor = if config.darkmode then "#FCFCFC" else "#1D1D1D";
         background = if config.darkmode then "#1D1D1D" else "#FCFCFC";
         foreground = if config.darkmode then "#FFFFFF" else "#3d3846";
         color0 = if config.darkmode then "#262626" else "#ECEFF1";

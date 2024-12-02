@@ -7,6 +7,7 @@
     ./terminal.nix
     ./x.nix
     ./nvim.nix
+    ./zed.nix
     ./files.nix
     ./music.nix
     ./browser.nix
@@ -26,6 +27,9 @@
         "python-2.7.18.6"
         "openssl-1.1.1u"
         "openssl-1.1.1w"
+				"dotnet-core-combined"
+				"dotnet-sdk-6.0.428"
+				"dotnet-sdk-wrapped-6.0.428"
       ];
     };
   };
@@ -113,5 +117,5 @@
   systemd.user.startServices = "sd-switch";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "24.05";
+  home.stateVersion = "24.11";
 }

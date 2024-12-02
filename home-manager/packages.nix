@@ -75,15 +75,16 @@ in
     xdotool
     arandr
     xclip
-    (picom.overrideAttrs (oldAttrs: {
-      src = fetchFromGitHub {
-        owner = "yshui";
-        repo = "picom";
-        rev = "6caa76a281e906784deb05038e38919e878be6e0";
-        sha256 = "09d8r8b3fdm29hh9ypys9zhq3aw33awlvgxw1py0nv3fachy566k";
-      };
-      buildInputs = oldAttrs.buildInputs ++ [ asciidoctor ];
-    }))
+		pkgs-unstable.picom
+    # (picom.overrideAttrs (oldAttrs: {
+    #   src = fetchFromGitHub {
+    #     owner = "yshui";
+    #     repo = "picom";
+    #     rev = "6caa76a281e906784deb05038e38919e878be6e0";
+    #     sha256 = "09d8r8b3fdm29hh9ypys9zhq3aw33awlvgxw1py0nv3fachy566k";
+    #   };
+    #   buildInputs = oldAttrs.buildInputs ++ [ asciidoctor ];
+    # }))
 
     xcolor
 
@@ -105,7 +106,7 @@ in
     # audacity
 		meld
     teams-for-linux
-    gnome.gnome-calendar
+    gnome-calendar
     gnome-secrets
     resources
     jetbrains-toolbox

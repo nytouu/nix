@@ -48,6 +48,12 @@ in
     ];
     config = {
       allowUnfree = true;
+			permittedInsecurePackages = [
+				"dotnet-runtime-6.0.36"
+				"dotnet-sdk-6.0.428"
+				"dotnet-sdk-wrapped-6.0.428"
+				"dotnet-core-combined"
+			];
     };
   };
 
@@ -150,7 +156,7 @@ in
       sf-mono-liga-bin
       ibm-plex
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       jetbrains-mono
       siji
     ];
@@ -292,10 +298,9 @@ in
 
   console.keyMap = "fr";
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
   };
 
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -518,5 +523,5 @@ in
   # system.autoUpgrade.channel = "https://channels.nixos.org/nixos-23.11";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "24.05";
+  system.stateVersion = "24.11";
 }
