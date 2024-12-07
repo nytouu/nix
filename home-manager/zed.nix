@@ -1,4 +1,5 @@
-{  inputs,
+{
+  inputs,
   pkgs,
   lib,
   ...
@@ -24,10 +25,10 @@ in
     tree-sitter
 
     nixfmt-rfc-style
-    pkgs.nixd
+    nil
 
     csharp-ls
-		pkgs.omnisharp-roslyn
+    pkgs.omnisharp-roslyn
     dotnetCorePackages.sdk_8_0
 
     stylua
@@ -41,7 +42,7 @@ in
     enable = true;
     extensions = [
       "nix"
-			# "csharp"
+      # "csharp"
       "lua"
       "toml"
       "make"
@@ -112,6 +113,7 @@ in
       };
       vertical_scroll_margin = 5;
       relative_line_numbers = true;
+      show_completions_on_input = true;
 
       inlay_hints = {
         enabled = true;

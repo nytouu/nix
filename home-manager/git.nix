@@ -7,29 +7,31 @@
 
   programs.git = {
     enable = true;
-		lfs.enable = true;
     userName = "nytouu";
     userEmail = "capitaine7312@gmail.com";
     signing = {
       signByDefault = true;
       key = "3D59B7C1AAB592E7";
     };
-		extraConfig = {
-			merge = {
-				tool = "nvimdiff3";
-			};
-		};
+    extraConfig = {
+      merge = {
+        tool = "nvimdiff3";
+      };
+      safe = {
+        directory = "*";
+      };
+    };
   };
 
   programs.lazygit = {
-		enable = true;
-		settings = {
-			core = {
-				editor = "nvim";
-			};
-			os = {
-				editPreset = "nvim";
-			};
-		};
-	};
+    enable = true;
+    settings = {
+      core = {
+        editor = "nvim";
+      };
+      os = {
+        editPreset = "nvim";
+      };
+    };
+  };
 }

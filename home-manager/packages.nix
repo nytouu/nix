@@ -48,6 +48,13 @@ in
     ffmpegthumbnailer
     ffmpeg-full
 
+		(pkgs.unityhub.override {
+			extraPkgs = pkgs:
+				with pkgs; [
+					libogg
+				];
+		})
+
     # nix
     nix-prefetch-git
 
@@ -75,7 +82,7 @@ in
     xdotool
     arandr
     xclip
-		pkgs-unstable.picom
+    pkgs-unstable.picom
     # (picom.overrideAttrs (oldAttrs: {
     #   src = fetchFromGitHub {
     #     owner = "yshui";
@@ -104,7 +111,7 @@ in
 
     # apps
     # audacity
-		meld
+    meld
     teams-for-linux
     gnome-calendar
     gnome-secrets
@@ -114,7 +121,7 @@ in
     pkgs-unstable.boxbuddy
     # gnome.gnome-control-center
     pkgs-unstable.vesktop
-		pkgs-unstable.blender
+    pkgs-unstable.blender
     pkgs-unstable.obs-studio
     # pkgs-unstable.aseprite
     pkgs-unstable.lutris

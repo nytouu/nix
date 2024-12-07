@@ -48,12 +48,12 @@ in
     ];
     config = {
       allowUnfree = true;
-			permittedInsecurePackages = [
-				"dotnet-runtime-6.0.36"
-				"dotnet-sdk-6.0.428"
-				"dotnet-sdk-wrapped-6.0.428"
-				"dotnet-core-combined"
-			];
+      permittedInsecurePackages = [
+        "dotnet-runtime-6.0.36"
+        "dotnet-sdk-6.0.428"
+        "dotnet-sdk-wrapped-6.0.428"
+        "dotnet-core-combined"
+      ];
     };
   };
 
@@ -264,27 +264,9 @@ in
 
       man-pages
       man-pages-posix
-
-      (unityhub.override {
-        extraPkgs = fhsPkgs: [
-          fhsPkgs.harfbuzz
-          fhsPkgs.libogg
-
-          fhsPkgs.vulkan-tools
-          fhsPkgs.vulkan-loader
-          fhsPkgs.vulkan-helper
-          fhsPkgs.vulkan-headers
-          fhsPkgs.vulkan-extension-layer
-          fhsPkgs.vulkan-validation-layers
-          fhsPkgs.vulkan-utility-libraries
-          fhsPkgs.mono
-          fhsPkgs.mesa
-          fhsPkgs.glibc
-        ];
-      })
     ];
 
-    variables = rec {
+    variables = {
       GSETTINGS_SCHEMA_DIR = "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}/glib-2.0/schemas";
     };
 
@@ -301,6 +283,9 @@ in
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
+    extraPackages = with pkgs; [
+      nvidia-vaapi-driver
+    ];
   };
 
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -323,6 +308,9 @@ in
       nvidiaBusId = "PCI:1:0:0";
     };
   };
+
+	environment.variables.MOZ_DISABLE_RDD_SANDBOX = "1";
+	environment.variables.LIBVA_DRIVER_NAME = "nvidia";
 
   security.rtkit.enable = true;
 
@@ -436,7 +424,7 @@ in
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
-	hardware.xpadneo.enable = true;
+  hardware.xpadneo.enable = true;
 
   xdg.portal = {
     enable = true;
