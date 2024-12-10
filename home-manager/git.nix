@@ -18,7 +18,7 @@
         tool = "nvimdiff3";
       };
       safe = {
-        directory = "*";
+        directory = "/mnt/KINGSTON/Git/nix";
       };
     };
   };
